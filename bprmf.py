@@ -10,12 +10,20 @@ def tf_mean_logloss(raw_margins, target_values, tag, trunc_max=100):
     return mean_loss
 
 
+def tf_mean_l2(w):
+    elementwise_sq_norm = tf.reduce_sum(tf.pow(w, 2), axis=1)
+    checked_elwise_l2 = tf.verify_tensor_all_finite(elementwise_sq_norm, msg='NaN or Inf in norm', name='checked_elwise_l2')
+    mean_l2 = tf.reduce_mean(checked_elwise_l2)
+    return mean_l2
+
+
 class BPR_MF(object):
 
-    def __init__(self, n_users, n_items, n_embeddings, seed=None):
+    def __init__(self, n_users, n_items, n_embeddings, alpha_reg=0, seed=None):
         self.N_USERS = n_users
         self.N_ITEMS = n_items
         self.N_EMBEDDINGS = n_embeddings
+        self.alpha_reg = alpha_reg
         self.seed = seed
         self.graph = tf.Graph()
         if seed:
@@ -47,7 +55,8 @@ class BPR_MF(object):
             self.embedding_loss = tf_mean_logloss(self.embedding_margins, self.target_y, 'embedding_loss')
 
             # outs
-            self.target = self.embedding_loss
+            self.regularization = tf_mean_l2(self.embedding_user) + tf_mean_l2(self.embedding_left) + tf_mean_l2(self.embedding_right)
+            self.target = self.embedding_loss + self.alpha_reg * self.regularization
 
             self.trainer_1 = tf.train.AdamOptimizer(learning_rate=0.05).minimize(self.target)
             self.trainer_2 = tf.train.AdamOptimizer(learning_rate=1e-2).minimize(self.target)
