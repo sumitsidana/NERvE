@@ -27,12 +27,17 @@ cdef class CachedRandomizer(object):
         self.ptr += 1
         return retval
     
-    def sample(CachedRandomizer self):
-        cdef int retval = 0
-        retval = self.sample_c()
-        return retval
+    def sample(CachedRandomizer self, k=None):
+        cdef int val = 0
+        cdef int ck = 0
+        val = self.sample_c()
+        if k is not None:
+            ck = k
+            while val >= ck:
+                val = self.sample_c()
+        return val
 
-    
+
 cdef class CachedSampler2from5(object):
     cdef CachedRandomizer rnd
     def __init__(self, long blob_size=10000000):

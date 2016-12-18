@@ -72,7 +72,7 @@ class TripletsDataset(object):
 
         for u in tqdm(self.data, desc='Split users', leave=False):
             # select random indicies which will be used for training for current user u
-            train_inds = set(np.random.choice(len(self.data[u]), size=n_train, replace=False))
+            train_inds = set(random.sample(range(len(self.data[u])), n_train))
             for n, (i, r) in enumerate(self.data[u]):
                 if n in train_inds:
                     # move to train
