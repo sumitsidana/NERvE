@@ -2,6 +2,8 @@ import numpy as np
 import random
 from tqdm import tqdm
 
+import cachedrandom
+
 
 class TripletsDataset(object):
     """
@@ -47,6 +49,10 @@ class TripletsDataset(object):
             self.data[u] = self.data.get(u, []) + [(i, r)]
             self.statistics['cnt_total'] += 1
         self.data_keys = list(self.data.keys())
+
+         # init cached randomizers
+        self.pair_sampler = cachedrandom.CachedSampler2from5(blob_size=10000000)
+        self.data_keys_sampler = cachedrandom.CachedRandomizer(high=len(self.data_keys), blob_size=10000000)
 
 
     def set_random_seed(self, seed):
@@ -104,12 +110,15 @@ class TripletsDataset(object):
 
 
     def sample_train_triple(self):
-        user = random.choice(self.data_keys)
+
+        user = self.data_keys[self.data_keys_sampler.sample()]
         stats = self.train[user]
         stats_keys = list(stats.keys())
         assert len(stats_keys) > 1, 'user {} has only 1 rating!'.format(user)
 
-        left_rating, right_rating = random.sample(stats_keys, 2)
+        left_rating, right_rating = self.pair_sampler.sample(stats_keys)
+        assert left_rating != right_rating
+
         left_value = random.choice(stats[left_rating])
         right_value = random.choice(stats[right_rating])
         y = (left_rating > right_rating)*2 - 1
