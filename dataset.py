@@ -50,15 +50,19 @@ class TripletsDataset(object):
             self.statistics['cnt_total'] += 1
         self.data_keys = list(self.data.keys())
 
-         # init cached randomizers
-        self.pair_sampler = cachedrandom.CachedSampler2from5(blob_size=10000000)
-        self.data_keys_sampler = cachedrandom.CachedRandomizer(high=len(self.data_keys), blob_size=10000000)
+        self.init_cached_random()
 
 
     def set_random_seed(self, seed):
         # fix randomness
         np.random.seed(seed)
         random.seed(seed)
+
+    def init_cached_random(self):
+        # init cached randomizers
+        self.pair_sampler = cachedrandom.CachedSampler2from5(blob_size=10000000)
+        self.data_keys_sampler = cachedrandom.CachedRandomizer(high=len(self.data_keys), blob_size=10000000)
+
 
 
 
@@ -122,11 +126,12 @@ class TripletsDataset(object):
         left_value = random.choice(stats[left_rating])
         right_value = random.choice(stats[right_rating])
         y = (left_rating > right_rating)*2 - 1
-        return (user, left_value, right_value, y)
+        diff = left_rating - right_rating
+        return (user, left_value, right_value, y, diff)
 
 
     def sample_train_batch(self,n_samples=256):
-        retval = np.zeros((n_samples, 4)).astype(np.int32)
+        retval = np.zeros((n_samples, 5)).astype(np.int32)
         for i in range(n_samples):
             retval[i] = self.sample_train_triple()
         return {
@@ -134,4 +139,5 @@ class TripletsDataset(object):
             'left_items': retval[:, 1],
             'right_items': retval[:, 2],
             'y': retval[:, 3].astype(np.float32),
+            'diff': retval[:, 4].astype(np.float32),
         }
