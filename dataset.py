@@ -112,6 +112,14 @@ class TripletsDataset(object):
                         break
             self.test[u] = sorted(self.test[u], key=lambda x: x[1], reverse=True)
 
+        # intersect train and test items
+        self.used_in_trainset = set()
+        for u in self.train:
+            for r in self.train[u]:
+                self.used_in_trainset.update(self.train[u][r])
+        for u in self.test:
+            self.test[u] = [(i, r) for (i, r) in self.test[u] if i in self.used_in_trainset]
+
 
     def sample_train_triple(self):
 
