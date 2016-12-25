@@ -85,6 +85,19 @@ def average_precision_score(y_true, y_score, k=10):
     return score / n_pos
 
 
+def dcg_score_from_raw(y_true, gains="exponential"):
+    if gains == "exponential":
+        gains = 2 ** y_true - 1
+    elif gains == "linear":
+        gains = y_true
+    else:
+        raise ValueError("Invalid gains option.")
+
+    # highest rank is 1 so +2 instead of +1
+    discounts = np.log2(np.arange(len(y_true)) + 2)
+    return np.sum(gains / discounts)
+
+
 def dcg_score(y_true, y_score, k=10, gains="exponential"):
     """Discounted cumulative gain (DCG) at rank k
 
@@ -120,6 +133,11 @@ def dcg_score(y_true, y_score, k=10, gains="exponential"):
     discounts = np.log2(np.arange(len(y_true)) + 2)
     return np.sum(gains / discounts)
 
+
+def ndcg_score_from_raw(y_true, y_pred, k=10, gains="exponential"):
+    best = dcg_score_from_raw(y_true)
+    actual = dcg_score_from_raw(y_pred)
+    return actual / best
 
 def ndcg_score(y_true, y_score, k=10, gains="exponential"):
     """Normalized discounted cumulative gain (NDCG) at rank k

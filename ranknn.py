@@ -94,7 +94,10 @@ class RANK_NN(object):
             self.trainer_2 = tf.train.AdamOptimizer(learning_rate=1e-2).minimize(self.target)
             self.trainer_3 = tf.train.AdamOptimizer(learning_rate=1e-3).minimize(self.target)
             self.init_all_vars = tf.global_variables_initializer()
-            # self.saver = tf.train.Saver()
+            self.saver = tf.train.Saver()
+            self.sw = tf.train.SummaryWriter('./tmp/')
+            self.merged = tf.summary.merge_all()
+            self.train_writer = tf.summary.FileWriter('./tmp')
 
     @property
     def weights_i(self):
