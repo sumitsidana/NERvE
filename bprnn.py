@@ -62,11 +62,14 @@ class BPR_NN(object):
             self.embedding_left = tf.nn.embedding_lookup(self.item_latents, self.left_ids, name='embedding_left')
             self.embedding_right = tf.nn.embedding_lookup(self.item_latents, self.right_ids, name='embedding_right')
 
+            self.left_emb = tf.reduce_sum(tf.mul(self.embedding_user, self.embedding_left), axis=1)
+            self.right_emb = tf.reduce_sum(tf.mul(self.embedding_user, self.embedding_right), axis=1)
+
             # raw margins for primal ranking loss
-            self.embedding_diff = self.embedding_left - self.embedding_right
+            #self.embedding_diff = self.embedding_left - self.embedding_right
 
             # shape: [n_batch, ]
-            self.embedding_margins = tf.reduce_sum(tf.mul(self.embedding_user, self.embedding_diff), axis=1, name='embedding_margins')
+            self.embedding_margins = self.left_emb - self.right_emb
             self.embedding_loss = tf_mean_logloss(self.embedding_margins, self.target_y, 'embedding_loss')
 
 
@@ -85,8 +88,6 @@ class BPR_NN(object):
             # outs
             self.regularization = tf_mean_l2(self.embedding_user) + tf_mean_l2(self.embedding_left) + tf_mean_l2(self.embedding_right)
             self.ranking_losses = self.alpha * self.embedding_loss + self.beta*self.net_loss
-            # self.diff_loss = tf_mean_l2(self.net_margins - self.target_diff)
-            # self.target = self.ranking_losses + self.alpha_diff*self.diff_loss + self.alpha_reg * self.regularization
             self.target = self.ranking_losses + self.alpha_reg * self.regularization
 
             self.trainer_1 = tf.train.AdamOptimizer(learning_rate=0.05).minimize(self.target)
@@ -97,11 +98,11 @@ class BPR_NN(object):
 
     @property
     def weights_i(self):
-        return self.user_latents.eval(session=self.session)
+        return self.item_latents.eval(session=self.session)
 
     @property
     def weights_u(self):
-        return self.item_latents.eval(session=self.session)
+        return self.user_latents.eval(session=self.session)
 
 
     def initialize_session(self):
