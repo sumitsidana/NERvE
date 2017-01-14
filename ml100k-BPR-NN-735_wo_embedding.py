@@ -17,7 +17,7 @@ pyximport.install()
 import matplotlib
 # In[20]:
 
-raw_data = np.loadtxt('/home/sumit/ratings.csv', delimiter=',')
+raw_data = np.loadtxt('/home/sumit/ml-100k/u.data', delimiter='\t')
 
 
 # In[21]:
@@ -47,7 +47,7 @@ ds.init_cached_random()
 # In[24]:
 
 import tensorflow as tf
-import bprnn
+import bprnn_wo_embedding
 
 
 # In[25]:
@@ -57,7 +57,7 @@ import imp
 
 # In[26]:
 
-imp.reload(bprnn)
+imp.reload(bprnn_wo_embedding)
 
 
 # In[48]:
@@ -67,8 +67,8 @@ imp.reload(bprnn)
 
 # In[27]:
 
-N_USERS = 138494 #int(max(raw_data[:, 0])) + 1
-N_ITEMS = 26745 #int(max(raw_data[:, 1])) + 1
+N_USERS = 944 #int(max(raw_data[:, 0])) + 1
+N_ITEMS = 1683 #int(max(raw_data[:, 1])) + 1
 N_EMBEDDINGS = 1
 
 
@@ -78,7 +78,7 @@ import tensorflow.contrib.slim as slim
 
 def inner_network(user_emb, item_emb):
     joined_input = tf.concat(1, [user_emb, item_emb])
-    net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
+    net = slim.fully_connected(inputs=joined_input, num_outputs=32, activation_fn=tf.nn.relu)
 #     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.dro
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
@@ -87,7 +87,7 @@ def inner_network(user_emb, item_emb):
 
 # In[29]:
 
-model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=0.5, beta=0.5, alpha_reg=0.0, inner_net=inner_network)
+model = bprnn_wo_embedding.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=0.5, beta=0.5, alpha_reg=0.0, inner_net=inner_network)
 model.build_graph()
 model.initialize_session()
 
@@ -105,11 +105,16 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
             model.right_ids: batch['right_items'],
             model.target_y:  batch['y'],
         }
-        el, nl, reg, t, _ = model.session.run(
-            [model.embedding_loss, model.net_loss, model.regularization, model.target, cur_optim], 
+        # el, nl, reg, t, _ = model.session.run(
+        #     [model.embedding_loss, model.net_loss, model.regularization, model.target, cur_optim],
+        #     feed_dict=fd
+        # )
+
+        nl, reg, t, _ = model.session.run(
+            [model.net_loss, model.regularization, model.target, cur_optim],
             feed_dict=fd
         )
-        losses.append((el, nl, reg, t))
+        losses.append((nl, reg, t))
         if i%500==0:
             user_norm = np.linalg.norm(model.weights_u)
             item_norm = np.linalg.norm(model.weights_i)
@@ -138,7 +143,7 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
             model.user_ids:  (np.ones(len(ds.test[u]))*u).astype(np.int32), 
             model.left_ids:  np.array([i for (i, r) in ds.test[u]]).astype(np.int32),
         }
-    response += model.session.run(model.embedding_left, feed_dict=fd)[:, 0]
+    response += model.session.run(model.left_ids, feed_dict=fd)[:, 0]
     response += model.session.run(model.left_output, feed_dict=fd)[:, 0]
 
     # make relevances

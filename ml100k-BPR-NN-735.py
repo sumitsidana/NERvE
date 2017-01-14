@@ -17,7 +17,7 @@ pyximport.install()
 import matplotlib
 # In[20]:
 
-raw_data = np.loadtxt('/home/sumit/ratings.csv', delimiter=',')
+raw_data = np.loadtxt('/home/sumit/ml-100k/u.data', delimiter='\t')
 
 
 # In[21]:
@@ -67,8 +67,8 @@ imp.reload(bprnn)
 
 # In[27]:
 
-N_USERS = 138494 #int(max(raw_data[:, 0])) + 1
-N_ITEMS = 26745 #int(max(raw_data[:, 1])) + 1
+N_USERS = 944 #int(max(raw_data[:, 0])) + 1
+N_ITEMS = 1683 #int(max(raw_data[:, 1])) + 1
 N_EMBEDDINGS = 1
 
 
