@@ -17,7 +17,7 @@ pyximport.install()
 import matplotlib
 # In[20]:
 
-raw_data = np.loadtxt('/home/sumit/ml-1m/ratings.dat', delimiter='::')
+raw_data = np.loadtxt('/data/sidana/nnmf_ranking/ml1m/ratings.dat', delimiter='::')
 
 
 # In[21]:
