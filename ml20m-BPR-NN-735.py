@@ -17,7 +17,7 @@ pyximport.install()
 import matplotlib
 # In[20]:
 
-raw_data = np.loadtxt('/data/sidana/nnmf_ranking/ml20m/ratings.csv', delimiter=',')
+raw_data = np.loadtxt('/data/sidana/nnmf_ranking/ml20m/dat.ml20m', delimiter=',')
 
 
 # In[21]:
@@ -68,7 +68,7 @@ imp.reload(bprnn)
 # In[27]:
 
 N_USERS = 138494 #int(max(raw_data[:, 0])) + 1
-N_ITEMS = 131262 #int(max(raw_data[:, 1])) + 1
+N_ITEMS = 131263 #int(max(raw_data[:, 1])) + 1
 N_EMBEDDINGS = 1
 
 
