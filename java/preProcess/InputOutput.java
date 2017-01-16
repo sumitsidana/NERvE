@@ -83,6 +83,9 @@ public class InputOutput {
 			while ((line = br.readLine()) != null) {
 				line = line.replace("0\n", "-1\n");
 			}
+			printWriterTrain.close();
+			br.close();
 		}
+		
 	}
 }
