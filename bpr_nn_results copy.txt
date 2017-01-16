@@ -1,0 +1,40 @@
+ml100k
+N_USERS = 944 #int(max(raw_data[:, 0])) + 1
+N_ITEMS = 1683 #int(max(raw_data[:, 1])) + 1
+N_EMBEDDINGS = 1
+num_outputs=64
+No Regularization
+Result: 0.691462034371
+
+
+ml1m
+N_USERS = 6041 #int(max(raw_data[:, 0])) + 1
+N_ITEMS = 3953 #int(max(raw_data[:, 1])) + 1
+N_EMBEDDINGS = 1
+num_outputs=64
+No Regularization
+Result: 0.752542366744
+
+ml20m
+N_USERS = 138494 #int(max(raw_data[:, 0])) + 1 N_ITEMS = 131263 #int(max(raw_data[:, 1])) + 1 N_EMBEDDINGS = 1
+num_outputs=64
+No regularisation
+Result: 0.691809164024
+
+netflix
+N_USERS =  17771#int(max(raw_data[:, 0])) + 1
+N_ITEMS = 2649430 #int(max(raw_data[:, 1])) + 1
+N_EMBEDDINGS = 1
+num_outputs=64
+No regularisation
+Result: 0.775431981192
+
+recsys2016
+After ensuring user has at least 2 different kind of behaviour (1 and -1) still code fails with an error: AssertionError: user 2427978 has only 1 rating!
+User 2427978 has 2 ratings - 1 and -1 in original dataset, so what else needs to be ensured while creating datasets?
+
+
+outbrainchallenge
+
+
+
