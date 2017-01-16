@@ -76,4 +76,13 @@ public class InputOutput {
 			br.close();
 		}
 	}
+	public static void replaceRatingType(String inputFile,String outputFile) throws IOException{
+		PrintWriter printWriterTrain = new PrintWriter (outputFile);
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				line = line.replace("0\n", "-1\n");
+			}
+		}
+	}
 }
