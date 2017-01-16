@@ -81,11 +81,12 @@ public class InputOutput {
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				line = line.replace("0\n", "-1\n");
+				line = line.replace(",0,", ",-1,");
+				printWriterTrain.println(line);
 			}
 			printWriterTrain.close();
 			br.close();
 		}
-		
+
 	}
 }
