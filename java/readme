@@ -1,6 +1,9 @@
 #zeppellin nnmf_ranking: recsysChallengeSubsetCreation ----> /data/sidana/nnmf_ranking/rschallenge2016/totalData.csv
 ./preprocess.sh
 #zeppellin nnmf_ranking: recsysChallengeSubsetCreation ---->/data/sidana/nnmf_ranking/rschallenge2016/recsyschallenge.input
+java -cp /home/ama/sidana/recsysBaselines/code/java preProcess.RemoveBrackets /data/sidana/nnmf_ranking/rschallenge2016/recsyschallenge.input /data/sidana/nnmf_ranking/rschallenge2016/dat.recsyschallengeinput
+sed -i.bak 1i"[userid,offerid,clicked]" /data/sidana/nnmf_ranking/rschallenge2016/dat.recsyschallengeinput
+#zeppellin nnmf_ranking: nusersitemsrecsyschallenge
 java -cp ~/nnmf_ranking/java/ preProcess.IgnoreSingleRatingUsers ./dat.singleratingusers ./dat.recsyschallengeinput.bak ./dat.rsinput ,
 sed 's/$/,12345/' dat.rsinput >dat.recsyschallenge2016input
 java -cp ~/nnmf_ranking/java/ preProcess.ReplaceRatingType dat.recsyschallenge2016input dat.inputrschallenge
