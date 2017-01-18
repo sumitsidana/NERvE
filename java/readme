@@ -1,7 +1,6 @@
-# nnmf_ranking: recsysChallengeSubsetCreation ----> totalData.csv
-# add headers
-# remove brackets
-
+#zeppellin nnmf_ranking: recsysChallengeSubsetCreation ----> /data/sidana/nnmf_ranking/rschallenge2016/totalData.csv
+./preprocess.sh
+#zeppellin nnmf_ranking: recsysChallengeSubsetCreation ---->/data/sidana/nnmf_ranking/rschallenge2016/recsyschallenge.input
 java -cp ~/nnmf_ranking/java/ preProcess.IgnoreSingleRatingUsers ./dat.singleratingusers ./dat.recsyschallengeinput.bak ./dat.rsinput ,
 sed 's/$/,12345/' dat.rsinput >dat.recsyschallenge2016input
 java -cp ~/nnmf_ranking/java/ preProcess.ReplaceRatingType dat.recsyschallenge2016input dat.inputrschallenge
