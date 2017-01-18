@@ -88,6 +88,5 @@ public class InputOutput {
 			printWriterTrain.close();
 			br.close();
 		}
-
 	}
 }
