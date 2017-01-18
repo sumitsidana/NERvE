@@ -7,3 +7,4 @@ sed -i.bak 1i"[userid,offerid,clicked]" /data/sidana/nnmf_ranking/rschallenge201
 java -cp ~/nnmf_ranking/java/ preProcess.IgnoreSingleRatingUsers ./dat.singleratingusers ./dat.recsyschallengeinput.bak ./dat.rsinput ,
 sed 's/$/,12345/' dat.rsinput >dat.recsyschallenge2016input
 java -cp ~/nnmf_ranking/java/ preProcess.ReplaceRatingType dat.recsyschallenge2016input dat.inputrschallenge
+cp dat.inputrschallenge dat.inputrschallenge.bak
