@@ -120,4 +120,20 @@ public class InputOutput {
 		printWriter.close();
 
 	}
+
+	public static void removeBrackets(String inputFile, String outputFile) throws IOException{
+
+		PrintWriter printWriterTrain = new PrintWriter (outputFile);
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				line = line.replace("[", "").replace("]", "");
+				printWriterTrain.println(line);
+				// TODO Auto-generated method stub
+			}
+			printWriterTrain.close();
+			br.close();
+		}
+
+	}
 }
