@@ -1,8 +1,10 @@
 package preProcess;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -88,5 +90,34 @@ public class InputOutput {
 			printWriterTrain.close();
 			br.close();
 		}
+	}
+
+	public static void writeTabSeparatedFile(String inputFile, String outputFile, String header) throws IOException{
+		String line;
+		PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+			line = br.readLine();
+			printWriter.println(header);
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				String useridclicks = array[0];
+				String useridoffers = array[2];
+				for(int i = 2  ; i  < array.length ; i++){
+					//					if(i==array.length - 2||i==array.length-4){
+					//						continue;
+					//					}
+					printWriter.print(array[i]+"\t");
+				}
+				if(useridclicks.equals("null") && useridoffers.equals("null")){
+					printWriter.println("0");
+				}
+				else{
+					printWriter.println("1");
+				}
+			}
+			// TODO Auto-generated method stub
+		}
+		printWriter.close();
+
 	}
 }
