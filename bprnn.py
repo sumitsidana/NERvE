@@ -43,7 +43,6 @@ class BPR_NN(object):
         if seed:
             self.graph.seed = seed
 
-
     def build_graph(self):
         with self.graph.as_default():
             # placeholders
@@ -64,9 +63,6 @@ class BPR_NN(object):
 
             self.left_emb = tf.reduce_sum(tf.mul(self.embedding_user, self.embedding_left), axis=1)
             self.right_emb = tf.reduce_sum(tf.mul(self.embedding_user, self.embedding_right), axis=1)
-
-            # raw margins for primal ranking loss
-            #self.embedding_diff = self.embedding_left - self.embedding_right
 
             # shape: [n_batch, ]
             self.embedding_margins = self.left_emb - self.right_emb
@@ -93,8 +89,8 @@ class BPR_NN(object):
             self.trainer_1 = tf.train.AdamOptimizer(learning_rate=0.05).minimize(self.target)
             self.trainer_2 = tf.train.AdamOptimizer(learning_rate=1e-2).minimize(self.target)
             self.trainer_3 = tf.train.AdamOptimizer(learning_rate=1e-3).minimize(self.target)
+            self.trainer_3 = tf.train.AdamOptimizer(learning_rate=1e-4).minimize(self.target)
             self.init_all_vars = tf.global_variables_initializer()
-            # self.saver = tf.train.Saver()
 
     @property
     def weights_i(self):
@@ -103,7 +99,6 @@ class BPR_NN(object):
     @property
     def weights_u(self):
         return self.user_latents.eval(session=self.session)
-
 
     def initialize_session(self):
         config = tf.ConfigProto()
