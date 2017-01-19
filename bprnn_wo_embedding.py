@@ -18,39 +18,24 @@ def tf_mean_l2(w):
     return mean_l2
 
 
+# #Mikhail: I suggest to move the definition of inner net outside of this file
 # def inner_network(user_emb, item_emb):
 #     joined_input = tf.concat(1, [user_emb, item_emb])
 #     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
-#     net = slim.fully_connected(inputs=net, num_outputs=32, activation_fn=tf.nn.relu)
-#     net = slim.fully_connected(inputs=net, num_outputs=16, activation_fn=tf.nn.relu)
 #     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
 #     return net
 
-def inner_network(user_emb, item_emb):
-    joined_input = tf.concat(1, [user_emb, item_emb])
-    net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
-#     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
-#     net = slim.dro
-    net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
-    return net
 
+class BPR_NN_WO_EMB(object):
 
-class BPR_NN(object):
-
-    def __init__(self, n_users, n_items, n_embeddings, alpha=0.5, beta=0.5, alpha_reg=0, alpha_diff=0, seed=None, inner_net=inner_network):
-        self.N_USERS = n_users
-        self.N_ITEMS = n_items
-        self.N_EMBEDDINGS = n_embeddings
-        self.alpha = alpha
-        self.beta = beta
+    def __init__(self, inner_net, alpha_reg=0, seed=None):
+        assert inner_net is not None, 'inner_net param should be None'
         self.alpha_reg = alpha_reg
-        self.alpha_diff = alpha_diff
         self.seed = seed
         self.graph = tf.Graph()
         self.inner_net = inner_net
         if seed:
             self.graph.seed = seed
-
 
     def build_graph(self):
         with self.graph.as_default():
@@ -60,26 +45,6 @@ class BPR_NN(object):
             self.right_ids = tf.placeholder(tf.int32, (None,), name='right_ids')
             self.target_y = tf.placeholder(tf.float32, (None,), name='target_y')
             self.target_diff = tf.placeholder(tf.float32, (None,), name='target_diff')
-
-            # main parameters
-            self.user_latents = tf.Variable(tf.random_uniform(shape=(self.N_USERS, self.N_EMBEDDINGS)), trainable=True, name='user_latents')
-            self.item_latents = tf.Variable(tf.random_uniform(shape=(self.N_ITEMS, self.N_EMBEDDINGS)), trainable=True, name='item_latents')
-            # 
-            # # get embeddings for batch
-            # self.user_ids = tf.nn.embedding_lookup(self.user_latents, self.user_ids, name='user_ids')
-            # self.left_ids = tf.nn.embedding_lookup(self.item_latents, self.left_ids, name='left_ids')
-            # self.right_ids = tf.nn.embedding_lookup(self.item_latents, self.right_ids, name='right_ids')
-            # 
-            # self.left_emb = tf.reduce_sum(tf.mul(self.user_ids, self.left_ids), axis=1)
-            # self.right_emb = tf.reduce_sum(tf.mul(self.user_ids, self.right_ids), axis=1)
-            # 
-            # # raw margins for primal ranking loss
-            # #self.embedding_diff = self.left_ids - self.right_ids
-            # 
-            # # shape: [n_batch, ]
-            # self.embedding_margins = self.left_emb - self.right_emb
-            # self.embedding_loss = tf_mean_logloss(self.embedding_margins, self.target_y, 'embedding_loss')
-
 
             # apply shared net
             with tf.variable_scope("nn"):
@@ -94,15 +59,16 @@ class BPR_NN(object):
             self.net_loss = tf_mean_logloss(self.net_margins, self.target_y, 'net_loss')
 
             # outs
-            self.regularization = tf_mean_l2(self.user_ids) + tf_mean_l2(self.left_ids) + tf_mean_l2(self.right_ids)
+            self.regularization = 0
             self.ranking_losses = self.net_loss
             self.target = self.ranking_losses + self.alpha_reg * self.regularization
 
+            # different trainers, by default use _3
             self.trainer_1 = tf.train.AdamOptimizer(learning_rate=0.05).minimize(self.target)
             self.trainer_2 = tf.train.AdamOptimizer(learning_rate=1e-2).minimize(self.target)
             self.trainer_3 = tf.train.AdamOptimizer(learning_rate=1e-3).minimize(self.target)
+            self.trainer_4 = tf.train.AdamOptimizer(learning_rate=1e-4).minimize(self.target)
             self.init_all_vars = tf.global_variables_initializer()
-            # self.saver = tf.train.Saver()
 
     @property
     def weights_i(self):
@@ -111,7 +77,6 @@ class BPR_NN(object):
     @property
     def weights_u(self):
         return self.user_latents.eval(session=self.session)
-
 
     def initialize_session(self):
         config = tf.ConfigProto()
