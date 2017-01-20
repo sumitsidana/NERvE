@@ -89,7 +89,7 @@ class BPR_NN(object):
             self.trainer_1 = tf.train.AdamOptimizer(learning_rate=0.05).minimize(self.target)
             self.trainer_2 = tf.train.AdamOptimizer(learning_rate=1e-2).minimize(self.target)
             self.trainer_3 = tf.train.AdamOptimizer(learning_rate=1e-3).minimize(self.target)
-            self.trainer_3 = tf.train.AdamOptimizer(learning_rate=1e-4).minimize(self.target)
+            self.trainer_4 = tf.train.AdamOptimizer(learning_rate=1e-4).minimize(self.target)
             self.init_all_vars = tf.global_variables_initializer()
 
     @property
