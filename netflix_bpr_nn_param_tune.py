@@ -88,7 +88,7 @@ f = open('/data/sidana/nnmf_ranking/netflix/param_tune', 'w')
 # In[29]:
 for i in np.arange(0, 1.1, 0.1):
     b=1-i
-    print ('alpha: '+ i + 'beta: '+ b)
+    print ('alpha: '+ str(i) + 'beta: '+ str(b))
     model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=i, beta=b, alpha_reg=0.0, inner_net=inner_network)
     model.build_graph()
     model.initialize_session()
@@ -133,7 +133,7 @@ for i in np.arange(0, 1.1, 0.1):
     mean_ndcg=np.mean(ndcg_vals)
     print (np.std(ndcg_vals))
     std_ndcg=np.std(ndcg_vals)
-    f.write('alpha:'+i+',beta:'+b+',ndcg:'+mean_ndcg+',std:'+std_ndcg+'\n')
+    f.write('alpha:'+str(i)+',beta:'+str(b)+',ndcg:'+str(mean_ndcg)+',std:'+str(std_ndcg)+'\n')
 f.close()
 
 
