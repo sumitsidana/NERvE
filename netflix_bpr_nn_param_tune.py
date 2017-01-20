@@ -86,7 +86,7 @@ def inner_network(user_emb, item_emb):
 
 f = open('/data/sidana/nnmf_ranking/netflix/param_tune', 'w')
 # In[29]:
-for i in np.arange(0, 1, 0.1):
+for i in np.arange(0, 1.1, 0.1):
     b=1-i
     print ('alpha: '+ i + 'beta: '+ b)
     model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=i, beta=b, alpha_reg=0.0, inner_net=inner_network)
