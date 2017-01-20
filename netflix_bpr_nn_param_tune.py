@@ -133,7 +133,7 @@ for i in np.arange(0, 1, 0.1):
     mean_ndcg=np.mean(ndcg_vals)
     print (np.std(ndcg_vals))
     std_ndcg=np.std(ndcg_vals)
-    f.write('alpha:'+i+',beta:'+b+',ndcg:'+mean_ndcg+',std:'+std_ndcg)
+    f.write('alpha:'+i+',beta:'+b+',ndcg:'+mean_ndcg+',std:'+std_ndcg+'\n')
 f.close()
 
 
