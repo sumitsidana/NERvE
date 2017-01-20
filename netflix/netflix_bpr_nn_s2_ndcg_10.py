@@ -27,8 +27,8 @@ from dataset import TripletsDataset
 
 # In[22]:
 
-ds = TripletsDataset(raw_data, threshold_user=60, rnd_seed=42)
-ds.train_test_split(n_train=50)
+ds = TripletsDataset(raw_data, threshold_user=30, rnd_seed=42)
+ds.train_test_split(n_train=20)
 
 
 # In[5]:
