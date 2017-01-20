@@ -3,7 +3,7 @@
 
 # In[1]:
 
-get_ipython().magic(u'pylab inline')
+
 import random
 
 import numpy as np
