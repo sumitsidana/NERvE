@@ -11,7 +11,7 @@ pyximport.install()
 import matplotlib
 
 # Import Netflix Data
-raw_data = np.loadtxt('/data/charlotte/dat.nf', delimiter=',')
+raw_data = np.loadtxt('/data/charlotte/dat.nf.sample', delimiter=',')
 
 # In[21]:
 
