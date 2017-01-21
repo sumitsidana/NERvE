@@ -5,5 +5,11 @@ s2 ndcg@10 0.73443802982
 s3 ndcg@5 0.711450684734
 s3 ndcg@10 0.727531826589
 
+alpha = 0.3
+beta = 0.7
+alpha_reg = 0.0
+number of hidden units = 64
+number of hidden layers = 1
+
 
 
