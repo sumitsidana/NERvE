@@ -78,7 +78,7 @@ import tensorflow.contrib.slim as slim
 
 def inner_network(user_emb, item_emb):
     joined_input = tf.concat(1, [user_emb, item_emb])
-    net = slim.fully_connected(inputs=joined_input, num_outputs=128, activation_fn=tf.nn.relu)
+    net = slim.fully_connected(inputs=joined_input, num_outputs=256, activation_fn=tf.nn.relu)
 #     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.dro
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
