@@ -84,7 +84,7 @@ def inner_network(user_emb, item_emb):
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
     return net
 
-f = open('/data/sidana/nnmf_ranking/netflix/param_tune', 'w')
+f = open('/data/sidana/nnmf_ranking/netflix/dat.netflix.param.tune', 'w')
 # In[29]:
 for i in np.arange(0, 1.1, 0.1):
     b=1-i
