@@ -17,7 +17,7 @@ pyximport.install()
 
 # In[2]:
 
-raw_data = np.loadtxt('//data/sidana/nnmf_ranking/netflix/netflix_data/dat.nf.sample', delimiter=',')
+raw_data = np.loadtxt('/data/sidana/nnmf_ranking/netflix/netflix_data/dat.nf.sample', delimiter=',')
 
 
 # In[3]:
