@@ -11,7 +11,7 @@ pyximport.install()
 import matplotlib
 
 # Import Netflix Data
-raw_data = np.loadtxt('/data/sidana/nnmf_ranking/netflix/dat.nf.sample', delimiter=',')
+raw_data = np.loadtxt('/data/sidana/nnmf_ranking/netflix/dat.netflix.sample/dat.nf.sample', delimiter=',')
 
 # In[21]:
 
@@ -47,8 +47,8 @@ imp.reload(bprmf)
 
 # In[27]:
 
-N_USERS =  17771#int(max(raw_data[:, 0])) + 1
-N_ITEMS = 2649430 #int(max(raw_data[:, 1])) + 1
+N_USERS =  2649422#int(max(raw_data[:, 0])) + 1
+N_ITEMS = 17760 #int(max(raw_data[:, 1])) + 1
 N_EMBEDDINGS = 1
 
 model = BPR_MF(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha_reg=0.1)
