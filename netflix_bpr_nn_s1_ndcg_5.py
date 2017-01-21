@@ -17,7 +17,7 @@ pyximport.install()
 import matplotlib
 # In[20]:
 
-raw_data = np.loadtxt('/data/sidana/nnmf_ranking/netflix/dat.nf.sample', delimiter=',')
+raw_data = np.loadtxt('/data/sidana/nnmf_ranking/netflix_data/netflix/dat.nf.sample', delimiter=',')
 
 
 # In[21]:
