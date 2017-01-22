@@ -90,11 +90,11 @@ for n_batches, cur_optim in [(2000, model.trainer_3)]:
 
 # In[11]:
 
-plot([x[0] for x in losses], c='m', label='net_loss')
-grid()
-legend()
-xlabel('n_batches')
-ylabel('logloss')
+# plot([x[0] for x in losses], c='m', label='net_loss')
+# grid()
+# legend()
+# xlabel('n_batches')
+# ylabel('logloss')
 
 
 # In[12]:
