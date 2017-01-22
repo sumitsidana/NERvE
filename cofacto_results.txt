@@ -6,3 +6,7 @@ ml-1m
 NDCG@5: 0.1749
 NDCG@10: 0.1671
 
+netflix
+NDCG@5: 0.0796
+NDCG@10: 0.0883
+
