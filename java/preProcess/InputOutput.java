@@ -101,19 +101,19 @@ public class InputOutput {
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split(",");
 				String useridclicks = array[0];
-				String useridoffers = array[2];
 				for(int i = 2  ; i  < array.length ; i++){
-					//					if(i==array.length - 2||i==array.length-4){
-					//						continue;
-					//					}
+//					if(i==array.length - 2||i==array.length-4){
+//						continue;
+//					}
 					printWriter.print(array[i]+"\t");
 				}
-				if(useridclicks.equals("null") && useridoffers.equals("null")){
+				if(useridclicks.equals("null")){
 					printWriter.println("0");
 				}
 				else{
 					printWriter.println("1");
 				}
+
 			}
 			// TODO Auto-generated method stub
 		}
