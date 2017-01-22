@@ -17,7 +17,7 @@ pyximport.install()
 import matplotlib
 # In[20]:
 
-raw_data = np.loadtxt('/data/sidana/nnmf_ranking/ml20m/dat.ml20m', delimiter=',')
+raw_data = np.loadtxt('/data/sidana/nnmf_ranking/ml20m/dat.ml20m.binarized', delimiter=',')
 
 
 # In[21]:
