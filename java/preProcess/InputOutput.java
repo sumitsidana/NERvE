@@ -136,4 +136,20 @@ public class InputOutput {
 		}
 
 	}
+	public static void milliseconds2seconds(String inputFile,String outputFile) throws NumberFormatException, IOException{
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+			String line;
+			PrintWriter printWriterTrain = new PrintWriter (outputFile);
+			line = br.readLine();
+			printWriterTrain.println(line);
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				String milliseconds = array[3];
+				double seconds = Double.parseDouble(milliseconds)/1000.0;
+				String lineWritten = array[0]+","+array[1]+","+array[2]+","+seconds;
+				printWriterTrain.println(lineWritten);
+			}
+			printWriterTrain.close();
+		}
+	}
 }
