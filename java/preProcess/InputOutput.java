@@ -102,9 +102,9 @@ public class InputOutput {
 				String [] array = line.split(",");
 				String useridclicks = array[0];
 				for(int i = 2  ; i  < array.length ; i++){
-//					if(i==array.length - 2||i==array.length-4){
-//						continue;
-//					}
+					//					if(i==array.length - 2||i==array.length-4){
+					//						continue;
+					//					}
 					printWriter.print(array[i]+"\t");
 				}
 				if(useridclicks.equals("null")){
@@ -152,4 +152,27 @@ public class InputOutput {
 			printWriterTrain.close();
 		}
 	}
+
+	public static void binarizeData(String inputFile,String outputFile) throws NumberFormatException, IOException{
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+			String line;
+			PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));
+			line = br.readLine();
+			printWriter.println(line);
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				int feedback = 0;
+				double rating = Double.parseDouble(array[2]);
+				if(rating>3)
+					feedback = 2;
+				else
+					feedback = 1;
+				String lineWritten = array[0]+","+array[1]+","+feedback+","+array[3];
+				printWriter.println(lineWritten);
+			}
+			printWriter.close();
+		}
+	}
+
+
 }
