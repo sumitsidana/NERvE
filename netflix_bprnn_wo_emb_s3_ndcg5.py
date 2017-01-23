@@ -117,7 +117,7 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
 
 # In[13]:
 
-np.mean(ndcg_vals)
+print(np.mean(ndcg_vals))
 
 
 # In[14]:
