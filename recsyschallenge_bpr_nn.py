@@ -17,7 +17,7 @@ pyximport.install()
 import matplotlib
 # In[20]:
 
-raw_data = np.loadtxt('/data/sidana/nnmf_ranking/rschallenge2016/dat.inputrschallenge', delimiter=',')
+raw_data = np.loadtxt('/data/sidana/nnmf_ranking/recsyschallenge2016/dat.recsyschallenge.withtimestamp.withreplacedrating', delimiter=',')
 
 
 # In[21]:
