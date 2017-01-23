@@ -18,6 +18,28 @@ import org.apache.commons.lang3.StringUtils;
 
 public class InputOutput {
 
+	public static <K, V extends Comparable<? super V>> Map<K, V> 
+	sortByValue( Map<K, V> map )
+	{
+		List<Map.Entry<K, V>> list =
+				new LinkedList<>( map.entrySet() );
+		Collections.sort( list, new Comparator<Map.Entry<K, V>>()
+		{
+			@Override
+			public int compare( Map.Entry<K, V> o1, Map.Entry<K, V> o2 )
+			{
+				return ( o2.getValue() ).compareTo( o1.getValue() );
+			}
+		} );
+
+		Map<K, V> result = new LinkedHashMap<>();
+		for (Map.Entry<K, V> entry : list)
+		{
+			result.put( entry.getKey(), entry.getValue() );
+		}
+		return result;
+	}
+
 	public static void getInteger(String inputFile,String outputFile) throws IOException{
 		PrintWriter printWriterTrain = new PrintWriter (outputFile);
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
@@ -174,5 +196,49 @@ public class InputOutput {
 		}
 	}
 
+	public static void writeInputBPRMF(String inputFile, String outputFile) throws IOException{
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+			String line;
+			PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));
+			line = br.readLine();
+			Map<Long,Map<Long,Long>> userItemRating = new LinkedHashMap<Long,Map<Long,Long>>();
+			//			printWriter.println(line);
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				int feedback = 0;
+				long userId = Long.parseLong(array[0]);
+				long itemId = Long.parseLong(array[1]);
+				Long rating = Long.parseLong(array[2]);
+				if(userItemRating.containsKey(userId)){
+					Map<Long,Long>itemRating = userItemRating.get(userId);
+					itemRating.put(itemId, rating);
+					userItemRating.put(userId,itemRating);
+				}
+				else{
+					Map<Long,Long>itemRating = new LinkedHashMap<Long,Long>();
+					itemRating.put(itemId, rating);
+					userItemRating.put(userId,itemRating);
+				}
+			}
+			for(Map.Entry<Long, Map<Long,Long>> entry: userItemRating.entrySet()){
+				long userId = entry.getKey();
+				Map<Long,Long> itemRating = (LinkedHashMap<Long,Long>)entry.getValue();
+				Map<Long,Long> revSortedItemRating = sortByValue(itemRating);
+				userItemRating.put(userId,revSortedItemRating);
+			}
+			for(Map.Entry<Long, Map<Long,Long>> entry: userItemRating.entrySet()){
+				long userId = entry.getKey();
+				printWriter.print(userId+"\t");
+				Map<Long,Long> itemRating = (LinkedHashMap<Long,Long>)entry.getValue();
+				for(Map.Entry<Long,Long> internalEntry: itemRating.entrySet()){
+					long itemId = internalEntry.getKey();
+					long rating = internalEntry.getValue();
+					printWriter.print(itemId+":"+rating);
+				}
+				printWriter.println();
+			}
 
+			printWriter.close();
+		}
+	}
 }
