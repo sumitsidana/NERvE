@@ -233,7 +233,7 @@ public class InputOutput {
 				for(Map.Entry<Long,Long> internalEntry: itemRating.entrySet()){
 					long itemId = internalEntry.getKey();
 					long rating = internalEntry.getValue();
-					printWriter.print(itemId+":"+rating);
+					printWriter.print(itemId+":"+rating+",");
 				}
 				printWriter.println();
 			}
