@@ -87,7 +87,7 @@ def inner_network(user_emb, item_emb):
 
 # In[29]:
 
-model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=0.5, beta=0.5, alpha_reg=0.0, inner_net=inner_network)
+model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=1, beta=1, alpha_reg=0.0, inner_net=inner_network)
 model.build_graph()
 model.initialize_session()
 
