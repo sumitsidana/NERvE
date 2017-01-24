@@ -6,7 +6,7 @@ Cofactor:
 NDCG@10: 0.1459
 NDCG@5: 0.1536
 
-BPR-NN
+recNet/bprnn
 NDCG@5 alpha=0 beta=1 Result: 0.673750182695
        alpha=1 beta=0 Result: 0.691786330088
        alpha=1 beta=1 Result: 0.777557882932
