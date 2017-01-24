@@ -145,7 +145,7 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
     relevances = np.array([r for (i, r) in ds.test[u]])
     predicted_ranking = np.argsort(-response)
     # calc score
-    gain = letor_metrics.ndcg_from_ranking(relevances, predicted_ranking, 10)
+    gain = letor_metrics.average_precision_score(relevances, predicted_ranking, 10)
     ndcg_vals.append(gain)
 
 
