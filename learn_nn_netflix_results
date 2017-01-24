@@ -1,8 +1,8 @@
 Learn-NN for netflix data
 
 s1: 
-ndcg5: 
-ndcg10: 
+ndcg5: 0.679962782908
+ndcg10: 0.706258351901
 
 s2
 ndcg5: 0.697828947055
