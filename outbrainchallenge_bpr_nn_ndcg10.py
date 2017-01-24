@@ -17,7 +17,7 @@ pyximport.install()
 import matplotlib
 # In[20]:
 
-raw_data = np.loadtxt('/data/sidana/nnmf_ranking/recsyschallenge2016/dat.recsyschallenge.withtimestamp.withreplacedrating', delimiter=',')
+raw_data = np.loadtxt('/data/sidana/nnmf_ranking/outbrainchallenge/dat.outbrainchallenge.withindexedusers', delimiter=',')
 
 
 # In[21]:
@@ -67,8 +67,8 @@ imp.reload(bprnn)
 
 # In[27]:
 
-N_USERS = 2984868 #int(max(raw_data[:, 0])) + 1
-N_ITEMS = 2846367 #int(max(raw_data[:, 1])) + 1
+N_USERS = 49616 #int(max(raw_data[:, 0])) + 1
+N_ITEMS = 547865 #int(max(raw_data[:, 1])) + 1
 N_EMBEDDINGS = 1
 
 
