@@ -17,7 +17,7 @@ pyximport.install()
 import matplotlib
 # In[20]:
 
-raw_data = np.loadtxt('/data/sidana/nnmf_ranking/ml1m/ratings.dat', delimiter='::')
+raw_data = np.loadtxt('./data/ml-1m/ratings.dat', delimiter='::')
 
 
 # In[21]:
@@ -130,6 +130,9 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
 
 
 # In[31]:
+export_basename = './bpr-nn-'
+export_pred = open(export_basename + 'predicted.csv', 'w')
+export_true = open(export_basename + 'true.csv', 'w')
 
 ndcg_vals = []
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
@@ -143,10 +146,18 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
 
     # make relevances
     relevances = np.array([r for (i, r) in ds.test[u]])
+    items = np.array([i for (i, r) in ds.test[u]]) #it's already sorted by true relevance
     predicted_ranking = np.argsort(-response)
+
+    # write down predictions
+    export_pred.write(','.join(map(str, [u] + list(items[predicted_ranking]))) + '\n')
+    export_true.write(','.join(map(str, [u] + list(items))) + '\n')
     # calc score
-    gain = letor_metrics.average_precision_score(relevances, predicted_ranking, 10)
+    gain = letor_metrics.ndcg_from_ranking(relevances, predicted_ranking, 10)
     ndcg_vals.append(gain)
+
+export_pred.close()
+export_true.close()
 
 
 # In[32]:
