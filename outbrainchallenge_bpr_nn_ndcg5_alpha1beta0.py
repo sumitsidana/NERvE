@@ -131,6 +131,10 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
 
 # In[31]:
 
+export_basename = '/data/sidana/nnmf_ranking/outbrainchallenge/vectors/'
+export_pred = open(export_basename + 'pr10', 'w')
+export_true = open(export_basename + 'gt10', 'w')
+
 ndcg_vals = []
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
     response = np.zeros(len(ds.test[u]))
@@ -144,6 +148,11 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
     # make relevances
     relevances = np.array([r for (i, r) in ds.test[u]])
     predicted_ranking = np.argsort(-response)
+
+    # write down predictions
+    export_pred.write(' '.join(map(str, [u] + list(items[predicted_ranking]))) + '\n')
+    export_true.write(' '.join(map(str, [u] + list(items))) + '\n')
+
     # calc score
     gain = letor_metrics.ndcg_from_ranking(relevances, predicted_ranking, 5)
     ndcg_vals.append(gain)
