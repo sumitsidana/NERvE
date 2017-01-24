@@ -150,8 +150,8 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
     predicted_ranking = np.argsort(-response)
 
     # write down predictions
-    export_pred.write(','.join(map(str, [u] + list(items[predicted_ranking]))) + '\n')
-    export_true.write(','.join(map(str, [u] + list(items))) + '\n')
+    export_pred.write(' '.join(map(str, [u] + list(items[predicted_ranking]))) + '\n')
+    export_true.write(' '.join(map(str, [u] + list(items))) + '\n')
     # calc score
     gain = letor_metrics.ndcg_from_ranking(relevances, predicted_ranking, 10)
     ndcg_vals.append(gain)
