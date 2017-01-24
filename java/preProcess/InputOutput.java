@@ -105,8 +105,8 @@ public class InputOutput {
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				line = line.replace(",1,", ",2,");
-				line = line.replace(",0,", ",1,");
+//				line = line.replace(",1,", ",2,");
+				line = line.replace(",2,", ",4,");
 				printWriterTrain.println(line);
 			}
 			printWriterTrain.close();
