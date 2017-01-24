@@ -248,8 +248,8 @@ public class InputOutput {
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
 			String line;
 			PrintWriter printWriterTrain = new PrintWriter (outputFile);
-			line = br.readLine();
-			printWriterTrain.println(line);
+//			line = br.readLine();
+//			printWriterTrain.println(line);
 			Map<String,Long>userIndex = new LinkedHashMap<String,Long>();
 
 			while ((line = br.readLine()) != null) {
