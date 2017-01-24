@@ -87,7 +87,7 @@ def inner_network(user_emb, item_emb):
 
 # In[29]:
 
-model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=0.5, beta=0.5, alpha_reg=0.0, inner_net=inner_network)
+model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=1.0, beta=0.0, alpha_reg=0.0, inner_net=inner_network)
 model.build_graph()
 model.initialize_session()
 
@@ -145,7 +145,7 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
     relevances = np.array([r for (i, r) in ds.test[u]])
     predicted_ranking = np.argsort(-response)
     # calc score
-    gain = letor_metrics.ndcg_from_ranking(relevances, predicted_ranking, 10)
+    gain = letor_metrics.ndcg_from_ranking(relevances, predicted_ranking, 5)
     ndcg_vals.append(gain)
 
 
