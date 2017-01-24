@@ -1,6 +1,6 @@
 BPR-MF
-NDCG@5 0.14487
-NDCG@10 0.14486
+NDCG@5 0.49011
+NDCG@10 0.49029
 
 BPR-NN
 NDCG@5 alpha=0 beta=1 Result: 0.893267950739
@@ -10,6 +10,5 @@ NDCG@5 alpha=0 beta=1 Result: 0.893267950739
 NDCG@10 alpha=0 beta=1
        alpha=0 beta=1 Result: 0.885480876473
        alpha=1 beta=0 Result: 0.900100584651
-       alpha=1 beta=1 Result: 0.900452095723
-
+       alpha=1 beta=1 Result: 0.90045209572
 
