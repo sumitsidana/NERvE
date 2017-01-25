@@ -3,8 +3,8 @@ NDCG@5 0.13162
 NDCG@10 0.13179
 
 Cofactor: 
-NDCG@10: 0.1459
-NDCG@5: 0.1536
+NDCG@10: 0.0193
+NDCG@5: 0.0171
 
 recNet/bprnn
 NDCG@5 alpha=0 beta=1 Result: 0.673750182695
