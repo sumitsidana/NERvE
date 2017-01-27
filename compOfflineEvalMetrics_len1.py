@@ -14,8 +14,8 @@ for k in range(1,6):
     total_ndcg_k = 0
     for row in relevanceVector:
         precision_k = rank_metrics.precision_at_k(row,k)
-        dcg_k = rank_metrics.dcg_at_k(row,k,0)
-        ndcg_k = rank_metrics.ndcg_at_k(row,k,0)
+        dcg_k = rank_metrics.dcg_at_k(row,k,1)
+        ndcg_k = rank_metrics.ndcg_at_k(row,k,1)
         total_precision_k = total_precision_k + precision_k
         total_dcg_k = total_dcg_k + dcg_k
         total_ndcg_k = total_ndcg_k + ndcg_k
