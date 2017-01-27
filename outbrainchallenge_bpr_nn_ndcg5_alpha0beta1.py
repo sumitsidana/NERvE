@@ -146,7 +146,7 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
     response += model.session.run(model.left_output, feed_dict=fd)[:, 0]
 
     # make relevances
-    relevances = np.array([r for (i, r) in ds.test[u]])
+    relevances = np.array([0 if r==1 else r for (i, r) in ds.test[u]])
     items = np.array([i for (i, r) in ds.test[u]])  # it's already sorted by true relevance
     itemsGroundTruth = np.array([i for (i,r)  in ds.test[u] if r == 4])
     predicted_ranking = np.argsort(-response)
