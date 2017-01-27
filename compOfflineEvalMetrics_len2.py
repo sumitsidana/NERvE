@@ -6,7 +6,7 @@
 import numpy as np
 import rank_metrics
 import sys
-relevanceVector = np.loadtxt(open(sys.argv[1]+"/rv/relevenceVector_"+sys.argv[2]),delimiter = " ")
+relevanceVector = np.loadtxt(open(sys.argv[1]+"/rv/relevanceVector_"+sys.argv[2]),delimiter = " ")
 f = open(sys.argv[1]+'/em/evalMetrics_'+sys.argv[2],'w')
 for k in range(1,11):
     total_precision_k = 0
