@@ -1,17 +1,17 @@
 BPR-MF
-NDCG@5 0.13162
-NDCG@10 0.13179
+MAP@5: 0.3681
+MAP@10: 0.36836 
 
 Cofactor: 
-NDCG@10: 0.0193
-NDCG@5: 0.0171
+MAP@10: 
+MAP@5: 
 
 recNet/bprnn
-NDCG@5 alpha=0 beta=1 Result: 0.893221446628
+MAP@5 alpha=0 beta=1 Result: 0.893221446628
        alpha=1 beta=0 Result: 0.906565559474
        alpha=1 beta=1 Result: 0.906925956861
 
-NDCG@10 alpha=0 beta=1
+MAP@10 alpha=0 beta=1
        alpha=0 beta=1 Result: 0.866528183953
        alpha=1 beta=0 Result: 0.883327265527
        alpha=1 beta=1 Result: 0.883731981275
