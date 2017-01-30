@@ -9,7 +9,7 @@ class TripletsDataset(object):
     """
     Class for handling triplets data (u, i, r).
     """
-    def __init__(self, raw_data, threshold_user=20, threshold_item=5, rnd_seed=42):
+    def __init__(self, raw_data, threshold_user=20, threshold_item=0, rnd_seed=42):
 
         self.threshold_user = threshold_user
         self.threshold_item = threshold_item
