@@ -132,23 +132,23 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
 # In[31]:
 
 export_basename = '/data/sidana/nnmf_ranking/outbrainchallenge/vectors/'
-export_pred = open(export_basename + 'pr01', 'w')
-export_true = open(export_basename + 'gt01', 'w')
+export_pred = open(export_basename + 'pr_5_01', 'w')
+export_true = open(export_basename + 'gt_5_01', 'w')
 
 ndcg_vals = []
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
     response = np.zeros(len(ds.test[u]))
     fd = {
-            model.user_ids:  (np.ones(len(ds.test[u]))*u).astype(np.int32), 
+            model.user_ids:  (np.ones(len(ds.test[u]))*u).astype(np.int32),
             model.left_ids:  np.array([i for (i, r) in ds.test[u]]).astype(np.int32),
         }
     response += model.session.run(model.embedding_left, feed_dict=fd)[:, 0]
     response += model.session.run(model.left_output, feed_dict=fd)[:, 0]
 
     # make relevances
-    relevances = np.array([0 if r==1 else 1  for (i, r) in ds.test[u]])
+    relevances = np.array([r for (i, r) in ds.test[u]])
     items = np.array([i for (i, r) in ds.test[u]])  # it's already sorted by true relevance
-    itemsGroundTruth = np.array([i for (i,r)  in ds.test[u] if r == 4])
+    itemsGroundTruth = np.array([i for (i,r) in ds.test[u] if r == 4])
     predicted_ranking = np.argsort(-response)
 
     # write down predictions

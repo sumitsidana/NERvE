@@ -131,8 +131,8 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
 
 # In[31]:
 export_basename = '/data/sidana/nnmf_ranking/outbrainchallenge/vectors/'
-export_pred = open(export_basename + 'pr11', 'w')
-export_true = open(export_basename + 'gt11', 'w')
+export_pred = open(export_basename + 'pr_5_11', 'w')
+export_true = open(export_basename + 'gt_5_11', 'w')
 
 ndcg_vals = []
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
@@ -147,6 +147,7 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
     # make relevances
     relevances = np.array([r for (i, r) in ds.test[u]])
     items = np.array([i for (i, r) in ds.test[u]])  # it's already sorted by true relevance
+    itemsGroundTruth = np.array([i for (i, r) in ds.test[u] if r == 4])
     predicted_ranking = np.argsort(-response)
 
     # write down predictions
