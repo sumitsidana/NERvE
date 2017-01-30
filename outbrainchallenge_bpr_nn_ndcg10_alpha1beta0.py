@@ -17,7 +17,7 @@ pyximport.install()
 import matplotlib
 # In[20]:
 
-raw_data = np.loadtxt('/data/sidana/nnmf_ranking/outbrainchallenge/dat.outbrainchallenge.withindexedusers', delimiter=',')
+raw_data = np.loadtxt('/data/sidana/nnmf_ranking/outbrainchallenge/dat.outbrainchallenge.withindexedusers.withreplacedrating', delimiter=',')
 
 
 # In[21]:
