@@ -1,3 +1,4 @@
+# recsyschallenge data creation
 #zeppellin nnmf_ranking: recsysChallengeSubsetCreation ----> /data/sidana/nnmf_ranking/rschallenge2016/totalData.csv
 ./preprocess.sh
 #zeppellin nnmf_ranking: recsysChallengeSubsetCreation ---->/data/sidana/nnmf_ranking/rschallenge2016/recsyschallenge.input
@@ -8,3 +9,10 @@ java -cp ~/nnmf_ranking/java/ preProcess.IgnoreSingleRatingUsers ./dat.singlerat
 sed 's/$/,12345/' dat.rsinput >dat.recsyschallenge2016input
 java -cp ~/nnmf_ranking/java/ preProcess.ReplaceRatingType dat.recsyschallenge2016input dat.inputrschallenge
 cp dat.inputrschallenge dat.inputrschallenge.bak
+
+
+# implicit feedback map calculations
+python3 outbrainchallenge_bpr_nn_ndcg$A_alpha$Bbeta$C.py where A \in {5,10} && B \in {0,1} && C \in {0,1}
+java -cp . preProcess.ConvertIntoRelVecGeneralized /data/sidana/nnmf_ranking/outbrainchallenge/vectors/gt_$A_$B$C /data/sidana/nnmf_ranking/outbrainchallenge/vectors/pr_$A_$B$C /data/sidana/nnmf_ranking/outbrainchallenge/rv/relevanceVector_$A_$B$C $D
+where A \in {5,10} && B \in {0,1} && C \in {0,1} && D \in {5,10}
+python3 compOfflineEvalMetrics_len$A.py /data/sidana/nnmf_ranking/outbrainchallenge/ $B_$C$D where A \in {1,2}&& B \in {5,10} &&C \in {0,1}&& D \in {0,1}
