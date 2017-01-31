@@ -1,9 +1,9 @@
 BPR-MF
-MAP@5:
-MAP@10: 
+MAP@5: 0.03085
+MAP@10: 0.03086
 
 Cofactor: 
-MAP@10:  
+MAP@10: 
 MAP@5: 
 
 recNet/bprnn
