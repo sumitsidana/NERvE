@@ -3,8 +3,8 @@ MAP@5: 0.3681
 MAP@10: 0.36836 
 
 Cofactor: 
-MAP@10: 
-MAP@5: 
+MAP@10: 0.0817
+MAP@5: 0.1033
 
 recNet/bprnn
 MAP@5 alpha=0 beta=1 Result: 0.893221446628
