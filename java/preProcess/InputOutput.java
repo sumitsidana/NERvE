@@ -105,7 +105,7 @@ public class InputOutput {
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-//				line = line.replace(",1,", ",2,");
+				//				line = line.replace(",1,", ",2,");
 				line = line.replace(",2,", ",4,");
 				printWriterTrain.println(line);
 			}
@@ -124,9 +124,9 @@ public class InputOutput {
 				String [] array = line.split(",");
 				String useridclicks = array[0];
 				for(int i = 2  ; i  < array.length ; i++){
-					//					if(i==array.length - 2||i==array.length-4){
-					//						continue;
-					//					}
+					if(i==array.length - 2||i==array.length - 3||i==array.length-4){
+						continue;
+					}
 					printWriter.print(array[i]+"\t");
 				}
 				if(useridclicks.equals("null")){
@@ -248,8 +248,8 @@ public class InputOutput {
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
 			String line;
 			PrintWriter printWriterTrain = new PrintWriter (outputFile);
-//			line = br.readLine();
-//			printWriterTrain.println(line);
+			//			line = br.readLine();
+			//			printWriterTrain.println(line);
 			Map<String,Long>userIndex = new LinkedHashMap<String,Long>();
 
 			while ((line = br.readLine()) != null) {
