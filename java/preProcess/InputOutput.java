@@ -124,17 +124,18 @@ public class InputOutput {
 				String [] array = line.split(",");
 				String useridclicks = array[0];
 				for(int i = 2  ; i  < array.length ; i++){
-					if(i==array.length - 2||i==array.length - 3||i==array.length-4){
+					if(i>=array.length - 4){
 						continue;
 					}
 					printWriter.print(array[i]+"\t");
 				}
 				if(useridclicks.equals("null")){
-					printWriter.println("0");
+					printWriter.print("0\t");
 				}
 				else{
-					printWriter.println("1");
+					printWriter.print("1\t");
 				}
+				printWriter.println(array[array.length-1]);
 
 			}
 			// TODO Auto-generated method stub
