@@ -127,15 +127,18 @@ public class InputOutput {
 					if(i>=array.length - 4){
 						continue;
 					}
-					printWriter.print(array[i]+"\t");
+					printWriter.print(array[i]+",");
 				}
 				if(useridclicks.equals("null")){
-					printWriter.print("0\t");
+					printWriter.print("0,");
 				}
 				else{
-					printWriter.print("1\t");
+					printWriter.print("1,");
 				}
-				printWriter.println(array[array.length-1]);
+				String timeStamp = array[array.length-1];
+				java.sql.Timestamp ts = java.sql.Timestamp.valueOf(timeStamp);
+				long tsTime = ts.getTime();
+				printWriter.println(tsTime);
 
 			}
 			// TODO Auto-generated method stub
