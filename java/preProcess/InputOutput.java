@@ -255,7 +255,7 @@ public class InputOutput {
 			//			line = br.readLine();
 			//			printWriterTrain.println(line);
 			Map<String,Long>userIndex = new LinkedHashMap<String,Long>();
-
+			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split(",");
 				String user = array[0];
