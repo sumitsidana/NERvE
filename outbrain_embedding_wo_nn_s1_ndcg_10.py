@@ -79,6 +79,9 @@ for n_batches, cur_optim in [(1000, model.trainer_2)]:
 # In[31]:
 
 ndcg_vals = []
+export_basename = '/data/sidana/nnmf_ranking/outbrainchallenge/embwonn/vectors/'
+export_pred = open(export_basename + 'pr_5_01', 'w')
+export_true = open(export_basename + 'gt_5_01', 'w')
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
     fd = {
             model.user_ids:  (np.ones(N_ITEMS)*u).astype(np.int32),
@@ -88,7 +91,14 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
 
     # make relevances
     relevances = np.array([r for (i, r) in ds.test[u]])
+    items = np.array([i for (i, r) in ds.test[u]])  # it's already sorted by true relevance
+    itemsGroundTruth = np.array([i for (i,r) in ds.test[u] if r == 4])
     predicted_ranking = np.argsort(-response)
+
+    # write down predictions
+    export_pred.write(' '.join(map(str, [u] + list(items[predicted_ranking]))) + '\n')
+    export_true.write(' '.join(map(str, [u] + list(itemsGroundTruth))) + '\n')
+
     # calc score
     gain = letor_metrics.ndcg_from_ranking(relevances, predicted_ranking, 10)
     ndcg_vals.append(gain)
