@@ -32,6 +32,8 @@ ds.init_cached_random()
 import tensorflow as tf
 import bprmf
 
+from bprmf import BPR_MF
+
 
 import imp
 
