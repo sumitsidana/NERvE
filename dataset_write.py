@@ -38,7 +38,7 @@ class TripletsDataset(object):
         self.statistics['users'] = set([k for k, v in u_cnt.items() if v >= threshold_user])
 
 
-        # assemble self.data like {user:[(item, rating),...], ...}
+        # assemble self.data like {user:[(item, rating, timestamp),...], ...}
         self.data = {}
         self.statistics['cnt_total'] = 0
         for row in tqdm(raw_data, desc='Assemble .data', leave=False):
@@ -46,7 +46,7 @@ class TripletsDataset(object):
             # filtering blaclisted elements
             if (u in u_blacklist) or (i in i_blacklist):
                 continue
-            self.data[u] = self.data.get(u, []) + [(i, r)]
+            self.data[u] = self.data.get(u, []) + [(i, r, t)]
             self.statistics['cnt_total'] += 1
         self.data_keys = list(self.data.keys())
 
@@ -83,32 +83,34 @@ class TripletsDataset(object):
         for u in tqdm(self.data, desc='Split users', leave=False):
             # select random indicies which will be used for training for current user u
             train_inds = set(random.sample(range(len(self.data[u])), n_train))
-            for n, (i, r) in enumerate(self.data[u]):
+            for n, (i, r, t) in enumerate(self.data[u]):
                 if n in train_inds:
                     # move to train
                     user_dict = self.train.get(u, {})
                     rating_list = user_dict.get(r, [])
-                    rating_list.append(i)
+                    rating_list.append(tuple(i,t))
                     user_dict[r] = rating_list
                     self.train[u] = user_dict
                     self.statistics['cnt_train'] += 1
                 else:
                     # move to test
-                    self.test[u] = self.test.get(u, []) + [(i, r)]
+                    self.test[u] = self.test.get(u, []) + [(i, r, t)]
                     self.statistics['cnt_test'] += 1
 
             # ad-hoc for situation with all equal ratings in train
             if len(self.train[u].keys()) == 1:
                 print('No rating diversity in train set for user {}, do swap!'.format(u))
                 the_only_rating = list(self.train[u].keys())[0]
-                for n, (i, r) in enumerate(self.test[u]):
+
+                for n, (i, r, t) in enumerate(self.test[u]):
                     # find first different rating in test and swap it with 0-th in train
                     if r != the_only_rating:
-                        self.train[u][r] = [i]
-                        extracted_i = self.train[u][the_only_rating][0]
+                        self.train[u][r] = [i, t]
+                        extracted_i = self.train[u][the_only_rating][0][0]
+                        extracted_timestamp = self.train[u][the_only_rating][0][1]
                         self.train[u][the_only_rating] = self.train[u][the_only_rating][1:]
                         del self.test[u][n]
-                        self.test[u] = self.test[u] + [(extracted_i, the_only_rating)]
+                        self.test[u] = self.test[u] + [(extracted_i, the_only_rating, extracted_timestamp)]
                         break
             self.test[u] = sorted(self.test[u], key=lambda x: x[1], reverse=True)
 
@@ -116,9 +118,24 @@ class TripletsDataset(object):
         self.used_in_trainset = set()
         for u in self.train:
             for r in self.train[u]:
-                self.used_in_trainset.update(self.train[u][r])
+                self.used_in_trainset.update(self.train[u][r][0])
         for u in self.test:
-            self.test[u] = [(i, r) for (i, r) in self.test[u] if i in self.used_in_trainset]
+            self.test[u] = [(i, r, t) for (i, r, t) in self.test[u] if i in self.used_in_trainset]
+
+        f_train = open('/data/sidana/nnmf_ranking/outbrainchallenge/train_temp','w')
+        f_test = open('/data/sidana/nnmf_ranking/outbrainchallenge/test_temp', 'w')
+
+        for u in self.train:
+            for r in self.train[u]:
+                for (i, t) in self.train[u][r]:
+                    f_train.write(u+","+i+","+r+","+","+t+"\n")
+
+        for n, (i, r, t) in enumerate(self.test[u]):
+            f_test.write(u+","+i+","+r+","+","+t+"\n")
+
+
+
+
 
 
     def sample_train_triple(self):
