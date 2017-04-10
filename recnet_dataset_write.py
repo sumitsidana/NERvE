@@ -2,7 +2,7 @@ import numpy as np
 import pyximport
 pyximport.install()
 
-raw_data = np.loadtxt('/Users/sumitsidana/embcs/dat.outbrainchallenge.withindexedusers.withreplacedrating', delimiter=',')
+raw_data = np.loadtxt('/data/sidana/nnmf_ranking/archive_version/outbrain/input_data/ratings.csv', delimiter=',')
 
 from dataset_write import TripletsDataset
 
