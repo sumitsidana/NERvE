@@ -88,7 +88,7 @@ class TripletsDataset(object):
                     # move to train
                     user_dict = self.train.get(u, {})
                     rating_list = user_dict.get(r, [])
-                    rating_list.append(tuple(i,t))
+                    rating_list.append((i,t))
                     user_dict[r] = rating_list
                     self.train[u] = user_dict
                     self.statistics['cnt_train'] += 1
