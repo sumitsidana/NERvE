@@ -130,8 +130,9 @@ class TripletsDataset(object):
                 for (i, t) in self.train[u][r]:
                     f_train.write(str(u)+","+str(i)+","+str(r)+","+","+str(t)+"\n")
 
-        for n, (i, r, t) in enumerate(self.test[u]):
-            f_test.write(str(u)+","+str(i)+","+str(r)+","+","+str(t)+"\n")
+        for u in self.test:
+            for (i, r, t) in enumerate(self.test[u]):
+                f_test.write(str(u)+","+str(i)+","+str(r)+","+","+str(t)+"\n")
 
         f_train.close()
         f_test.close()
