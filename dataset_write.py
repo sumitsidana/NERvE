@@ -128,11 +128,11 @@ class TripletsDataset(object):
         for u in self.train:
             for r in self.train[u]:
                 for (i, t) in self.train[u][r]:
-                    f_train.write(str(u)+","+str(i)+","+str(r)+","+","+str(t)+"\n")
+                    f_train.write(str(u)+","+str(i)+","+str(r)+","+str(t)+"\n")
 
         for u in self.test:
             for (i, r, t) in self.test[u]:
-                f_test.write(str(u)+","+str(i)+","+str(r)+","+","+str(t)+"\n")
+                f_test.write(str(u)+","+str(i)+","+str(r)+","+str(t)+"\n")
 
         f_train.close()
         f_test.close()
