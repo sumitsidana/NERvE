@@ -3,4 +3,4 @@ LANG=en_US.utf8
 mkdir -p  /data/sidana/nnmf_ranking/archive_version/outbrain/vectors
 echo "running for length: $i"
 echo "preprocessing"
-java -cp ~/embAdaptivity/java/src/ preProcess.WriteGroundTruthForCofactor  "/data/sidana/nnmf_ranking/archive_version/outbrain/pro/test.csv" "/data/sidana/nnmf_ranking/archive_version/outbrain/vectors/gt_outbrain"
+java -cp ~/embAdaptivity/java/src/ preProcess.WriteGroundTruthForCofactor  "/data/sidana/nnmf_ranking/archive_version/outbrain/cofactor/pro/test.csv" "/data/sidana/nnmf_ranking/archive_version/outbrain/cofactor/vectors/gt_outbrain"
