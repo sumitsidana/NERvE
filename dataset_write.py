@@ -122,8 +122,8 @@ class TripletsDataset(object):
         for u in self.test:
             self.test[u] = [(i, r, t) for (i, r, t) in self.test[u] if i in self.used_in_trainset]
 
-        f_train = open('/data/sidana/nnmf_ranking/archive_version/outbrain/input_data/train_temp','w')
-        f_test = open('/data/sidana/nnmf_ranking/archive_version/outbrain/input_data/test_temp', 'w')
+        f_train = open('/data/sidana/nnmf_ranking/archive_version/ml20m/input_data/train_temp','w')
+        f_test = open('/data/sidana/nnmf_ranking/archive_version/ml20m/input_data/test_temp', 'w')
 
         for u in self.train:
             for r in self.train[u]:
