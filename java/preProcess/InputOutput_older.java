@@ -16,7 +16,7 @@ import java.util.*;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class InputOutput {
+public class InputOutput_older {
 
 	public static <K, V extends Comparable<? super V>> Map<K, V> 
 	sortByValue( Map<K, V> map )

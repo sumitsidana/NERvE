@@ -6,7 +6,8 @@ public class ReplaceRatingType {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		InputOutput.replaceRatingType(args[0], args[1]);
+		//		InputOutput.replaceBinaryRatingType(args[0], args[1]);
+		InputOutput.replaceExplicitRatingType(args[0], args[1]);
 
 	}
 

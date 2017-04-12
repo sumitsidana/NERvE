@@ -101,7 +101,7 @@ public class InputOutput {
 			br.close();
 		}
 	}
-	public static void replaceRatingType(String inputFile,String outputFile) throws IOException{
+	public static void replaceBinaryRatingType(String inputFile,String outputFile) throws IOException{
 		PrintWriter printWriterTrain = new PrintWriter (outputFile);
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
 			String line;
@@ -109,6 +109,26 @@ public class InputOutput {
 				line = line.replace(",1,", ",4,");
 				line = line.replace(",0,", ",1,");
 				printWriterTrain.println(line);
+			}
+			printWriterTrain.close();
+			br.close();
+		}
+	}
+
+	public static void replaceExplicitRatingType(String inputFile,String outputFile) throws IOException{
+		PrintWriter printWriterTrain = new PrintWriter (outputFile);
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+			String line;
+			line = br.readLine(); //Expects Headers
+			printWriterTrain.println(line);
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				if(Double.parseDouble(array[2])>=4.0){
+					printWriterTrain.println(array[0]+","+array[1]+","+"4"+","+array[3]);	
+				}
+				else{
+					printWriterTrain.println(array[0]+","+array[1]+","+"1"+","+array[3]);
+				}
 			}
 			printWriterTrain.close();
 			br.close();
