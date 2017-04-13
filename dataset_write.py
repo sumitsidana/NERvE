@@ -118,7 +118,7 @@ class TripletsDataset(object):
         self.used_in_trainset = set()
         for u in self.train:
             for r in self.train[u]:
-                print('user:'+self.train[u]+'item:'+self.train[u][r][0])
+                print('user:'+str(self.train[u])+'item:'+str(self.train[u][r][0]))
                 self.used_in_trainset.update(self.train[u][r][0])
         for u in self.test:
             self.test[u] = [(i, r, t) for (i, r, t) in self.test[u] if i in self.used_in_trainset]
