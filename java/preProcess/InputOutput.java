@@ -918,15 +918,15 @@ public class InputOutput {
 		}
 		try (BufferedReader br = new BufferedReader(new FileReader(inputFile2))) {
 			String line;
-			br.readLine();
+//			br.readLine();
 			while((line = br.readLine())!=null) {
 				String [] array = line.split("\t");
 				long user = Long.parseLong(array[0]);
 				String itemLine = array[1];
 				itemLine = itemLine.replace("[","").replace("]", "");
 				List<String> itemList = null;
+				printWriter.print(user+" ");
 				if(userItemList.containsKey(user)){
-					printWriter.print(user+" ");
 					itemList = userItemList.get(user);
 					String [] itemRatingConfidenceArray = itemLine.split(",");
 					for(int i = 1 ; i < itemRatingConfidenceArray.length ; i++){
