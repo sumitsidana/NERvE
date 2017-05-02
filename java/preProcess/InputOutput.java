@@ -886,7 +886,7 @@ public class InputOutput {
 					String [] itemScore = itemArray[i].split(":");
 					String item = itemScore[0];
 					String score = itemScore[1];
-					if(score == "4"){
+					if(score.equals("4")){
 						gtTest.print(item+" ");
 					}
 				}
