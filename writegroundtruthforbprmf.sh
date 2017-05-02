@@ -3,4 +3,4 @@ LANG=en_US.utf8
 mkdir -p  /data/sidana/nnmf_ranking/archive_version/outbrain/bprmf/vectors
 echo "running for length: $i"
 echo "preprocessing"
-java -cp ~/embAdaptivity/java/src/ preProcess.WriteGroundTruthForbprmf  "/data/sidana/nnmf_ranking/archive_version/outbrain/bprmf/pro/test.csv" "/data/sidana/nnmf_ranking/archive_version/outbrain/bprmf/vectors/gt_outbrain"
+java -cp ~/embAdaptivity/java/src/ preProcess.WriteGroundTruthForbprmf  "/data/sidana/nnmf_ranking/archive_version/outbrain/bprmf/test.bprmf" "/data/sidana/nnmf_ranking/archive_version/outbrain/bprmf/vectors/gt_outbrain"
