@@ -1,4 +1,4 @@
-javac -cp ~/nnmf_ranking/java/binaries/commons-lang3-3.5.jar  ~/nnmf_ranking/java/preProcess/InputOutput.java ~/nnmf_ranking/java/preProcess/WritePredictorForbprmf.java
+javac -cp ~/nnmf_ranking/java/binaries/commons-lang3-3.5.jar  ~/nnmf_ranking/java/preProcess/InputOutput.java ~/nnmf_ranking/java/preProcess/WritePredictorForBPRMF.java
 LANG=en_US.utf8
 mkdir -p  /data/sidana/nnmf_ranking/archive_version/outbrain/bprmf/vectors
 echo "running for length: $i"
