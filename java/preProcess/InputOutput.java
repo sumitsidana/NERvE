@@ -870,12 +870,77 @@ public class InputOutput {
 		printWriter1.close();
 		printWriter2.close();
 		printWriter3.close();
+	}
+	public static void writeGroundTruthForBPRMF(String inputFile, String outputFile) throws IOException{
+		PrintWriter gtTest = new PrintWriter (outputFile);
+		try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
+			String line;
+			br.readLine();
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split("\t");
+				long user = Long.parseLong(array[0]);
+				gtTest.print(user+" ");
+				String itemList = array[1];
+				String [] itemArray = itemList.split(",");
+				for(int i = 0 ; i < itemArray.length ; i++){
+					String [] itemScore = itemArray[i].split(":");
+					String item = itemScore[0];
+					String score = itemScore[1];
+					if(score == "4"){
+						gtTest.print(item+" ");
+					}
+				}
+				gtTest.println();
 
+			}
+		}
+		gtTest.close();
+	}
 
-
-
-
-
-
+	public static void writePredictorForBPRMF(String inputFile1, String inputFile2, String outputFile) throws NumberFormatException, IOException{
+		Map<Long, List<String>>userItemList = new TreeMap<Long,List<String>>();
+		PrintWriter printWriter = new PrintWriter (outputFile);
+		try (BufferedReader br = new BufferedReader(new FileReader(inputFile1))) {
+			String line;
+			br.readLine();
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split("\t");
+				long user = Long.parseLong(array[0]);
+				String itemListScore = array[1];
+				String [] itemArray = itemListScore.split(",");
+				List<String>itemList = new ArrayList<String>();
+				for(int i = 0 ; i < itemArray.length ; i++){
+					String []itemScore = itemArray[i].split(":");
+					itemList.add(itemScore[0]);
+				}
+				userItemList.put(user, itemList);
+			}
+		}
+		try (BufferedReader br = new BufferedReader(new FileReader(inputFile2))) {
+			String line;
+			br.readLine();
+			while((line = br.readLine())!=null) {
+				String [] array = line.split("\t");
+				long user = Long.parseLong(array[0]);
+				String itemLine = array[1];
+				itemLine = itemLine.replace("[","").replace("]", "");
+				List<String> itemList = null;
+				if(userItemList.containsKey(user)){
+					printWriter.print(user+" ");
+					itemList = userItemList.get(user);
+					String [] itemRatingConfidenceArray = itemLine.split(",");
+					for(int i = 1 ; i < itemRatingConfidenceArray.length ; i++){
+						String itemRatingConfidence = itemRatingConfidenceArray[i];
+						String [] itemRatingConfidenceSingleElem = itemRatingConfidence.split(":");
+						String item = itemRatingConfidenceSingleElem[0];
+						if(itemList.contains(item)){
+							printWriter.print(item+" ");
+						}
+					}
+					printWriter.println();
+				}
+			}
+		}
+		printWriter.close();
 	}
 }
