@@ -875,7 +875,7 @@ public class InputOutput {
 		PrintWriter gtTest = new PrintWriter (outputFile);
 		try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
 			String line;
-			br.readLine();
+//			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split("\t");
 				long user = Long.parseLong(array[0]);
@@ -902,7 +902,7 @@ public class InputOutput {
 		PrintWriter printWriter = new PrintWriter (outputFile);
 		try (BufferedReader br = new BufferedReader(new FileReader(inputFile1))) {
 			String line;
-			br.readLine();
+//			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split("\t");
 				long user = Long.parseLong(array[0]);
