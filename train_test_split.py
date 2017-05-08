@@ -1,0 +1,95 @@
+import random
+import numpy as np
+import random
+import pickle
+import letor_metrics
+import pyximport
+from tqdm import tqdm
+pyximport.install()
+import matplotlib
+
+
+raw_data_train = np.loadtxt('/home/thirtythird/NNMF/ml-100k/train_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_test = np.loadtxt('/home/thirtythird/NNMF/ml-100k/test_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data = np.concatenate((raw_data_train, raw_data_test))
+from dataset_tt_static import TripletsDataset
+
+ds = TripletsDataset(raw_data_train, raw_data_test, threshold_user=20, rnd_seed=42)
+ds.train_test_split()
+
+ds.init_cached_random()
+import tensorflow as tf
+import bprnn
+import imp
+
+N_USERS = int(max(raw_data[:, 0])) + 1
+N_ITEMS = int(max(raw_data[:, 1])) + 1
+N_EMBEDDINGS = 1
+
+import tensorflow.contrib.slim as slim
+imp.reload(bprnn)
+
+#%%
+def inner_network(user_emb, item_emb):
+    joined_input = tf.concat([user_emb, item_emb], 1)
+    net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
+#     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
+#     net = slim.dro
+    net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
+    return net
+
+model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=0.5, beta=0.5, alpha_reg=0.0, inner_net=inner_network)
+model.build_graph()
+model.initialize_session()
+
+losses = []
+batch_size = 512
+for n_batches, cur_optim in [(10000, model.trainer_3)]:
+    for i in tqdm(range(n_batches)):
+        batch = ds.sample_train_batch(n_samples=batch_size)
+        fd = {
+            model.user_ids:  batch['users'], 
+            model.left_ids:  batch['left_items'],
+            model.right_ids: batch['right_items'],
+            model.target_y:  batch['y'],
+        }
+        el, nl, reg, t, _ = model.session.run(
+            [model.embedding_loss, model.net_loss, model.regularization, model.target, cur_optim], 
+            feed_dict=fd
+        )
+        losses.append((el, nl, reg, t))
+        if i%500==0:
+            user_norm = np.linalg.norm(model.weights_u)
+            item_norm = np.linalg.norm(model.weights_i)
+            print('[it {}] weight norms, users: {}, items: {}'.format(i, user_norm, item_norm))
+            print('[it {}] metrics (emb_loss, net_loss, reg, target): {}'.format(i, losses[-1]))
+
+#%%
+            
+ndcg_vals = []
+for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
+    response = np.zeros(len(ds.test[u]))
+    fd = {
+            model.user_ids:  (np.ones(len(ds.test[u]))*u).astype(np.int32), 
+            model.left_ids:  np.array([i for (i, r) in ds.test[u]]).astype(np.int32),
+        }
+    response += model.session.run(model.embedding_left, feed_dict=fd)[:, 0]
+    response += model.session.run(model.left_output, feed_dict=fd)[:, 0]
+
+    # make relevances
+    relevances = np.array([r for (i, r) in ds.test[u]])
+    predicted_ranking = np.argsort(-response)
+    # calc score
+    gain = letor_metrics.ndcg_from_ranking(relevances, predicted_ranking, 10)
+    ndcg_vals.append(gain)
+
+
+# In[32]:
+
+print (np.mean(ndcg_vals))
+
+
+# In[ ]:
+
+
+
