@@ -38,7 +38,7 @@ def inner_network(user_emb, item_emb):
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
     return net
 
-model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=0.5, beta=0.5, alpha_reg=0.0, inner_net=inner_network)
+model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=0.0, beta=1, alpha_reg=0.0, inner_net=inner_network)
 model.build_graph()
 model.initialize_session()
 
@@ -65,7 +65,11 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
             print('[it {}] metrics (emb_loss, net_loss, reg, target): {}'.format(i, losses[-1]))
 
 #%%
-            
+
+export_basename = '/data/sidana/nnmf_ranking/archive_version/outbrain/recnet/five/vectors/'
+export_pred = open(export_basename + 'pr_5_01', 'w')
+export_true = open(export_basename + 'gt_5_01', 'w')
+
 ndcg_vals = []
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
     response = np.zeros(len(ds.test[u]))
@@ -78,7 +82,14 @@ for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
 
     # make relevances
     relevances = np.array([r for (i, r) in ds.test[u]])
+    items = np.array([i for (i, r) in ds.test[u]])  # it's already sorted by true relevance
+    itemsGroundTruth = np.array([i for (i,r) in ds.test[u] if r == 4])
     predicted_ranking = np.argsort(-response)
+
+    # write down predictions
+    export_pred.write(' '.join(map(str, [u] + list(items[predicted_ranking]))) + '\n')
+    export_true.write(' '.join(map(str, [u] + list(itemsGroundTruth))) + '\n')
+
     # calc score
     gain = letor_metrics.ndcg_from_ranking(relevances, predicted_ranking, 10)
     ndcg_vals.append(gain)
