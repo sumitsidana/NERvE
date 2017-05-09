@@ -9,8 +9,8 @@ pyximport.install()
 import matplotlib
 
 
-raw_data_train = np.loadtxt('/data/sidana/nnmf_ranking/archive_version/outbrain/recnet/train_all_raw.csv', skiprows = 1, delimiter=',')
-raw_data_test = np.loadtxt('/data/sidana/nnmf_ranking/archive_version/outbrain/recnet/test_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_train = np.loadtxt('/home/thirtythird/NNMF/ml-100k/train_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_test = np.loadtxt('/home/thirtythird/NNMF/ml-100k/test_all_raw.csv', skiprows = 1, delimiter=',')
 raw_data = np.concatenate((raw_data_train, raw_data_test))
 from dataset_tt_static import TripletsDataset
 
@@ -31,7 +31,7 @@ imp.reload(bprnn)
 
 #%%
 def inner_network(user_emb, item_emb):
-    joined_input = tf.concat([user_emb, item_emb], 1)
+    joined_input = tf.concat(1, [user_emb, item_emb])
     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.dro
