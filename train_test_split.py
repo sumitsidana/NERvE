@@ -14,7 +14,7 @@ raw_data_test = np.loadtxt('/data/sidana/nnmf_ranking/archive_version/outbrain/r
 raw_data = np.concatenate((raw_data_train, raw_data_test))
 from dataset_tt_static import TripletsDataset
 
-ds = TripletsDataset(raw_data_train, raw_data_test, threshold_user=60, rnd_seed=42)
+ds = TripletsDataset(raw_data_train, raw_data_test, threshold_user=5, rnd_seed=42)
 ds.train_test_split()
 
 ds.init_cached_random()
