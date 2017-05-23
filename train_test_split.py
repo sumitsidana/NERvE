@@ -9,12 +9,12 @@ pyximport.install()
 import matplotlib
 
 
-raw_data_train = np.loadtxt('/data/sidana/nnmf_ranking/archive_version/outbrain/recnet/train_all_raw.csv', skiprows = 1, delimiter=',')
-raw_data_test = np.loadtxt('/data/sidana/nnmf_ranking/archive_version/outbrain/recnet/test_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_train = np.loadtxt('/home/sumit/embcs/train_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_test = np.loadtxt('/home/sumit/embcs/test_all_raw.csv', skiprows = 1, delimiter=',')
 raw_data = np.concatenate((raw_data_train, raw_data_test))
 from dataset_tt_static import TripletsDataset
 
-ds = TripletsDataset(raw_data_train, raw_data_test, threshold_user=10, rnd_seed=42)
+ds = TripletsDataset(raw_data_train, raw_data_test, threshold_user=60, rnd_seed=42)
 ds.train_test_split()
 
 ds.init_cached_random()
@@ -66,7 +66,7 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
 
 #%%
 
-export_basename = '/data/sidana/nnmf_ranking/archive_version/outbrain/recnet/five/vectors/'
+export_basename = '/home/sumit/embcs/vectors/'
 export_pred = open(export_basename + 'pr_5_01', 'w')
 export_true = open(export_basename + 'gt_5_01', 'w')
 
