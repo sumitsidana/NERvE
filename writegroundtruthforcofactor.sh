@@ -3,4 +3,4 @@ LANG=en_US.utf8
 mkdir -p "/data/sidana/recnet_draft/$1/cofactor/vectors"
 echo "running for length: $i"
 echo "preprocessing"
-java -cp ~/embAdaptivity/java/src/ preProcess.WriteGroundTruthForCofactor  "/data/sidana/recnet_draft/$1/cofactor/pro/test.csv" "/data/sidana/recnet_draft/$1/cofactor/vectors/gt_ml20m"
+java -cp ~/embAdaptivity/java/src/ preProcess.WriteGroundTruthForCofactor  "/data/sidana/recnet_draft/$1/cofactor/pro/test.csv" "/data/sidana/recnet_draft/$1/cofactor/vectors/gt_$1"
