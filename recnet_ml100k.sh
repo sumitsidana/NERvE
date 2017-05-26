@@ -1,6 +1,12 @@
-python3 train_test_split.py
-/writerelevancevectorrecnet.sh ml100k_01 #one, five and ten#
-python3 train_test_split.py
-/writerelevancevectorrecnet.sh ml100k_10 #one, five and ten#
-python3 train_test_split.py
-/writerelevancevectorrecnet.sh ml100k_11 #one, five and ten#
+python3 train_test_split.py 0 1
+/writerelevancevectorrecnet.sh ml100k 01 one
+/writerelevancevectorrecnet.sh ml100k 01 five
+/writerelevancevectorrecnet.sh ml100k 01 ten
+python3 train_test_split.py 1 0
+/writerelevancevectorrecnet.sh ml100k 10 one
+/writerelevancevectorrecnet.sh ml100k 10 five
+/writerelevancevectorrecnet.sh ml100k 10 ten
+python3 train_test_split.py 1 1
+/writerelevancevectorrecnet.sh ml100k 11 one
+/writerelevancevectorrecnet.sh ml100k 11 five
+/writerelevancevectorrecnet.sh ml100k 11 ten
