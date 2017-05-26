@@ -1,5 +1,3 @@
 javac -cp ~/embAdaptivity/java/binaries/commons-lang3-3.5.jar  ~/embAdaptivity/java/src/preProcess/InputOutput.java ~/embAdaptivity/java/src/preProcess/WritePredictorForCofactor.java
 LANG=en_US.utf8
-echo "running for length: $i"
-echo "preprocessing"
-java -cp ~/embAdaptivity/java/src/ preProcess.WritePredictorForCofactor "/data/sidana/nnmf_ranking/archive_version/ml20m/cofactor/pro/test_all.csv" "/data/sidana/nnmf_ranking/archive_version/ml20m/cofactor/pro/pr" "/data/sidana/nnmf_ranking/archive_version/ml20m/cofactor/vectors/pr_ml20m"
+java -cp ~/embAdaptivity/java/src/ preProcess.WritePredictorForCofactor "/data/sidana/recnet_draft/$1/cofactor/pro/test_all.csv" "/data/sidana/recnet_draft/$1/cofactor/pro/pr" "/data/sidana/recnet_draft/$1/cofactor/vectors/pr_$1"
