@@ -23,7 +23,11 @@ public class ConvertIntoRelVecGeneralized_update {
 			if (gtLine == null || prLine == null)
 				break;
 
-			//System.out.println(gtLine + "\t" + prLine);
+			//handle the case of no ground truth transactions in test
+			index = gtLine.indexOf(" ");
+			if(index == -1){
+				continue;
+			}
 			String [] arrgt = gtLine.split(" ");
 			String prOffers = prLine.substring(prLine.indexOf(" ")+1);
 			String predictedUser = prLine.substring(0, prLine.indexOf(" "));
