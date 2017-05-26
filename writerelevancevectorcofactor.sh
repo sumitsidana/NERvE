@@ -1,10 +1,10 @@
 LANG=en_US.utf8
 cd java/
-mkdir -p /data/sidana/nnmf_ranking/archive_version/outbrain/cofactor/five/rv/
-mkdir -p /data/sidana/nnmf_ranking/archive_version/outbrain/cofactor/five/em/
+mkdir -p /data/sidana/nnmf_ranking/recnet_draft/$1/cofactor/five/rv/
+mkdir -p /data/sidana/nnmf_ranking/recnet_draft/$1/cofactor/five/em/
 javac -cp binaries/commons-lang3-3.5.jar  preProcess/ConvertIntoRelVecGeneralized_update.java preProcess/InputOutput.java
 echo 'making relevance vector'
-java -cp . preProcess.ConvertIntoRelVecGeneralized_update /data/sidana/nnmf_ranking/archive_version/outbrain/cofactor/vectors/gt_outbrain /data/sidana/nnmf_ranking/archive_version/outbrain/cofactor/vectors/pr_outbrain /data/sidana/nnmf_ranking/archive_version/outbrain/cofactor/five/rv/relevanceVector_outbrain 5
+java -cp . preProcess.ConvertIntoRelVecGeneralized_update /data/sidana/nnmf_ranking/recnet_draft/$1/cofactor/vectors/gt_$1 /data/sidana/nnmf_ranking/recnet_draft/$1/cofactor/vectors/pr_$1 /data/sidana/nnmf_ranking/recnet_draft/$1/cofactor/five/rv/relevanceVector_$1 5
 cd -
 echo 'compute offline metrics'
-python3 compOfflineEvalMetrics_len4.py /data/sidana/nnmf_ranking/archive_version/outbrain/cofactor/five outbrain
+python3 compOfflineEvalMetrics_len4.py /data/sidana/nnmf_ranking/recnet_draft/$1/cofactor/five $1
