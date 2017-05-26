@@ -1,3 +1,4 @@
+mkdir -p /data/sidana/recnet_draft/ml100k/recnet/vectors
 python3 train_test_split.py ml100k 0 1
 /writerelevancevectorrecnet.sh ml100k 01 one
 /writerelevancevectorrecnet.sh ml100k 01 five
