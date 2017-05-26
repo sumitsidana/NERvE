@@ -8,7 +8,7 @@ echo 'making relevance vector'
 if [ $2 == "one" ]
 then
    rank=2
-elif [ $2 -gt "five" ]
+elif [ $2 == "five" ]
 then
    rank=5
 else
