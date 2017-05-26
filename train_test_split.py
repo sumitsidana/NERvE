@@ -4,13 +4,14 @@ import random
 import pickle
 import letor_metrics
 import pyximport
+import sys
 from tqdm import tqdm
 pyximport.install()
 import matplotlib
 
 
-raw_data_train = np.loadtxt('/data/sidana/recnet_draft/ml100k/recnet/train_all_raw.csv', skiprows = 1, delimiter=',')
-raw_data_test = np.loadtxt('/data/sidana/recnet_draft/ml100k/recnet/test_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_train = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet/train_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_test = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet/test_all_raw.csv', skiprows = 1, delimiter=',')
 raw_data = np.concatenate((raw_data_train, raw_data_test))
 from dataset_tt_static import TripletsDataset
 
@@ -38,7 +39,7 @@ def inner_network(user_emb, item_emb):
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
     return net
 
-model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=0.0, beta=1, alpha_reg=0.0, inner_net=inner_network)
+model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=int(sys.argv[2]), beta=int(sys.argv[3]), alpha_reg=0.0, inner_net=inner_network)
 model.build_graph()
 model.initialize_session()
 
@@ -66,9 +67,9 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
 
 #%%
 
-export_basename = '/data/sidana/recnet_draft/ml100k/recnet/vectors/'
-export_pred = open(export_basename + 'pr_ml100k_01', 'w')
-export_true = open(export_basename + 'gt_ml100k_01', 'w')
+export_basename = '/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet/vectors/'
+export_pred = open(export_basename + 'pr_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
+export_true = open(export_basename + 'gt_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
 
 ndcg_vals = []
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
