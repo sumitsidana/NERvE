@@ -1,5 +1,5 @@
 mkdir -p /data/sidana/recnet_draft/ml100k/lightfm/vectors/
-python3 lightfm.py ml100k ","
+python3 lightfm_module.py ml100k ","
 directoryofvectors='/data/sidana/recnet_draft/ml100k/lightfm/vectors/'
 cd $directoryofvectors
 echo 'removing duplicates'

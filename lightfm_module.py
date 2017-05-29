@@ -1,4 +1,4 @@
-from LightFM import LightFM
+from lightfm import LightFM
 import data
 import sys
 import numpy as np
