@@ -11,7 +11,7 @@ uid_test, pid_test, nid_test = data.get_triplets(test)
 model = LightFM(no_components=10,loss='logistic',learning_rate=0.001,item_alpha=0.01,user_alpha=0.01)
 model.fit(train, epochs=10, num_threads=1)
 
-train_all, test_all = data.get_movielens_data(sys.argv[1])
+train_all, test_all = data.get_movielens_data('/data/sidana/recnet_draft/'+sys.argv[1]+'/lightfm')
 uid_all_train, pid_all_train, nid_all_train = data.get_triplets(train_all)
 uid_all_test, pid_all_test, nid_all_test = data.get_triplets(test_all)
 
