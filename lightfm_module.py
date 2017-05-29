@@ -15,7 +15,7 @@ train_all, test_all = data.get_movielens_data('/data/sidana/recnet_draft/'+sys.a
 uid_all_train, pid_all_train, nid_all_train = data.get_triplets(train_all)
 uid_all_test, pid_all_test, nid_all_test = data.get_triplets(test_all)
 
-export_basename = sys.argv[1]+'/output/vectors/'
+export_basename = '/data/sidana/recnet_draft/'+sys.argv[1]+'/lightfm'+'/vectors/'
 export_pred = open(export_basename + 'pr', 'w')
 #export_pred = open(export_basename + 'pr', 'w')
 export_true = open(export_basename + 'gt', 'w')
