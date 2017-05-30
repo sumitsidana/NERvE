@@ -233,7 +233,7 @@ public class InputOutput {
 				int feedback = 0;
 				long userId = Long.parseLong(array[0]);
 				long itemId = Long.parseLong(array[1]);
-				Long rating = Long.parseLong(array[2]);
+				long rating = Long.parseLong(array[2]);
 				if(userItemRating.containsKey(userId)){
 					Map<Long,Long>itemRating = userItemRating.get(userId);
 					itemRating.put(itemId, rating);
@@ -265,6 +265,77 @@ public class InputOutput {
 
 			printWriter.close();
 		}
+
+	}
+
+	public static void writeTrainTestInputBPRMF(String inputFile1, String inputFile2, String outputFile) throws IOException{
+		Map<Long,Map<Long,Long>> userItemRating = new LinkedHashMap<Long,Map<Long,Long>>();
+		PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile1)))) {
+			String line;
+			line = br.readLine();
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				long userId = Long.parseLong(array[0]);
+				long itemId = Long.parseLong(array[1]);
+				long rating = Long.parseLong(array[2]);
+				if(userItemRating.containsKey(userId)){
+					Map<Long,Long>itemRating = userItemRating.get(userId);
+					itemRating.put(itemId, rating);
+					userItemRating.put(userId,itemRating);
+				}
+				else{
+					Map<Long,Long>itemRating = new LinkedHashMap<Long,Long>();
+					itemRating.put(itemId, rating);
+					userItemRating.put(userId,itemRating);
+				}
+			}
+			for(Map.Entry<Long, Map<Long,Long>> entry: userItemRating.entrySet()){
+				long userId = entry.getKey();
+				Map<Long,Long> itemRating = (LinkedHashMap<Long,Long>)entry.getValue();
+				Map<Long,Long> revSortedItemRating = sortByValue(itemRating);
+				userItemRating.put(userId,revSortedItemRating);
+			}
+		}
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile2)))) {
+			String line;
+			line = br.readLine();
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				long userId = Long.parseLong(array[0]);
+				long itemId = Long.parseLong(array[1]);
+				long rating = Long.parseLong(array[2]);
+				if(userItemRating.containsKey(userId)){
+					Map<Long,Long>itemRating = userItemRating.get(userId);
+					itemRating.put(itemId, rating);
+					userItemRating.put(userId,itemRating);
+				}
+				else{
+					Map<Long,Long>itemRating = new LinkedHashMap<Long,Long>();
+					itemRating.put(itemId, rating);
+					userItemRating.put(userId,itemRating);
+				}
+			}
+			for(Map.Entry<Long, Map<Long,Long>> entry: userItemRating.entrySet()){
+				long userId = entry.getKey();
+				Map<Long,Long> itemRating = (LinkedHashMap<Long,Long>)entry.getValue();
+				Map<Long,Long> revSortedItemRating = sortByValue(itemRating);
+				userItemRating.put(userId,revSortedItemRating);
+			}
+		}
+		for(Map.Entry<Long, Map<Long,Long>> entry: userItemRating.entrySet()){
+			long userId = entry.getKey();
+			printWriter.print(userId+"\t");
+			Map<Long,Long> itemRating = (LinkedHashMap<Long,Long>)entry.getValue();
+			for(Map.Entry<Long,Long> internalEntry: itemRating.entrySet()){
+				long itemId = internalEntry.getKey();
+				long rating = internalEntry.getValue();
+				printWriter.print(itemId+":"+rating+",");
+			}
+			printWriter.println();
+		}
+
+		printWriter.close();
 
 	}
 
@@ -875,7 +946,7 @@ public class InputOutput {
 		PrintWriter gtTest = new PrintWriter (outputFile);
 		try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
 			String line;
-//			br.readLine();
+			//			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split("\t");
 				long user = Long.parseLong(array[0]);
@@ -902,7 +973,7 @@ public class InputOutput {
 		PrintWriter printWriter = new PrintWriter (outputFile);
 		try (BufferedReader br = new BufferedReader(new FileReader(inputFile1))) {
 			String line;
-//			br.readLine();
+			//			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split("\t");
 				long user = Long.parseLong(array[0]);
@@ -918,7 +989,7 @@ public class InputOutput {
 		}
 		try (BufferedReader br = new BufferedReader(new FileReader(inputFile2))) {
 			String line;
-//			br.readLine();
+			//			br.readLine();
 			while((line = br.readLine())!=null) {
 				String [] array = line.split("\t");
 				long user = Long.parseLong(array[0]);
