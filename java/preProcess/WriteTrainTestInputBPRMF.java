@@ -1,6 +1,5 @@
+package preProcess;
 import java.io.IOException;
-
-import preProcess.InputOutput;
 
 public class WriteTrainTestInputBPRMF {
 
