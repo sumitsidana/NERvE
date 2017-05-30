@@ -11,6 +11,6 @@ cd /home/sumit/nnmf_ranking/nnmf_ranking
 ./writegroundtruthforbprmf.sh ml100k
 ./writepredictorforbprmf.sh ml100k
 
-./writerelevancevectorbprmf.sh ml100k one
-./writerelevancevectorbprmf.sh ml100k five
-./writerelevancevectorbprmf.sh ml100k ten
+bash ./writerelevancevectorbprmf.sh ml100k one
+bash ./writerelevancevectorbprmf.sh ml100k five
+bash ./writerelevancevectorbprmf.sh ml100k ten
