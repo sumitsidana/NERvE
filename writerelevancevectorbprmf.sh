@@ -1,10 +1,21 @@
 LANG=en_US.utf8
 cd java/
-mkdir -p /data/sidana/nnmf_ranking/archive_version/ml20m/bprmf/rv/
-mkdir -p /data/sidana/nnmf_ranking/archive_version/ml20m/bprmf/em/
+mkdir -p /data/sidana/recnet_draft/$1/bprmf/$2/rv/
+mkdir -p /data/sidana/recnet_draft/$1/bprmf/$2/em/
 javac -cp binaries/commons-lang3-3.5.jar  preProcess/ConvertIntoRelVecGeneralized_update.java preProcess/InputOutput.java
 echo 'making relevance vector'
-java -cp . preProcess.ConvertIntoRelVecGeneralized_update /data/sidana/nnmf_ranking/archive_version/ml20m/bprmf/vectors/gt_ml20m /data/sidana/nnmf_ranking/archive_version/ml20m/bprmf/vectors/pr_ml20m /data/sidana/nnmf_ranking/archive_version/ml20m/bprmf/rv/relevanceVector_ml20m 10
+
+if [ $2 == "one" ]
+then
+   rank=2
+elif [ $2 == "five" ]
+then
+   rank=5
+else
+   rank=10
+fi
+
+java -cp . preProcess.ConvertIntoRelVecGeneralized_update /data/sidana/recnet_draft/$1/bprmf/vectors/gt_$1 /data/sidana/recnet_draft/$1/bprmf/vectors/pr_$1 /data/sidana/recnet_draft/$1/bprmf/$2/rv/relevanceVector_$1 $rank
 cd -
 echo 'compute offline metrics'
-python3 compOfflineEvalMetrics_len2.py /data/sidana/nnmf_ranking/archive_version/ml20m/bprmf/ ml20m
+python3 compOfflineEvalMetrics_len$rank.py /data/sidana/recnet_draft/$1/bprmf/$2 $1
