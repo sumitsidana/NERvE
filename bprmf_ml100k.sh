@@ -7,7 +7,7 @@ cut -d$'\t' -f1 test.inputbprmf > test.users
 
 cd /home/ama/sidana/bprmf/mymedialite/bin
 
-sudo ./item_recommendation --training-file=/data/sidana/recnet_draft/ml100k/bprmf/train.inputbprmf --test-file=/data/sidana/recnet_draft/ml100k/bprmf/test.inputbprmf --test-users= --recommender=BPRMF --in-test-items  --prediction-file=/data/sidana/recnet_draft/ml100k/bprmf/prediction_file
+./item_recommendation --training-file=/data/sidana/recnet_draft/ml100k/bprmf/train.inputbprmf --test-file=/data/sidana/recnet_draft/ml100k/bprmf/test.inputbprmf --test-users= --recommender=BPRMF --in-test-items  --prediction-file=/data/sidana/recnet_draft/ml100k/bprmf/prediction_file
 
 cd -
 ./writegroundtruthforbprmf.sh ml100k
