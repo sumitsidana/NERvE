@@ -268,12 +268,16 @@ public class InputOutput {
 
 	}
 
-	public static void writeTrainTestInputBPRMF(String inputFile1, String inputFile2, String outputFile) throws IOException{
+	public static void writeTrainTestInputBPRMF(String inputFileTrain, String inputFileTest, String outputFileTrain, 
+			String outputFileTest) throws IOException{
 		Map<Long,Map<Long,Long>> userItemRating = new LinkedHashMap<Long,Map<Long,Long>>();
-		PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));
-		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile1)))) {
+
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFileTrain)))) {
 			String line;
+			PrintWriter printWriterTrain = new PrintWriter(new BufferedWriter(new FileWriter(outputFileTrain, true)));
 			line = br.readLine();
+
+			//			printWriter.println(line);
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split(",");
 				long userId = Long.parseLong(array[0]);
@@ -296,46 +300,62 @@ public class InputOutput {
 				Map<Long,Long> revSortedItemRating = sortByValue(itemRating);
 				userItemRating.put(userId,revSortedItemRating);
 			}
-		}
-		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile2)))) {
-			String line;
-			line = br.readLine();
-			while ((line = br.readLine()) != null) {
-				String [] array = line.split(",");
-				long userId = Long.parseLong(array[0]);
-				long itemId = Long.parseLong(array[1]);
-				long rating = Long.parseLong(array[2]);
-				if(userItemRating.containsKey(userId)){
-					Map<Long,Long>itemRating = userItemRating.get(userId);
-					itemRating.put(itemId, rating);
-					userItemRating.put(userId,itemRating);
-				}
-				else{
-					Map<Long,Long>itemRating = new LinkedHashMap<Long,Long>();
-					itemRating.put(itemId, rating);
-					userItemRating.put(userId,itemRating);
-				}
-			}
 			for(Map.Entry<Long, Map<Long,Long>> entry: userItemRating.entrySet()){
 				long userId = entry.getKey();
+				printWriterTrain.print(userId+"\t");
 				Map<Long,Long> itemRating = (LinkedHashMap<Long,Long>)entry.getValue();
-				Map<Long,Long> revSortedItemRating = sortByValue(itemRating);
-				userItemRating.put(userId,revSortedItemRating);
+				for(Map.Entry<Long,Long> internalEntry: itemRating.entrySet()){
+					long itemId = internalEntry.getKey();
+					long rating = internalEntry.getValue();
+					printWriterTrain.print(itemId+":"+rating+",");
+				}
+				printWriterTrain.println();
 			}
-		}
-		for(Map.Entry<Long, Map<Long,Long>> entry: userItemRating.entrySet()){
-			long userId = entry.getKey();
-			printWriter.print(userId+"\t");
-			Map<Long,Long> itemRating = (LinkedHashMap<Long,Long>)entry.getValue();
-			for(Map.Entry<Long,Long> internalEntry: itemRating.entrySet()){
-				long itemId = internalEntry.getKey();
-				long rating = internalEntry.getValue();
-				printWriter.print(itemId+":"+rating+",");
-			}
-			printWriter.println();
+
+			printWriterTrain.close();
 		}
 
-		printWriter.close();
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFileTest)))) {
+			String line;
+			PrintWriter printWriterTest = new PrintWriter(new BufferedWriter(new FileWriter(outputFileTest, true)));
+			line = br.readLine();
+
+			//			printWriter.println(line);
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				long userId = Long.parseLong(array[0]);
+				long itemId = Long.parseLong(array[1]);
+				long rating = Long.parseLong(array[2]);
+				if(userItemRating.containsKey(userId)){
+					Map<Long,Long>itemRating = userItemRating.get(userId);
+					itemRating.put(itemId, rating);
+					userItemRating.put(userId,itemRating);
+				}
+				else{
+					Map<Long,Long>itemRating = new LinkedHashMap<Long,Long>();
+					itemRating.put(itemId, rating);
+					userItemRating.put(userId,itemRating);
+				}
+			}
+			for(Map.Entry<Long, Map<Long,Long>> entry: userItemRating.entrySet()){
+				long userId = entry.getKey();
+				Map<Long,Long> itemRating = (LinkedHashMap<Long,Long>)entry.getValue();
+				Map<Long,Long> revSortedItemRating = sortByValue(itemRating);
+				userItemRating.put(userId,revSortedItemRating);
+			}
+			for(Map.Entry<Long, Map<Long,Long>> entry: userItemRating.entrySet()){
+				long userId = entry.getKey();
+				printWriterTest.print(userId+"\t");
+				Map<Long,Long> itemRating = (LinkedHashMap<Long,Long>)entry.getValue();
+				for(Map.Entry<Long,Long> internalEntry: itemRating.entrySet()){
+					long itemId = internalEntry.getKey();
+					long rating = internalEntry.getValue();
+					printWriterTest.print(itemId+":"+rating+",");
+				}
+				printWriterTest.println();
+			}
+			printWriterTest.close();
+		}
 
 	}
 
@@ -344,10 +364,7 @@ public class InputOutput {
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
 			String line;
 			PrintWriter printWriterTrain = new PrintWriter (outputFile);
-			//			line = br.readLine();
-			//			printWriterTrain.println(line);
 			Map<String,Long>userIndex = new LinkedHashMap<String,Long>();
-			//			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split(",");
 				String user = array[0];
