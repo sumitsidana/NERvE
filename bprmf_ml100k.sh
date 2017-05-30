@@ -9,7 +9,7 @@ cd /home/ama/sidana/bprmf/mymedialite/bin
 
 ./item_recommendation --training-file=/data/sidana/recnet_draft/ml100k/bprmf/train.inputbprmf --test-file=/data/sidana/recnet_draft/ml100k/bprmf/test.inputbprmf --test-users= --recommender=BPRMF --in-test-items  --prediction-file=/data/sidana/recnet_draft/ml100k/bprmf/prediction_file
 
-cd -
+cd ~/nnmf_ranking
 ./writegroundtruthforbprmf.sh ml100k
 ./writepredictorforbprmf.sh ml100k
 
