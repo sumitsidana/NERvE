@@ -605,21 +605,36 @@ public class InputOutput {
 		pWGT.close();
 		pWPR.close();
 	}
-	public static void writeEvaluationFile(String inputFile, String outputFile, String evalMetric, String datafile) throws IOException{
+	public static void writeEvaluationFile(String inputFile, String outputFile, String evalMetric, String datafile)
+			throws IOException{
 
 		//List<String> countryCodes = Arrays.asList("0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9");
 		//		List<String> countryCodes = Arrays.asList("10","20","30","50","75","100");
-		List<String> countryCodes = Arrays.asList("1","2","3","5","7_5","10");
+		//		List<String> countryCodes = Arrays.asList("1","2","3","5","7_5","10");
+
+		List<String> countryCodes1 = Arrays.asList("ml100k");
+		List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm","recnet");
+		List<String> countryCodes3 = Arrays.asList("one","five","ten");
+
 
 		PrintWriter printWriter = new PrintWriter (outputFile);
 		Map<String,Double>countryMetrics = new LinkedHashMap<String,Double>();
-		for(int i = 0 ; i < countryCodes.size() ; i++){
-			try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile+"/"+"len"+countryCodes.get(i)+"/em/evalMetrics_"+ datafile)))) {
-				String line;
-				while ((line = br.readLine()) != null) {
-					if(line.contains(evalMetric)){
-						countryMetrics.put(countryCodes.get(i), Double.parseDouble(line.replace(evalMetric+": ", "")));
-						//						printWriter.println(countryCodes.get(i)+" "+line.replace(evalMetric+": ", ""));
+		for(int i = 0 ; i <countryCodes1.size() ; i++){
+			for(int j = 0 ; j < countryCodes2.size() ; j++){
+				for(int k = 0; k < countryCodes3.size(); k++){
+					try (BufferedReader br = new BufferedReader
+							(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/"+countryCodes2.get(j)+
+									"/"+countryCodes3.get(k)
+									+"/em/evalMetrics_"+ datafile)))) {
+						String line;
+						while ((line = br.readLine()) != null) {
+							if(line.contains(evalMetric)){
+								countryMetrics.put(countryCodes1.get(i)+countryCodes2.get(j)+countryCodes3.get(k),
+										Double.parseDouble(line.replace(evalMetric+": ", "")));
+								//						printWriter.println(countryCodes.get(i)+
+								//								" "+line.replace(evalMetric+": ", ""));
+							}
+						}
 					}
 				}
 			}
