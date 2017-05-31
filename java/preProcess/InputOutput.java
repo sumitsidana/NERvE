@@ -605,7 +605,7 @@ public class InputOutput {
 		pWGT.close();
 		pWPR.close();
 	}
-	public static void writeEvaluationFile(String inputFile, String outputFile, String evalMetric, String datafile)
+	public static void writeEvaluationFile(String inputFile, String outputFile, String evalMetric)
 			throws IOException{
 
 		//List<String> countryCodes = Arrays.asList("0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9");
@@ -625,7 +625,7 @@ public class InputOutput {
 					try (BufferedReader br = new BufferedReader
 							(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/"+countryCodes2.get(j)+
 									"/"+countryCodes3.get(k)
-									+"/em/evalMetrics_"+ datafile)))) {
+									+"/em/evalMetrics_"+ countryCodes1.get(i))))) {
 						String line;
 						while ((line = br.readLine()) != null) {
 							if(line.contains(evalMetric)){
