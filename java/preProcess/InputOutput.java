@@ -615,6 +615,7 @@ public class InputOutput {
 		List<String> countryCodes1 = Arrays.asList("ml100k");
 		List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm","recnet");
 		List<String> countryCodes3 = Arrays.asList("one","five","ten");
+		List<String> countryCodes4 = Arrays.asList("01","10","11");
 
 
 		PrintWriter printWriter = new PrintWriter (outputFile);
@@ -622,19 +623,41 @@ public class InputOutput {
 		for(int i = 0 ; i <countryCodes1.size() ; i++){
 			for(int j = 0 ; j < countryCodes2.size() ; j++){
 				for(int k = 0; k < countryCodes3.size(); k++){
-					try (BufferedReader br = new BufferedReader
-							(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/"+countryCodes2.get(j)+
-									"/"+countryCodes3.get(k)
-									+"/em/evalMetrics_"+ countryCodes1.get(i))))) {
-						String line;
-						while ((line = br.readLine()) != null) {
-							if(line.contains(evalMetric)){
-								countryMetrics.put(countryCodes1.get(i)+countryCodes2.get(j)+countryCodes3.get(k),
-										Double.parseDouble(line.replace(evalMetric+": ", "")));
-								//						printWriter.println(countryCodes.get(i)+
-								//								" "+line.replace(evalMetric+": ", ""));
+					for(int l = 0 ; l < countryCodes4.size() ; l++){
+						if(!(countryCodes2.get(j).equals("recnet"))){
+							try (BufferedReader br = new BufferedReader
+									(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/"+countryCodes2.get(j)+
+											"/"+countryCodes3.get(k)
+											+"/em/evalMetrics_"+ countryCodes1.get(i))))) {
+								String line;
+								while ((line = br.readLine()) != null) {
+									if(line.contains(evalMetric)){
+										countryMetrics.put(countryCodes1.get(i)+countryCodes2.get(j)+countryCodes3.get(k),
+												Double.parseDouble(line.replace(evalMetric+": ", "")));
+										//						printWriter.println(countryCodes.get(i)+
+										//								" "+line.replace(evalMetric+": ", ""));
+									}
+								}
 							}
 						}
+						else{
+							try (BufferedReader br = new BufferedReader
+									(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/"+countryCodes2.get(j)+
+											"/"+countryCodes3.get(k)
+											+"/em/evalMetrics_"+ countryCodes1.get(i)+"_"+countryCodes4.get(l))))) {
+								String line;
+								while ((line = br.readLine()) != null) {
+									if(line.contains(evalMetric)){
+										countryMetrics.put(countryCodes1.get(i)+countryCodes2.get(j)+countryCodes3.get(k)+
+												countryCodes4.get(l),
+												Double.parseDouble(line.replace(evalMetric+": ", "")));
+										//						printWriter.println(countryCodes.get(i)+
+										//								" "+line.replace(evalMetric+": ", ""));
+									}
+								}
+							}
+						}
+
 					}
 				}
 			}
