@@ -5,4 +5,3 @@
 bash ./writerelevancevectorpi.sh ml100k one
 bash ./writerelevancevectorpi.sh ml100k five
 bash ./writerelevancevectorpi.sh ml100k ten
-

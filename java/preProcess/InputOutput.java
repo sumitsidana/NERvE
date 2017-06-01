@@ -1069,4 +1069,19 @@ public class InputOutput {
 		}
 		printWriter.close();
 	}
+	public static void copyMultipleLines(String fileName,long num) throws IOException{
+		String line;
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(fileName)))) {
+			line = br.readLine();
+			// TODO Auto-generated method stub
+		}
+		long numberofTimestoBeCopied = num;
+		PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
+		for(int i = 0 ; i < numberofTimestoBeCopied ; i++){
+			printWriter.println(line);
+		}
+
+		printWriter.close();
+
+	}
 }
