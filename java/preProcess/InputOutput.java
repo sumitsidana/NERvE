@@ -614,7 +614,7 @@ public class InputOutput {
 		//		List<String> countryCodes = Arrays.asList("1","2","3","5","7_5","10");
 
 		List<String> countryCodes1 = Arrays.asList("ml100k");
-		List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm","recnet","pi");
+		List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm","recnet","pi","pop");
 		List<String> countryCodes3 = Arrays.asList("one","five","ten");
 		List<String> countryCodes4 = Arrays.asList("01","10","11");
 
