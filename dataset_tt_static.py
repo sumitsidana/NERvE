@@ -137,15 +137,18 @@ class TripletsDataset(object):
             if len(self.train[u].keys()) == 1:
                 print('No rating diversity in train set for user {}, do swap!'.format(u))
                 the_only_rating = list(self.train[u].keys())[0]
-                for n, (i, r) in enumerate(self.test[u]):
+                if not self.test[u]:
+                    continue
+                else:
+                    for n, (i, r) in enumerate(self.test[u]):
                     # find first different rating in test and swap it with 0-th in train
-                    if r != the_only_rating:
-                        self.train[u][r] = [i]
-                        extracted_i = self.train[u][the_only_rating][0]
-                        self.train[u][the_only_rating] = self.train[u][the_only_rating][1:]
-                        del self.test[u][n]
-                        self.test[u] = self.test[u] + [(extracted_i, the_only_rating)]
-                        break
+                        if r != the_only_rating:
+                            self.train[u][r] = [i]
+                            extracted_i = self.train[u][the_only_rating][0]
+                            self.train[u][the_only_rating] = self.train[u][the_only_rating][1:]
+                            del self.test[u][n]
+                            self.test[u] = self.test[u] + [(extracted_i, the_only_rating)]
+                            break
             self.test[u] = sorted(self.test.get(u, []), key=lambda x: x[1], reverse=True)
 
         # intersect train and test items
