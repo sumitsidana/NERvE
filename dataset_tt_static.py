@@ -137,7 +137,7 @@ class TripletsDataset(object):
             if len(self.train[u].keys()) == 1:
                 print('No rating diversity in train set for user {}, do swap!'.format(u))
                 the_only_rating = list(self.train[u].keys())[0]
-                if not u in self.test[u]:
+                if not u in self.test:
                     continue
                 else:
                     for n, (i, r) in enumerate(self.test[u]):
