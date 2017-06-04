@@ -1,12 +1,12 @@
 cd ~/cofactor/src
 LANG=en_US.utf8
 echo "preprocessing"
-python preprocess.py "/data/sidana/recnet_draft/kasandr/cofactor"
+python preprocess.py "/data/sidana/recnet_draft/kasandr/atleast_five_o_two_c/cofactor"
 echo "running cofactor"
-python Cofactorization.py "/data/sidana/recnet_draft/kasandr/cofactor/pro"
+python Cofactorization.py "/data/sidana/recnet_draft/kasandr/atleast_five_o_two_c/cofactor/pro"
 cd ~/nnmf_ranking/
-./writegroundtruthforcofactor.sh kasandr
-./writepredictorforcofator.sh kasandr
-./writerelevancevectorcofactor.sh kasandr one
-./writerelevancevectorcofactor.sh kasandr five
-./writerelevancevectorcofactor.sh kasandr ten
+./writegroundtruthforcofactor.sh kasandr/atleast_five_o_two_c
+./writepredictorforcofator.sh kasandr/atleast_five_o_two_c
+./writerelevancevectorcofactor.sh kasandr/atleast_five_o_two_c one
+./writerelevancevectorcofactor.sh kasandr/atleast_five_o_two_c five
+./writerelevancevectorcofactor.sh kasandr/atleast_five_o_two_c ten
