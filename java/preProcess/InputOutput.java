@@ -617,6 +617,7 @@ public class InputOutput {
 		List<String> countryCodes1 = Arrays.asList("kasandr");
 //		List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm","recnet","pi","pop");
 		List<String> countryCodes2 = Arrays.asList("cofactor");
+		List<String> countryCodes5 = Arrays.asList("atleast_five_o_two_c", "atleast_ten_o_two_c",  "atleast_ten_o_two_c_v2",  "default");
 		List<String> countryCodes3 = Arrays.asList("one","five","ten");
 		List<String> countryCodes4 = Arrays.asList("01","10","11");
 
@@ -629,7 +630,7 @@ public class InputOutput {
 					for(int l = 0 ; l < countryCodes4.size() ; l++){
 						if(!(countryCodes2.get(j).equals("recnet"))){
 							try (BufferedReader br = new BufferedReader
-									(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/\\*/"+countryCodes2.get(j)+
+									(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/"+countryCodes2.get(j)+
 											"/"+countryCodes3.get(k)
 											+"/em/evalMetrics_"+ countryCodes1.get(i))))) {
 								String line;
@@ -645,7 +646,7 @@ public class InputOutput {
 						}
 						else{
 							try (BufferedReader br = new BufferedReader
-									(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/"+countryCodes2.get(j)+
+									(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/"+countryCodes5.get(i)+"/"+countryCodes2.get(j)+
 											"/"+countryCodes3.get(k)
 											+"/em/evalMetrics_"+ countryCodes1.get(i)+"_"+countryCodes4.get(l))))) {
 								String line;
