@@ -625,10 +625,10 @@ public class InputOutput {
 		PrintWriter printWriter = new PrintWriter (outputFile);
 		Map<String,Double>countryMetrics = new LinkedHashMap<String,Double>();
 		for(int i = 0 ; i <countryCodes1.size() ; i++){
-			for(int j = 0 ; j < countryCodes2.size() ; j++){
-				for(int k = 0; k < countryCodes3.size(); k++){
-					for(int l = 0 ; l < countryCodes4.size() ; l++){
-						for(int m = 0 ; m < countryCodes5.size() ; m++){
+			for(int m = 0 ; m < countryCodes5.size() ; m++){
+				for(int j = 0 ; j < countryCodes2.size() ; j++){
+					for(int k = 0; k < countryCodes3.size(); k++){
+						for(int l = 0 ; l < countryCodes4.size() ; l++){
 							if(!(countryCodes2.get(j).equals("recnet"))){
 								try (BufferedReader br = new BufferedReader
 										(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/"+countryCodes5.get(i)+"/"+countryCodes2.get(j)+
@@ -639,8 +639,6 @@ public class InputOutput {
 										if(line.contains(evalMetric)){
 											countryMetrics.put(countryCodes1.get(i)+countryCodes2.get(j)+countryCodes3.get(k)+countryCodes5.get(m),
 													Double.parseDouble(line.replace(evalMetric+": ", "")));
-											//						printWriter.println(countryCodes.get(i)+
-											//								" "+line.replace(evalMetric+": ", ""));
 										}
 									}
 								}
