@@ -629,7 +629,7 @@ public class InputOutput {
 					for(int l = 0 ; l < countryCodes4.size() ; l++){
 						if(!(countryCodes2.get(j).equals("recnet"))){
 							try (BufferedReader br = new BufferedReader
-									(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/*/"+countryCodes2.get(j)+
+									(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/\\*/"+countryCodes2.get(j)+
 											"/"+countryCodes3.get(k)
 											+"/em/evalMetrics_"+ countryCodes1.get(i))))) {
 								String line;
