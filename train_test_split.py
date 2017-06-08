@@ -73,6 +73,8 @@ export_true = open(export_basename + 'gt_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[
 
 ndcg_vals = []
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
+    if not u in ds.test:
+        continue
     response = np.zeros(len(ds.test[u]))
     fd = {
             model.user_ids:  (np.ones(len(ds.test[u]))*u).astype(np.int32), 
