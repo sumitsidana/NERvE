@@ -8,5 +8,5 @@ cd ~/nnmf_ranking/
 ./writegroundtruthforcofactor.sh kasandr
 ./writepredictorforcofator.sh kasandr
 ./writerelevancevectorcofactor.sh kasandr one
-./writerelevancevectorcofactor.sh kasandr ten
+./writerelevancevectorcofactor.sh kasandr five
 ./writerelevancevectorcofactor.sh kasandr ten
