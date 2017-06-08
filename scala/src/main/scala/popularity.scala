@@ -34,7 +34,7 @@ object popularity {
 				val groupedByOffers = groupedByUsersandOffers.groupBy("movieId").count.sort(desc("count"))
 				val topItems = groupedByOffers.select("movieId").rdd.map(r => r(0)).take(100)
 
-				var items = new ListBuffer[String]()
+				val items = new ListBuffer[String]()
 				val fw = new FileWriter("/data/sidana/recnet_draft/kasandr/pop/mostpopularitems.txt", true)
 				for( a <- 1 to 100){
 					val firstval = topItems(a-1)
