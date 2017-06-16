@@ -633,12 +633,12 @@ public class InputOutput {
 									(new FileReader(new File(inputFile+"/"+countryCodes1.get(i)+"/"+
 											"/"+countryCodes2.get(j)+
 											"/"+countryCodes3.get(k)
-											+"/em/evalMetrics_"+ countryCodes1.get(i)+"_"+countryCodes4.get(l))))) {
+											+"/em/evalMetrics_"+ countryCodes1.get(i))))) {
 								String line;
 								while ((line = br.readLine()) != null) {
 									if(line.contains(evalMetric)){
 										countryMetrics.put(countryCodes1.get(i)+countryCodes2.get(j)+countryCodes3.get(k)
-										+countryCodes4.get(l),
+										,
 										Double.parseDouble(line.replace(evalMetric+": ", "")));
 									}
 								}
