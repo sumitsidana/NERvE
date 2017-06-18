@@ -1,5 +1,7 @@
 mkdir -p /data/sidana/recnet_draft/ml1m/lightfm/vectors/
 cp /data/sidana/recnet_draft/ml1m/cofactor/pro/*raw* /data/sidana/recnet_draft/ml1m/lightfm/
+sed -i ‘1d' /data/sidana/recnet_draft/ml1m/lightfm/train_all_raw.csv 
+sed -i ‘1d' /data/sidana/recnet_draft/ml1m/lightfm/test_all_raw.csv 
 python3 lightfm_module.py ml1m ","
 directoryofvectors='/data/sidana/recnet_draft/ml1m/lightfm/vectors/'
 cd $directoryofvectors
