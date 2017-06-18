@@ -1,3 +1,4 @@
+mkdir -p /data/sidana/recnet_draft/ml1m/cofactor/pro
 cd ~/cofactor/src
 LANG=en_US.utf8
 echo "preprocessing"
