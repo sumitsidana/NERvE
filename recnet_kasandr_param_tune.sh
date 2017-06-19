@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 mkdir -p /data/sidana/recnet_draft/param_tune/kasandr/recnet/vectors
-END=1
+END=100
 for  latent_factor in $(seq 1 $END); do
     echo -e "Latent Factor: $latent_factor" >> /data/sidana/recnet_draft/param_tune/kasandr/recnet/results
     python3 recnet_param_tune.py kasandr 0 1 $latent_factor
