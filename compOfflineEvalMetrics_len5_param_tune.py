@@ -28,5 +28,5 @@ relevanceVector = np.loadtxt(open(sys.argv[1]+"/rv/relevanceVector_"+sys.argv[2]
 maP = rank_metrics.mean_average_precision(relevanceVector)
 # f.write("Mean Average Precision: "+ str(maP)+"\n")
 print(str(maP))
-f.close()
+#f.close()
 

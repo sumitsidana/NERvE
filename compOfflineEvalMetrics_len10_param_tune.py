@@ -27,5 +27,5 @@ relevanceVector = np.loadtxt(open(sys.argv[1]+"/rv/relevanceVector_"+sys.argv[2]
 # f.write("Mean Reciprocal Rank: "+str(mrr)+"\n")
 maP = rank_metrics.mean_average_precision(relevanceVector)
 print(str(maP))
-f.close()
+#f.close()
 
