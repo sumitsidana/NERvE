@@ -34,7 +34,7 @@ public class ConvertIntoRelVecGeneralized_update {
 			String [] arrpr = prOffers.split(" ");
 
 			if(!(predictedUser.equals(arrgt[0]))){
-				System.out.println("Something is wrong: userIds do not match");
+				//System.out.println("Something is wrong: userIds do not match");
 				int minimumId = Math.min(Integer.parseInt(predictedUser), Integer.parseInt(arrgt[0]));
 				if(minimumId == Integer.parseInt(predictedUser)){
 					prBr.readLine();
@@ -103,6 +103,6 @@ public class ConvertIntoRelVecGeneralized_update {
 
 		long stopTime = System.currentTimeMillis();
 		long elapsedTime = stopTime - startTime;
-		System.out.println(elapsedTime);
+		//System.out.println(elapsedTime);
 	}
 }
