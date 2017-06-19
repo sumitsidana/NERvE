@@ -11,7 +11,7 @@ import matplotlib
 
 
 raw_data_train = np.loadtxt('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/train_all_raw.csv', skiprows = 1, delimiter=',')
-raw_data_test = np.loadtxt('/data/sidana/recnet_draft/param_tune'+sys.argv[1]+'/recnet/test_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_test = np.loadtxt('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/test_all_raw.csv', skiprows = 1, delimiter=',')
 raw_data = np.concatenate((raw_data_train, raw_data_test))
 from dataset_tt_static import TripletsDataset
 
