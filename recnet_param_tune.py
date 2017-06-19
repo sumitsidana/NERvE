@@ -25,7 +25,7 @@ import imp
 
 N_USERS = int(max(raw_data[:, 0])) + 1
 N_ITEMS = int(max(raw_data[:, 1])) + 1
-N_EMBEDDINGS = 1
+N_EMBEDDINGS = int(sys.argv[4])
 
 import tensorflow.contrib.slim as slim
 imp.reload(bprnn)
