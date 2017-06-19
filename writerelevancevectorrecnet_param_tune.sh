@@ -1,7 +1,6 @@
 LANG=en_US.utf8
 cd java/
 mkdir -p /data/sidana/recnet_draft/param_tune/$1/recnet/$3/rv/
-mkdir -p /data/sidana/recnet_draft/param_tune/$1/recnet/$3/em/
 javac -cp binaries/commons-lang3-3.5.jar  preProcess/ConvertIntoRelVecGeneralized_update.java preProcess/InputOutput.java
 if [ $3 == "one" ]
 then
