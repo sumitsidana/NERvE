@@ -2,7 +2,7 @@
 mkdir -p /data/sidana/recnet_draft/param_tune/kasandr/recnet/vectors
 END=1
 for  latent_factor in $(seq 1 $END); do
-    echo "Latent Factor: $latent_factor\n"
+    echo "Latent Factor: $latent_factor\n" >> /data/sidana/recnet_draft/param_tune/kasandr/recnet/results
     python3 recnet_param_tune.py kasandr 0 1 $latent_factor
     
     echo "alpha: 0, beta: 1\n" >>/data/sidana/recnet_draft/param_tune/kasandr/recnet/results
