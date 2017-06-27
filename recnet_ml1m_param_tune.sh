@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 mkdir -p /data/sidana/recnet_draft/param_tune/ml1m/recnet/vectors
-END=100
+
+end_lf=20
+reg_params="0.0001 0.001 0.005 0.01 0.05"
+hidden_units="16 32 64"
+
 for  latent_factor in $(seq 1 $END); do
     for reg in $reg_params; do
         for num_units in $hidden_units; do
