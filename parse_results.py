@@ -40,6 +40,7 @@ for line in f:
     if flag_0_1:
         if "map@10" in line:
             f1.write(line[7:])
+            continue
         else:
             f1.write(line[7:]+" ")
             continue
@@ -47,6 +48,7 @@ for line in f:
     if flag_1_0:
         if "map@10" in line:
             f2.write(line[7:])
+            continue
         else:
             f2.write(line[7:]+" ")
             continue
@@ -54,6 +56,8 @@ for line in f:
     if flag_1_1:
         if "map@10" in line:
             f3.write(line[7:])
+        elif "Latent Factor" in line:
+            pass
         else:
             f3.write(line[7:]+" ")
             continue
@@ -64,27 +68,3 @@ f2.close()
 f3.close()
 f.close()
 
-
-#f1 = open('model_0_1', "r+")
-
-#Move the pointer (similar to a cursor in a text editor) to the end of the file.
-#f1.seek(0, SEEK_END)
-
-#This code means the following code skips the very last character in the file -
-#i.e. in the case the last line is null we delete the last line
-#and the penultimate one
-#pos = f1.tell() - 1
-
-#Read each character in the file one at a time from the penultimate
-#character going backwards, searching for a newline character
-#If we find a new line, exit the search
-#while pos > 0 and f1.read(1) != "\n":
-#    pos -= 1
-#    f1.seek(pos, SEEK_SET)
-
-#So long as we're not at the start of the file, delete all the characters ahead of this position
-#if pos > 0:
-#    f1.seek(pos, SEEK_SET)
-#    f1.truncate()
-
-#f1.close()
