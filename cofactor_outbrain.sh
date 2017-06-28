@@ -1,6 +1,12 @@
 cd ~/cofactor/src
 LANG=en_US.utf8
-echo "running for length: $i"
 echo "preprocessing"
-python preprocess_outbrain.py "/data/sidana/nnmf_ranking/archive_version/outbrain/cofactor"
-python Cofactorization_outbrain.py "/data/sidana/nnmf_ranking/archive_version/outbrain/cofactor/pro"
+python preprocess.py "/data/sidana/recnet_draft/outbrain/cofactor"
+echo "running cofactor"
+python Cofactorization.py "/data/sidana/recnet_draft/outbrain/cofactor/pro"
+cd ~/nnmf_ranking/
+./writegroundtruthforcofactor.sh outbrain
+./writepredictorforcofator.sh outbrain
+./writerelevancevectorcofactor.sh outbrain one
+./writerelevancevectorcofactor.sh outbrain five
+./writerelevancevectorcofactor.sh outbrain ten
