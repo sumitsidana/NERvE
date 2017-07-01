@@ -177,10 +177,10 @@ public class InputOutput {
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split(",");
 				String useridclicks = array[0];
-				for(int i = 4  ; i  < array.length ; i++){
-					if(i==array.length - 2||i==array.length-4){
-						continue;
-					}
+				for(int i = 2  ; i  < array.length ; i++){
+					//					if(i==array.length - 2||i==array.length-4){
+					//						continue;
+					//					}
 					printWriter.print(array[i]+"\t");
 				}
 				if(useridclicks.equals("null")){
