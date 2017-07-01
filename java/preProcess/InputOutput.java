@@ -135,6 +135,39 @@ public class InputOutput {
 		}
 	}
 
+	//	public static void writeTabSeparatedFile(String inputFile, String outputFile, String header) throws IOException{
+	//		String line;
+	//		PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));
+	//		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+	//			line = br.readLine();
+	//			printWriter.println(header);
+	//			while ((line = br.readLine()) != null) {
+	//				String [] array = line.split(",");
+	//				String useridclicks = array[0];
+	//				for(int i = 2  ; i  < array.length ; i++){
+	//					if(i>=array.length - 4){
+	//						continue;
+	//					}
+	//					printWriter.print(array[i]+",");
+	//				}
+	//				if(useridclicks.equals("null")){
+	//					printWriter.print("0,");
+	//				}
+	//				else{
+	//					printWriter.print("1,");
+	//				}
+	//				String timeStamp = array[array.length-1];
+	//				java.sql.Timestamp ts = java.sql.Timestamp.valueOf(timeStamp);
+	//				long tsTime = ts.getTime();
+	//				printWriter.println(tsTime);
+	//
+	//			}
+	//			// TODO Auto-generated method stub
+	//		}
+	//		printWriter.close();
+	//
+	//	}
+
 	public static void writeTabSeparatedFile(String inputFile, String outputFile, String header) throws IOException{
 		String line;
 		PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));
@@ -144,22 +177,18 @@ public class InputOutput {
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split(",");
 				String useridclicks = array[0];
-				for(int i = 2  ; i  < array.length ; i++){
-					if(i>=array.length - 4){
+				for(int i = 4  ; i  < array.length ; i++){
+					if(i==array.length - 2||i==array.length-4){
 						continue;
 					}
-					printWriter.print(array[i]+",");
+					printWriter.print(array[i]+"\t");
 				}
 				if(useridclicks.equals("null")){
-					printWriter.print("0,");
+					printWriter.println("0");
 				}
 				else{
-					printWriter.print("1,");
+					printWriter.println("1");
 				}
-				String timeStamp = array[array.length-1];
-				java.sql.Timestamp ts = java.sql.Timestamp.valueOf(timeStamp);
-				long tsTime = ts.getTime();
-				printWriter.println(tsTime);
 
 			}
 			// TODO Auto-generated method stub
