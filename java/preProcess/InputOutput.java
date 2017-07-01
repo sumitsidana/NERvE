@@ -177,19 +177,20 @@ public class InputOutput {
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split(",");
 				String useridclicks = array[0];
-				for(int i = 2  ; i  < array.length ; i++){
+				for(int i = 2  ; i  < array.length - 1 ; i++){
 					//					if(i==array.length - 2||i==array.length-4){
 					//						continue;
 					//					}
 					printWriter.print(array[i]+"\t");
 				}
 				if(useridclicks.equals("null")){
-					printWriter.println("0");
+					printWriter.print("0\t");
 				}
 				else{
-					printWriter.println("1");
+					printWriter.print("1\t");
 				}
-
+				String timeStamp = array[array.length-1];
+				printWriter.println(timeStamp);
 			}
 			// TODO Auto-generated method stub
 		}
