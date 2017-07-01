@@ -184,10 +184,10 @@ public class InputOutput {
 					printWriter.print(array[i]+"\t");
 				}
 				if(useridclicks.equals("null")){
-					printWriter.print("0\t");
+					printWriter.print("1\t");
 				}
 				else{
-					printWriter.print("1\t");
+					printWriter.print("4\t");
 				}
 				String timeStamp = array[array.length-1];
 				printWriter.println(timeStamp);
