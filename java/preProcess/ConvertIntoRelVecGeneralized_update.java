@@ -31,6 +31,10 @@ public class ConvertIntoRelVecGeneralized_update {
 			else if(flag_gt == false && flag_pr == true){
 				prLine = prBr.readLine();
 			}
+
+			flag_gt=true;
+			flag_pr=true;
+
 			if (gtLine == null || prLine == null)
 				break;
 
@@ -39,6 +43,7 @@ public class ConvertIntoRelVecGeneralized_update {
 			if(index == -1){
 				continue;
 			}
+
 			String [] arrgt = gtLine.split(" ");
 			String prOffers = prLine.substring(prLine.indexOf(" ")+1);
 			String predictedUser = prLine.substring(0, prLine.indexOf(" "));
@@ -48,21 +53,17 @@ public class ConvertIntoRelVecGeneralized_update {
 				System.out.println("Something is wrong: userIds do not match");
 				int minimumId = Math.min(Integer.parseInt(predictedUser), Integer.parseInt(arrgt[0]));
 				if(minimumId == Integer.parseInt(predictedUser)){
-					//					prBr.readLine();
 					flag_gt=false;
 					continue;
 				}
 				else{
 					flag_pr=false;
-					//					gtBr.readLine();
 					continue;
 				}
 
 
 				//System.exit(1);
 			}
-			flag_gt=true;
-			flag_pr=true;
 			for(int i = 1 ; i < arrgt.length ; i++)
 				trueOffers.add(arrgt[i]);
 
@@ -94,16 +95,6 @@ public class ConvertIntoRelVecGeneralized_update {
 						printWriter.print("0 ");
 				}
 			}
-
-			//			if(flag == true){
-			//				String predictedOffer = arrpr[uDefParam - 1];
-			//				if(trueOffers.contains(predictedOffer)){
-			//					printWriter.print("1");
-			//				}
-			//
-			//				else
-			//					printWriter.print("0");
-			//			}
 			if(flag == false){
 				for(int k = j ; k < uDefParam-1 ; k++){
 					printWriter.print("0 ");
