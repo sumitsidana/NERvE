@@ -16,10 +16,21 @@ public class ConvertIntoRelVecGeneralized_update {
 		int index = 0;
 
 		PrintWriter printWriter = new PrintWriter (args[2]);
+		boolean flag_gt = true;
+		boolean flag_pr = true;
+		String gtLine = null;
+		String prLine = null;
 		while (true) {
-			String gtLine = gtBr.readLine();
-			String prLine = prBr.readLine();
-
+			if(flag_gt == true && flag_pr == true){
+				gtLine = gtBr.readLine();
+				prLine = prBr.readLine();
+			}
+			else if(flag_gt == true && flag_pr == false){
+				gtLine = gtBr.readLine();
+			}
+			else if(flag_gt == false && flag_pr == true){
+				prLine = prBr.readLine();
+			}
 			if (gtLine == null || prLine == null)
 				break;
 
@@ -37,17 +48,21 @@ public class ConvertIntoRelVecGeneralized_update {
 				System.out.println("Something is wrong: userIds do not match");
 				int minimumId = Math.min(Integer.parseInt(predictedUser), Integer.parseInt(arrgt[0]));
 				if(minimumId == Integer.parseInt(predictedUser)){
-					prBr.readLine();
+					//					prBr.readLine();
+					flag_gt=false;
 					continue;
 				}
 				else{
-					gtBr.readLine();
+					flag_pr=false;
+					//					gtBr.readLine();
 					continue;
 				}
 
 
 				//System.exit(1);
 			}
+			flag_gt=true;
+			flag_pr=true;
 			for(int i = 1 ; i < arrgt.length ; i++)
 				trueOffers.add(arrgt[i]);
 
