@@ -59,6 +59,7 @@ for line in f:
         flag_1_0 = False
         continue
     line_value = line[0:7]
+    print(line_value)
     if line_value in ('map@1','map@5','map@10'):
         line_value = float(line[7:])
 
