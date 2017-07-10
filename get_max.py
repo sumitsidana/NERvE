@@ -67,7 +67,6 @@ for line in f:
 
     if flag_0_1:
         if "map@10" in line:
-            print(line_value)
             if line_value > map_01_10:
                 param_01_10 = param_line
                 print(line_value)
@@ -86,7 +85,6 @@ for line in f:
 
     if flag_1_0:
         if "map@10" in line:
-            print(line_value)
             if line_value > map_10_10:
                 param_10_10 = param_line
                 map_10_10 = line_value
@@ -104,7 +102,6 @@ for line in f:
 
     if flag_1_1:
         if "map@10" in line:
-            print(line_value)
             if line_value > map_11_10:
                 param_11_10 = param_line
                 map_11_10 = line_value
