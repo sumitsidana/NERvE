@@ -1,8 +1,8 @@
 import sys
 
-f = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/results', 'r')
+# f = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/results', 'r')
 
-
+f = open('/home/sumit/embcs/results', 'r')
 flag_0_1 = False
 flag_1_0 = False
 flag_1_1 = False
@@ -66,6 +66,13 @@ for line in f:
             # print(line_value)
 
     if flag_0_1:
+        if "map@10" in line:
+            print(line_value)
+            if line_value > map_01_10:
+                param_01_10 = param_line
+                print(line_value)
+                map_01_10 = line_value
+            continue
         if "map@1" in line:
             if line_value > map_01_1:
                 param_01_1 = param_line
@@ -76,15 +83,14 @@ for line in f:
                 param_01_5 = param_line
                 map_01_5 = line_value
             continue
-        if "map@10" in line:
-            print(line_value)
-            if line_value > map_01_10:
-                param_01_10 = param_line
-                print(line_value)
-                map_01_10 = line_value
-            continue
 
     if flag_1_0:
+        if "map@10" in line:
+            print(line_value)
+            if line_value > map_10_10:
+                param_10_10 = param_line
+                map_10_10 = line_value
+            continue
         if "map@1" in line:
             if line_value > map_10_1:
                 param_10_1 = param_line
@@ -95,14 +101,14 @@ for line in f:
                 param_10_5 = param_line
                 map_10_5 = line_value
             continue
-        if "map@10" in line:
-            print(line_value)
-            if line_value > map_10_10:
-                param_10_10 = param_line
-                map_10_10 = line_value
-            continue
 
     if flag_1_1:
+        if "map@10" in line:
+            print(line_value)
+            if line_value > map_11_10:
+                param_11_10 = param_line
+                map_11_10 = line_value
+            continue
         if "map@1" in line:
             if line_value > map_11_1:
                 param_11_1 = param_line
@@ -112,12 +118,6 @@ for line in f:
             if line_value > map_11_5:
                 param_11_5 = param_line
                 map_11_5 = line_value
-            continue
-        if "map@10" in line:
-            print(line_value)
-            if line_value > map_11_10:
-                param_11_10 = param_line
-                map_11_10 = line_value
             continue
 
 print('map_01_1: '+ str(map_01_1)+' for parameters:'+str(param_01_1))
