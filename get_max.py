@@ -58,8 +58,8 @@ for line in f:
         flag_1_1 = True
         flag_1_0 = False
         continue
-
-    line_value = float(line[7:])
+    if "map@1 in line" or "map@5" in line or "map@10" in line:
+        line_value = float(line[7:])
 
     if flag_0_1:
         if "map@1" in line:
