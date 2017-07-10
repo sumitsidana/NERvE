@@ -645,7 +645,8 @@ public class InputOutput {
 
 				List<String> countryCodes1 = Arrays.asList("ml1m");
 		//List<String> countryCodes1 = Arrays.asList("kasandr","ml100k","ml1m");
-		List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm","recnet","pop");
+		//List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm","recnet","pop");
+		List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm");
 		//		List<String> countryCodes2 = Arrays.asList("cofactor");
 		//		List<String> countryCodes5 = Arrays.asList("atleast_five_o_two_c", "atleast_ten_o_two_c",  "atleast_ten_o_two_c_v2",  "default");
 		List<String> countryCodes3 = Arrays.asList("one","five","ten");
