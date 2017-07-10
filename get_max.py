@@ -114,12 +114,12 @@ for line in f:
                 map_11_10 = line_value
             continue
 
-print('map_01_1: '+ map_01_1+' for parameters:'+param_01_1)
-print('map_01_5: ' + map_01_5+' for parameters:'+param_01_5)
-print('map_01_10: '+ map_01_10+' for parameters:'+param_01_10)
-print('map_10_1:' + map_10_1+' for parameters:'+param_10_1)
-print('map_10_5' + map_10_5+' for parameters:'+param_10_5)
-print('map_10_10'+map_10_10+' for parameters:'+param_10_10)
-print('map_11_1'+map_11_1+' for parameters:'+param_11_1)
-print('map_11_5'+map_11_5+' for parameters:'+param_11_5)
-print('map_11_10'+map_11_10+' for parameters:'+param_11_10)
+print('map_01_1: '+ str(map_01_1)+' for parameters:'+str(param_01_1))
+print('map_01_5: ' + str(map_01_5)+' for parameters:'+str(param_01_5))
+print('map_01_10: '+ str(map_01_10)+' for parameters:'+str(param_01_10))
+print('map_10_1:' + str(map_10_1)+' for parameters:'+str(param_10_1))
+print('map_10_5' + str(map_10_5)+' for parameters:'+str(param_10_5))
+print('map_10_10'+str(map_10_10)+' for parameters:'+str(param_10_10))
+print('map_11_1'+str(map_11_1)+' for parameters:'+str(param_11_1))
+print('map_11_5'+str(map_11_5)+' for parameters:'+str(param_11_5))
+print('map_11_10'+str(map_11_10)+' for parameters:'+str(param_11_10))
