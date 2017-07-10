@@ -60,7 +60,6 @@ for line in f:
         continue
 
     if line[0:5] == "map@1" or line[0:5]== "map@5" or line[0:6]=="map@10":
-        print(line[0:6])
         line_value = float(line[7:])
 
     if flag_0_1:
