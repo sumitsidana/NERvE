@@ -643,7 +643,7 @@ public class InputOutput {
 		//		List<String> countryCodes = Arrays.asList("10","20","30","50","75","100");
 		//		List<String> countryCodes = Arrays.asList("1","2","3","5","7_5","10");
 
-				List<String> countryCodes1 = Arrays.asList("ml1m");
+				List<String> countryCodes1 = Arrays.asList("ml100k","ml1m");
 		//List<String> countryCodes1 = Arrays.asList("kasandr","ml100k","ml1m");
 		//List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm","recnet","pop");
 		List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm");
