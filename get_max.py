@@ -63,6 +63,7 @@ for line in f:
         line_value = float(line[7:])
         if line[0:6]=="map@10":
             print(line)
+            print(line_value)
 
     if flag_0_1:
         if "map@1" in line:
