@@ -59,7 +59,7 @@ for line in f:
         flag_1_0 = False
         continue
 
-    line_value = line[7:]
+    line_value = float(line[7:])
 
     if flag_0_1:
         if "map@1" in line:
