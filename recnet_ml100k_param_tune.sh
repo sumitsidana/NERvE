@@ -23,7 +23,7 @@ for  latent_factor in $(seq 1 $end_lf); do
 
             python3 recnet_param_tune.py ml100k 1 0 $latent_factor $reg $num_units
 
-            echo -e "alpha: 1, beta: 0\n" >>/data/sidana/recnet_draft/param_tune/ml100k/recnet/results
+            echo -e "alpha: 1, beta: 0" >>/data/sidana/recnet_draft/param_tune/ml100k/recnet/results
             echo -e -n "map@1: ">>/data/sidana/recnet_draft/param_tune/ml100k/recnet/results
             ./writerelevancevectorrecnet_param_tune.sh ml100k 10 one>>/data/sidana/recnet_draft/param_tune/ml100k/recnet/results
             echo -e -n "map@5: ">>/data/sidana/recnet_draft/param_tune/ml100k/recnet/results
