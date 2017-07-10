@@ -64,34 +64,34 @@ for line in f:
 
     if flag_0_1:
         if "map@1" in line:
-            if line_value>map_01_1:
+            if line_value > map_01_1:
                 param_01_1 = param_line
                 map_01_1 = line_value
             continue
         if "map@5" in line:
-            if line_value>map_01_5:
+            if line_value > map_01_5:
                 param_01_5 = param_line
-                map_10_5 = line_value
+                map_01_5 = line_value
             continue
         if "map@10" in line:
-            if line_value>map_01_10:
+            if line_value > map_01_10:
                 param_01_10 = param_line
-                map_10_10 = line_value
+                map_01_10 = line_value
             continue
 
     if flag_1_0:
         if "map@1" in line:
-            if line_value>map_10_1:
+            if line_value > map_10_1:
                 param_10_1 = param_line
                 map_10_1 = line_value
             continue
         if "map@5" in line:
-            if line_value>map_10_5:
+            if line_value > map_10_5:
                 param_10_5 = param_line
                 map_10_5 = line_value
             continue
         if "map@10" in line:
-            if line_value>map_10_10:
+            if line_value > map_10_10:
                 param_10_10 = param_line
                 map_10_10 = line_value
             continue
