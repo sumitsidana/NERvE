@@ -69,7 +69,6 @@ for line in f:
         if "map@10" in line:
             if line_value > map_01_10:
                 param_01_10 = param_line
-                print(line_value)
                 map_01_10 = line_value
             continue
         if "map@1" in line:
