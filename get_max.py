@@ -61,8 +61,6 @@ for line in f:
 
     if line[0:5] == "map@1" or line[0:5]== "map@5" or line[0:6]=="map@10":
         line_value = float(line[7:])
-        # if line[0:6]=="map@10":
-            # print(line[7:])
 
     if flag_0_1:
         if "map@1" in line:
@@ -95,6 +93,7 @@ for line in f:
                 map_10_5 = line_value
             continue
         if "map@10" in line:
+            print(line_value)
             if line_value > map_10_10:
                 param_10_10 = param_line
                 map_10_10 = line_value
@@ -112,6 +111,7 @@ for line in f:
                 map_11_5 = line_value
             continue
         if "map@10" in line:
+            print(line_value)
             if line_value > map_11_10:
                 param_11_10 = param_line
                 map_11_10 = line_value
