@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 LANG=en_US.utf8
 cd java/
 mkdir -p /data/sidana/recnet_draft/$1/lightfm/$2/rv/
