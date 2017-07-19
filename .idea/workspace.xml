@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d68a1ac8-f2f7-4731-9019-20ad1b8a8c04" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lightfm_kasandr_all.sh" afterPath="$PROJECT_DIR$/lightfm_kasandr_all.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/writerelevancevectorlightfm.sh" afterPath="$PROJECT_DIR$/writerelevancevectorlightfm.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lightfm_module_all.py" afterPath="$PROJECT_DIR$/lightfm_module_all.py" />
     </list>
     <ignored path="recnet_draft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,33 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="lightfm_module.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lightfm_module.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lightfm_kasandr.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lightfm_kasandr.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="lightfm_module_all.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lightfm_module_all.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="150">
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -61,18 +39,8 @@
       <file leaf-file-name="lightfm_kasandr_all.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lightfm_kasandr_all.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="writerelevancevectorlightfm.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/writerelevancevectorlightfm.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+            <state relative-caret-position="0">
+              <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -112,10 +80,10 @@
         <option value="$PROJECT_DIR$/bprmf_ml1m.sh" />
         <option value="$USER_HOME$/cofactor/src/Cofactorization.py" />
         <option value="$PROJECT_DIR$/bprmf_kasandr.sh" />
-        <option value="$PROJECT_DIR$/lightfm_module_all.py" />
         <option value="$PROJECT_DIR$/writerelevancevectorlightfm.sh" />
-        <option value="$PROJECT_DIR$/lightfm_kasandr_all.sh" />
         <option value="$PROJECT_DIR$/writerelevancevectorlightfm_all.sh" />
+        <option value="$PROJECT_DIR$/lightfm_kasandr_all.sh" />
+        <option value="$PROJECT_DIR$/lightfm_module_all.py" />
       </list>
     </option>
   </component>
@@ -618,26 +586,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lightfm_kasandr.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lightfm_module_all.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lightfm_kasandr_all.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -646,6 +596,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lightfm_module_all.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lightfm_kasandr_all.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
           <folding />
         </state>
       </provider>
