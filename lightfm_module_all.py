@@ -25,7 +25,7 @@ for u in uid_test:
     #num_items_all_test_u = test_all.getrow(u).indices.shape[0]
     #items_all_test_u = test_all.getrow(u).indices
     known_positives = test.getrow(u).indices
-    scores = model.predict(u, pid_all_test)
+    scores = model.predict(u, test_all.col)
     top_items = pid_all_test[np.argsort(-scores)]
     export_pred.write(' '.join(map(str, [u] + list(top_items))) + '\n')
     export_true.write(' '.join(map(str, [u] + list(known_positives))) + '\n')
