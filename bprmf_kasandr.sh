@@ -14,3 +14,6 @@ cd /home/sumit/recnet_draft
 bash ./writerelevancevectorbprmf.sh kasandr one
 bash ./writerelevancevectorbprmf.sh kasandr five
 bash ./writerelevancevectorbprmf.sh kasandr ten
+
+# for all items
+#./item_recommendation --training-file=/data/recnet_draft/kasandr/bprmf/train.inputbprmf --test-file=/data/recnet_draft/kasandr/bprmf/test.inputbprmf --test-users=/data/recnet_draft/kasandr/bprmf/test.users --recommender=BPRMF --recommender-options=reg_u=0.01 --recommender-options=reg_i=0.01 --recommender-options=reg_j=0.01 --recommender-options=learn_rate=0.001 --recommender-options=num_factors=18 --in-test-items  --predict-items-number=10 --measures=MAP --repeated-items

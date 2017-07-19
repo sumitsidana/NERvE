@@ -14,3 +14,6 @@ cd /home/sumit/nnmf_ranking/nnmf_ranking
 bash ./writerelevancevectorbprmf.sh ml100k one
 bash ./writerelevancevectorbprmf.sh ml100k five
 bash ./writerelevancevectorbprmf.sh ml100k ten
+
+# For all items
+#./item_recommendation --training-file=/data/recnet_draft/ml100k/bprmf/train.inputbprmf --test-file=/data/recnet_draft/ml100k/bprmf/test.inputbprmf --test-users=/data/recnet_draft/ml100k/bprmf/test.users --recommender=BPRMF --recommender-options=reg_u=0.0001 --recommender-options=reg_i=0.0001 --recommender-options=reg_j=0.0001 --recommender-options=learn_rate=0.001 --recommender-options=num_factors=3 --in-test-items  --predict-items-number=10 --measures=MAP --repeated-items

@@ -10,3 +10,6 @@ cd ~/nnmf_ranking/
 ./writerelevancevectorcofactor.sh ml100k one
 ./writerelevancevectorcofactor.sh ml100k five
 ./writerelevancevectorcofactor.sh ml100k ten
+
+# For all items
+# python Cofactorization.py /data/sidana/recnet_draft/kasandr/cofactor_all/pro/ and keep changing "k" in Cofactorization.py
