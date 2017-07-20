@@ -25,7 +25,7 @@ import imp
 
 N_USERS = int(max(raw_data[:, 0])) + 1
 N_ITEMS = int(max(raw_data[:, 1])) + 1
-N_EMBEDDINGS = 1
+N_EMBEDDINGS = 18
 
 import tensorflow.contrib.slim as slim
 imp.reload(bprnn)
@@ -39,7 +39,7 @@ def inner_network(user_emb, item_emb):
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
     return net
 
-model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=int(sys.argv[2]), beta=int(sys.argv[3]), alpha_reg=0.0, inner_net=inner_network)
+model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=int(sys.argv[2]), beta=int(sys.argv[3]), alpha_reg=0.01, inner_net=inner_network)
 model.build_graph()
 model.initialize_session()
 
