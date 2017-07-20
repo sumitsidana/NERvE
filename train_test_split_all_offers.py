@@ -10,8 +10,8 @@ pyximport.install()
 import matplotlib
 
 
-raw_data_train = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet/train_all_raw.csv', skiprows = 1, delimiter=',')
-raw_data_test = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet/test_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_train = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_all/train_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_test = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_all/test_all_raw.csv', skiprows = 1, delimiter=',')
 raw_data = np.concatenate((raw_data_train, raw_data_test))
 from dataset_tt_static import TripletsDataset
 
@@ -49,13 +49,13 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
     for i in tqdm(range(n_batches)):
         batch = ds.sample_train_batch(n_samples=batch_size)
         fd = {
-            model.user_ids:  batch['users'], 
+            model.user_ids:  batch['users'],
             model.left_ids:  batch['left_items'],
             model.right_ids: batch['right_items'],
             model.target_y:  batch['y'],
         }
         el, nl, reg, t, _ = model.session.run(
-            [model.embedding_loss, model.net_loss, model.regularization, model.target, cur_optim], 
+            [model.embedding_loss, model.net_loss, model.regularization, model.target, cur_optim],
             feed_dict=fd
         )
         losses.append((el, nl, reg, t))
@@ -67,7 +67,7 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
 
 #%%
 
-export_basename = '/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet/vectors/'
+export_basename = '/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_all/vectors/'
 export_pred = open(export_basename + 'pr_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
 export_true = open(export_basename + 'gt_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
 
