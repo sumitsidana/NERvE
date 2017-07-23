@@ -77,15 +77,15 @@ mv dat.ml1m.oldusersolditems/part-00000 .
 rm -rf dat.ml1m.oldusersolditems
 mv part-00000 dat.ml1m.oldusersolditems
 
-mv dat.ml1m.newusersolditems/part-00000
+mv dat.ml1m.newusersolditems/part-00000 .
 rm -rf dat.ml1m.newusersolditems
 mv part-00000 dat.ml1m.newusersolditems
 
-mv dat.ml1m.oldusersnewitems/part-00000
+mv dat.ml1m.oldusersnewitems/part-00000 .
 rm -rf dat.ml1m.oldusersnewitems
-mv part-00000 dat.ml1m.oldusersnewitems
+mv part-00000 dat.ml1m.oldusersnewitems 
 
-mv dat.ml1m.newusersnewitems/part-00000
+mv dat.ml1m.newusersnewitems/part-00000 .
 rm -rf dat.ml1m.newusersnewitems
 mv part-00000 dat.ml1m.newusersnewitems
 
