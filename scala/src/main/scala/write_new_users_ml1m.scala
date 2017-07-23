@@ -25,7 +25,7 @@ val test = sqlContext.read
     .format("com.databricks.spark.csv")
     .option("header", "true") // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
-    .option("delimiter", "\t")
+    .option("delimiter", ",")
     .load("/data/sidana/recnet_draft/cold_start/data/ml1m/inputdata.headers")
     
 val sample = sqlContext.read

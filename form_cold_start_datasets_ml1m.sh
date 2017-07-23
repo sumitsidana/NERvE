@@ -1,3 +1,5 @@
+cd ~/recnet_draft/scala/
+sbt package
 cd ~/../spark/spark/bin/
 
 echo "writing all users"
