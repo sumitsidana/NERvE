@@ -90,4 +90,8 @@ rm -rf dat.ml1m.newusersnewitems
 mv part-00000 dat.ml1m.newusersnewitems
 
 
+cd ~/recnet_draft/
+
+./copyfiles_ml1m
+
 

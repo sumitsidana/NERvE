@@ -44,7 +44,7 @@ val newItems = sqlContext.read
 
     
 val trainUsers = test.join(newUsers,test("userId")===newUsers("userId")).drop(newUsers("userId"))
-val trainUsersItemsTemp = trainUsers.join(newItems,trainUsers("movieId")===newItems("movieId")).drop(newItems("movieId"))
+val trainUsersItemsTemp = trainUsers.join(newItems,trainUsers("movieId")===newItems("movieId")).drop(newItems("movieId")).select("userId","movieId","rating","timestamp")
 
 val header = "userId,movieId,rating,timestamp"
 

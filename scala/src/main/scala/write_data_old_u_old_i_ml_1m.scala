@@ -51,7 +51,7 @@ val distinctUsersRating = trainUsersItems.select("userId","rating").distinct
 val groupByUsers =  distinctUsersRating.groupBy("userId").count
 val goodUsers  = groupByUsers.filter($"count">=2)
 
-val filetobewrittentemp = trainUsersItems.join(goodUsers,trainUsersItems("userId")===goodUsers("userId")).drop(goodUsers("userId")).drop(goodUsers("count"))
+val filetobewrittentemp = trainUsersItems.join(goodUsers,trainUsersItems("userId")===goodUsers("userId")).drop(goodUsers("userId")).drop(goodUsers("count")).select("userId","movieId","rating","timestamp")
 
 val header = "userId,movieId,rating,timestamp"
 
