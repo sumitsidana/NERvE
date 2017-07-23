@@ -52,6 +52,6 @@ val header = "userId,movieId,rating,timestamp"
 
 val trainUsersItems = trainUsersItemsTemp.map(_.mkString(",")).mapPartitionsWithIndex((i, iter) => if (i==0) (List(header).toIterator ++ iter) else iter)
 
-trainUsersItems.rdd.coalesce(1,false).saveAsTextFile("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.oldusersnewitems")
+trainUsersItems.coalesce(1,false).saveAsTextFile("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.oldusersnewitems")
 	}
 }

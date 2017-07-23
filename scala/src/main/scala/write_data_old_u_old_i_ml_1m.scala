@@ -48,7 +48,7 @@ val trainUsers = test.join(oldUsers,test("userId")===oldUsers("userId")).drop(ol
 val trainUsersItems = trainUsers.join(oldItems,trainUsers("movieId")===oldItems("movieId")).drop(oldItems("movieId"))
 
 val distinctUsersRating = trainUsersItems.select("userId","rating").distinct
-val groupByUsers =  groupByUsers.groupBy("userId").count
+val groupByUsers =  distinctUsersRating.groupBy("userId").count
 val goodUsers  = groupByUsers.filter($"count">=2)
 
 val filetobewrittentemp = trainUsersItems.join(goodUsers,trainUsersItems("userId")===goodUsers("userId")).drop(goodUsers("userId")).drop(goodUsers("count"))
