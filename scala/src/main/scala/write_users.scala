@@ -13,7 +13,7 @@ import java.io.FileWriter
 
 
 
-object popularity_kasandr {
+object write_users {
 	def main(args: Array[String]) {
 		val conf = new SparkConf().setAppName("Simple Application")
 				val sc = new SparkContext(conf)
