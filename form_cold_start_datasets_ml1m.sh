@@ -26,8 +26,8 @@ sed -i '1d' dat.ml1m.items
 
 num_users="`wc -l dat.ml1m.users`"
 num_items="`wc -l dat.ml1m.items`"
-num_sample_users=echo "$(($num_users/2))"
-num_sample_items=echo "$(($num_items/2))"
+num_sample_users="$(($num_users/2))"
+num_sample_items="$(($num_items/2))"
 shuf -n $num_sample_users dat.ml1m.users > dat.ml1m.users.old
 shuf -n $num_sample_items dat.ml1m.items > dat.ml1m.items.old
 
