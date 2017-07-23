@@ -13,7 +13,7 @@ import java.io.FileWriter
 
 
 
-object write_items {
+object write_new_items_ml1m {
 	def main(args: Array[String]) {
 		val conf = new SparkConf().setAppName("Simple Application")
 				val sc = new SparkContext(conf)
@@ -25,12 +25,21 @@ val test = sqlContext.read
     .option("header", "true") // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
     .option("delimiter", "\t")
-    .load("/data/sidana/recnet_draft/cold_start/inputdata.headers")
-val itemsTemp = test.select("itemid").distinct
-val header = "itemid"
-val items = itemsTemp.rdd.map(_.mkString(",")).mapPartitionsWithIndex((i, iter) => if (i==0) (List(header).toIterator ++ iter) else iter)
-items.coalesce(1,false).saveAsTextFile("/data/sidana/recnet_draft/cold_start/dat.ml1m.items")
+    .load("/data/sidana/recnet_draft/cold_start/data/ml1m/inputdata.headers")
 
+val sample = sqlContext.read
+    .format("com.databricks.spark.csv")
+    .option("header", "true") // Use first line of all files as header
+    .option("inferSchema", "true") // Automatically infer data types
+    .option("delimiter", "\t")
+    .load("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.items.old")
 
+val newitemstemp = test.select("movieId").except(sample.select("movieId")).distinct
+
+val header = "movieId"
+
+val newitems = newitemstemp.map(_.mkString(",")).mapPartitionsWithIndex((i, iter) => if (i==0) (List(header).toIterator ++ iter) else iter)
+
+newitems.coalesce(1,false).saveAsTextFile("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.items.new")
 	}
 }
