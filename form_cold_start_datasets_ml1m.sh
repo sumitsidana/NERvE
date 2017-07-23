@@ -1,4 +1,4 @@
-cd ~/../spark/spark/sbin/
+cd ~/../spark/spark/bin/
 
 echo "writing all users"
 ./spark-submit --class "main.scala.write_users_ml1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/code/scala/target/scala-2.11/simple-project_2.11-1.0.jar
@@ -34,7 +34,7 @@ sed -i 1i"userId" dat.ml1m.users.old
 sed -i 1i"movieId" dat.ml1m.items.old
 
 echo "writing new users  file"
-cd ~/../spark/spark/sbin/
+cd ~/../spark/spark/bin/
 ./spark-submit --class "main.scala.write_new_users_ml1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/code/scala/target/scala-2.11/simple-project_2.11-1.0.jar
 
 echo "writing new items file"
@@ -52,7 +52,7 @@ mv part-00000 dat.ml1m.items.new
 sed -i 1i"userId" dat.ml1m.users.new
 sed -i 1i"movieId" dat.ml1m.items.new
 
-cd ~/../spark/spark/sbin/
+cd ~/../spark/spark/bin/
 
 echo "writing old users old items file"
 ./spark-submit --class "main.scala.write_data_old_u_old_i_ml_1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/code/scala/target/scala-2.11/simple-project_2.11-1.0.jar
