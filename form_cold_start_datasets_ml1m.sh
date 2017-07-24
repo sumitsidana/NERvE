@@ -89,9 +89,16 @@ mv dat.ml1m.newusersnewitems/part-00000 .
 rm -rf dat.ml1m.newusersnewitems
 mv part-00000 dat.ml1m.newusersnewitems
 
-cd ~/recnet_draft/
 
-./copyfiles_ml1m.sh
+cp dat.ml1m.oldusersolditems ../../ucs/ml1m/recnet_all/train_all_raw.csv
+cp dat.ml1m.oldusersolditems ../../ics/ml1m/recnet_all/train_all_raw.csv
+cp dat.ml1m.oldusersolditems ../../ics/ml1m/recnet_all/train_all_raw.csv
+
+cp dat.ml1m.newusersolditems ../../ucs/ml1m/recnet_all/test_all_raw.csv
+cp dat.ml1m.oldusersnewitems ../../ics/ml1m/recnet_all/test_all_raw.csv
+cp dat.ml1m.newusersnewitems ../../uics/ml1m/recnet_all/test_all_raw.csv
+
+cd ~/recnet_draft
 
 python3 cart_prod_form_cold_start.py ml1m ucs
 
