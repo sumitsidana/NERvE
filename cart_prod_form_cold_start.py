@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import sys
 
-df = pd.read_csv('/data/sidana/recnet_draft/cold_start/ucs/'+sys.argv[1]+'/recnet_all/test_all_raw.csv',sep=',',header=0)
+df = pd.read_csv('/data/sidana/recnet_draft/cold_start/'+sys.argv[2]+'/'+sys.argv[1]+'/recnet_all/test_all_raw.csv',sep=',',header=0)
 
 users = set(df['userId'])
 users = list(users)
@@ -40,4 +40,4 @@ for user in users:
         
                         
 df2 = pd.DataFrame(new_df_data,columns=['userId', 'movieId', 'rating', 'timestamp'])
-df2.to_csv('/data/sidana/recnet_draft/cold_start/ucs/'+sys.argv[1]+'/recnet_all/test_all_cart_raw.csv', index = False)
+df2.to_csv('/data/sidana/recnet_draft/cold_start/'+sys.argv[2]+'/'+sys.argv[1]+'/recnet_all/test_all_cart_raw.csv', index = False)
