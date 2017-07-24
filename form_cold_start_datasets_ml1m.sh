@@ -91,7 +91,7 @@ mv part-00000 dat.ml1m.newusersnewitems
 
 cd ~/recnet_draft/
 
-./copyfiles_ml1m
+./copyfiles_ml1m.sh
 
 python3 cart_prod_form_cold_start.py ml1m ucs
 
@@ -104,4 +104,3 @@ python3 cart_prod_form_cold_start.py ml1m uics
 ./recnet_ml1m_all_cold_start_ics.sh
 
 ./recnet_ml1m_all_cold_start_uics.sh
-
