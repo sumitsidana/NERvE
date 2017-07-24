@@ -57,19 +57,19 @@ sed -i 1i"movieId" dat.ml1m.items.new
 cd ~/../spark/spark/bin/
 
 echo "writing old users old items file"
-./spark-submit --class "main.scala.write_data_old_u_old_i_ml_1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/scala/target/scala-2.11/simple-project_2.11-1.0.jar
+./spark-submit --class "main.scala.write_data_old_u_old_i_ml1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/scala/target/scala-2.11/simple-project_2.11-1.0.jar
 
 echo "writing new users old items file"
 
-./spark-submit --class "main.scala.write_data_new_u_old_i_ml_1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/scala/target/scala-2.11/simple-project_2.11-1.0.jar
+./spark-submit --class "main.scala.write_data_new_u_old_i_ml1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/scala/target/scala-2.11/simple-project_2.11-1.0.jar
 
 echo "writing old users new items file"
 
-./spark-submit --class "main.scala.write_data_old_u_new_i_ml_1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/scala/target/scala-2.11/simple-project_2.11-1.0.jar
+./spark-submit --class "main.scala.write_data_old_u_new_i_ml1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/scala/target/scala-2.11/simple-project_2.11-1.0.jar
 
 echo "writing new users new items file"
 
-./spark-submit --class "main.scala.write_data_new_u_new_i_ml_1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/scala/target/scala-2.11/simple-project_2.11-1.0.jar
+./spark-submit --class "main.scala.write_data_new_u_new_i_ml1m"  --packages com.databricks:spark-csv_2.11:1.4.0 --total-executor-cores 50 --executor-memory 20G --driver-memory 20G --conf spark.driver.maxResultSize=5G  ~/recnet_draft/scala/target/scala-2.11/simple-project_2.11-1.0.jar
 
 cd /data/sidana/recnet_draft/cold_start/data/ml1m
 
