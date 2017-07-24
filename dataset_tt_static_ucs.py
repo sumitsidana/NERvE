@@ -17,6 +17,7 @@ class TripletsDataset(object):
         self.test_len = len(raw_data_test)
 
         self.statistics = {}
+        self.statistics_train = {}
 
         # fix randomness
         self.seed = rnd_seed
