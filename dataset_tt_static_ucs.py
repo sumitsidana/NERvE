@@ -118,6 +118,7 @@ class TripletsDataset(object):
         # init cached randomizers
         self.pair_sampler = cachedrandom.CachedSampler2from5(blob_size=10000000)
         self.data_keys_sampler = cachedrandom.CachedRandomizer(high=len(self.data_keys), blob_size=10000000)
+        self.data_train_keys_sampler = cachedrandom.CachedRandomizer(high=len(self.data_train_keys), blob_size=10000000)
 
 
 
@@ -187,7 +188,7 @@ class TripletsDataset(object):
 
     def sample_train_triple(self):
 
-        user = self.data_train_keys[self.data_keys_sampler.sample()]
+        user = self.data_train_keys[self.data_train_keys_sampler.sample()]
         stats = self.train[user]
         stats_keys = list(stats.keys())
         #assert len(stats_keys) > 1, 'user {} has only 1 rating!'.format(user)
