@@ -13,7 +13,7 @@ import java.io.FileWriter
 
 
 
-object write_old_items_ml1m {
+object write_old_items_ml100k {
 	def main(args: Array[String]) {
 		val conf = new SparkConf().setAppName("Simple Application")
 				val sc = new SparkContext(conf)
@@ -25,10 +25,10 @@ val test = sqlContext.read
     .option("header", "true") // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
     .option("delimiter", ",")
-    .load("/data/sidana/recnet_draft/cold_start/data/ml1m/inputdata.headers")
+    .load("/data/sidana/recnet_draft/cold_start/data/ml100k/inputdata.headers")
 val itemsTemp = test.select("movieId").distinct
 val header = "movieId"
 val items = itemsTemp.rdd.map(_.mkString(",")).mapPartitionsWithIndex((i, iter) => if (i==0) (List(header).toIterator ++ iter) else iter)
-items.coalesce(1,false).saveAsTextFile("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.items")
+items.coalesce(1,false).saveAsTextFile("/data/sidana/recnet_draft/cold_start/data/ml100k/dat.ml100k.items")
 	}
 }

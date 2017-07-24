@@ -25,21 +25,21 @@ val test = sqlContext.read
     .option("header", "true") // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
     .option("delimiter", ",")
-    .load("/data/sidana/recnet_draft/cold_start/data/ml1m/inputdata.headers")
+    .load("/data/sidana/recnet_draft/cold_start/data/ml100k/inputdata.headers")
 
 val oldUsers = sqlContext.read
     .format("com.databricks.spark.csv")
     .option("header", "true") // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
     .option("delimiter", "\t")
-    .load("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.users.old")
+    .load("/data/sidana/recnet_draft/cold_start/data/ml100k/dat.ml100k.users.old")
 
 val oldItems = sqlContext.read
     .format("com.databricks.spark.csv")
     .option("header", "true") // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
     .option("delimiter", "\t")
-    .load("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.items.old")
+    .load("/data/sidana/recnet_draft/cold_start/data/ml100k/dat.ml100k.items.old")
 
 
 
@@ -57,6 +57,6 @@ val header = "userId,movieId,rating,timestamp"
 
 val filetobewritten =filetobewrittentemp.map(_.mkString(",")).mapPartitionsWithIndex((i, iter) => if (i==0) (List(header).toIterator ++ iter) else iter)
 
-filetobewritten.coalesce(1,false).saveAsTextFile("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.oldusersolditems")
+filetobewritten.coalesce(1,false).saveAsTextFile("/data/sidana/recnet_draft/cold_start/data/ml100k/dat.ml100k.oldusersolditems")
 	}
 }

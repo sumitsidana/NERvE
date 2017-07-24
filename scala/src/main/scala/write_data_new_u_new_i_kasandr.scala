@@ -25,21 +25,21 @@ val test = sqlContext.read
     .option("header", "true") // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
     .option("delimiter", ",")
-    .load("/data/sidana/recnet_draft/cold_start/data/ml1m/inputdata.headers")
+    .load("/data/sidana/recnet_draft/cold_start/data/kasandr/inputdata.headers")
 
 val newUsers = sqlContext.read
     .format("com.databricks.spark.csv")
     .option("header", "true") // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
     .option("delimiter", "\t")
-    .load("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.users.new")
+    .load("/data/sidana/recnet_draft/cold_start/data/kasandr/dat.kasandr.users.new")
 
 val newItems = sqlContext.read
     .format("com.databricks.spark.csv")
     .option("header", "true") // Use first line of all files as header
     .option("inferSchema", "true") // Automatically infer data types
     .option("delimiter", "\t")
-    .load("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.items.new")
+    .load("/data/sidana/recnet_draft/cold_start/data/kasandr/dat.kasandr.items.new")
 
 
     
@@ -49,7 +49,7 @@ val trainUsersItemsTemp = trainUsers.join(newItems,trainUsers("movieId")===newIt
 val header = "userId,movieId,rating,timestamp"
 
 val trainUsersItems = trainUsersItemsTemp.map(_.mkString(",")).mapPartitionsWithIndex((i, iter) => if (i==0) (List(header).toIterator ++ iter) else iter)
-trainUsersItems.coalesce(1,false).saveAsTextFile("/data/sidana/recnet_draft/cold_start/data/ml1m/dat.ml1m.newusersnewitems")
+trainUsersItems.coalesce(1,false).saveAsTextFile("/data/sidana/recnet_draft/cold_start/data/kasandr/dat.kasandr.newusersnewitems")
 
 	}
 }
