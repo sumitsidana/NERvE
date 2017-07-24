@@ -81,6 +81,30 @@ class TripletsDataset(object):
             
         self.data_keys = list(self.data.keys())
 
+
+        self.data_train = {}
+        self.statistics_train['cnt_total'] = 0
+        ind = 0
+        for row in tqdm(raw_data_train, desc='Assemble .data', leave=False):
+            u, i, r, t = list(map(int, row))
+
+            if binarize == 1:
+                if r < 4:
+                    r = 0
+                else:
+                    r = 1
+
+            # filtering blaclisted elements
+            if (u in u_blacklist) or (i in i_blacklist):
+                ind += 1
+                continue
+
+            self.data_train[u] = self.data_train.get(u, []) + [(i, r, ind)]
+            self.statistics_train['cnt_total'] += 1
+            ind += 1
+
+        self.data_train_keys = list(self.data_train.keys())
+
         self.init_cached_random()
 
 
@@ -162,7 +186,7 @@ class TripletsDataset(object):
 
     def sample_train_triple(self):
 
-        user = self.data_keys[self.data_keys_sampler.sample()]
+        user = self.data_train_keys[self.data_keys_sampler.sample()]
         stats = self.train[user]
         stats_keys = list(stats.keys())
         #assert len(stats_keys) > 1, 'user {} has only 1 rating!'.format(user)
