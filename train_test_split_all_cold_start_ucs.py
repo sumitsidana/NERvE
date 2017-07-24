@@ -44,7 +44,7 @@ model.build_graph()
 model.initialize_session()
 
 losses = []
-batch_size = 512
+batch_size = 256
 for n_batches, cur_optim in [(10000, model.trainer_3)]:
     for i in tqdm(range(n_batches)):
         batch = ds.sample_train_batch(n_samples=batch_size)
