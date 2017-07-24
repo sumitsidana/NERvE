@@ -204,7 +204,7 @@ class TripletsDataset(object):
         return (user, left_value, right_value, y, diff)
 
 
-    def sample_train_batch(self,n_samples=128):
+    def sample_train_batch(self,n_samples=64):
         t = 0
         retval = np.zeros((n_samples, 5)).astype(np.int32)
         for i in range(n_samples):
