@@ -11,7 +11,7 @@ import matplotlib
 
 
 raw_data_train = np.loadtxt('/data/sidana/recnet_draft/cold_start/uics/'+sys.argv[1]+'/recnet_all/train_all_raw.csv', skiprows = 1, delimiter=',')
-raw_data_test = np.loadtxt('/data/sidana/recnet_draft/cold_start/uics/'+sys.argv[1]+'/recnet_all/test_all_cart_raw.csv', skiprows = 1, delimiter=',')
+raw_data_test = np.loadtxt('/data/sidana/recnet_draft/cold_start/ics/'+sys.argv[1]+'/recnet_all/test_all_cart_raw.csv', skiprows = 1, delimiter=',')
 raw_data = np.concatenate((raw_data_train, raw_data_test))
 from dataset_tt_static_ucs import TripletsDataset
 
