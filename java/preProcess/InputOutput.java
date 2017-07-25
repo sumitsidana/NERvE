@@ -923,16 +923,18 @@ public class InputOutput {
 			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split(",");
-				//String timestamp = array[0];
+				int rating = array[2];
 				long user = Long.parseLong(array[0]);
 				String item = array[1];
 				List<String>itemList = new ArrayList<String>();
 				if(userItemList.containsKey(user)){
 					itemList = userItemList.get(user);
+					if(rating >= 4)
 					itemList.add(item);
 				}
 				else{
 					itemList = new ArrayList<String>();
+					if(rating >= 4)
 					itemList.add(item);
 				}
 				userItemList.put(user, itemList);
