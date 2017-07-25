@@ -13,7 +13,7 @@ import java.io.FileWriter
 
 
 
-object write_data_new_u_old_i_ml_1m {
+object write_data_new_u_old_i_ml100k {
 	def main(args: Array[String]) {
 		val conf = new SparkConf().setAppName("Simple Application")
 				val sc = new SparkContext(conf)
