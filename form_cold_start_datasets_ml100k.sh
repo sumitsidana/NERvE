@@ -108,6 +108,6 @@ python3 cart_prod_form_cold_start.py ml100k uics
 
 ./recnet_ml100k_all_cold_start_ucs.sh
 
-./recnet_ml100k_all_cold_start_ics.sh
+#./recnet_ml100k_all_cold_start_ics.sh
 
-./recnet_ml100k_all_cold_start_uics.sh
+#./recnet_ml100k_all_cold_start_uics.sh
