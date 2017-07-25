@@ -915,6 +915,41 @@ public class InputOutput {
 		gtTest.close();
 	}
 
+		public static void writeGroundTruthForPopularity(String inputFile, String outputFile) throws IOException{
+		Map<Long, List<String>>userItemList = new TreeMap<Long,List<String>>();
+		PrintWriter gtTest = new PrintWriter (outputFile);
+		try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
+			String line;
+			br.readLine();
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				//String timestamp = array[0];
+				long user = Long.parseLong(array[0]);
+				String item = array[1];
+				List<String>itemList = new ArrayList<String>();
+				if(userItemList.containsKey(user)){
+					itemList = userItemList.get(user);
+					itemList.add(item);
+				}
+				else{
+					itemList = new ArrayList<String>();
+					itemList.add(item);
+				}
+				userItemList.put(user, itemList);
+			}
+		}
+		for(Entry<Long, List<String>> entry: userItemList.entrySet()){
+			long user = entry.getKey();
+			List<String> items = entry.getValue();
+			gtTest.print(user+" ");
+			for(String elements: items){
+				gtTest.print(elements+" ");
+			}
+			gtTest.println();
+		}
+		gtTest.close();
+	}
+
 	public static void writeFileCofactorFormat(String inputFile, String outputFile, int score) throws IOException{
 		PrintWriter printWriter = new PrintWriter (outputFile);
 		try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
