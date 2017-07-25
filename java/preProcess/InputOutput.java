@@ -923,7 +923,7 @@ public class InputOutput {
 			br.readLine();
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split(",");
-				int rating = array[2];
+				int rating = Integer.parseInt(array[2]);
 				long user = Long.parseLong(array[0]);
 				String item = array[1];
 				List<String>itemList = new ArrayList<String>();
