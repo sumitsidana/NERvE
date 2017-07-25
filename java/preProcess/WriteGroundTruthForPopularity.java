@@ -2,7 +2,7 @@ package preProcess;
 
 import java.io.IOException;
 
-public class WriteGroundTruthForCofactor {
+public class WriteGroundTruthForPopularity {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
