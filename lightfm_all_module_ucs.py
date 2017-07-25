@@ -8,7 +8,7 @@ train, test = data.get_movielens_positive_data('/data/sidana/recnet_draft/cold_s
 uid_train, pid_train, nid_train = data.get_triplets(train)
 uid_test, pid_test, nid_test = data.get_triplets(test)
 
-model = LightFM(no_components=3,loss='logistic',learning_rate=0.01, item_alpha=0.0001, user_alpha=0.0001)
+model = LightFM(no_components=4,loss='logistic',learning_rate=0.01, item_alpha=0.05, user_alpha=0.05)
 model.fit(train, epochs=10, num_threads=1)
 
 train_all, test_all = data.get_movielens_data('/data/sidana/recnet_draft/cold_start/ucs/'+sys.argv[1]+'/lightfm_all')
