@@ -6,7 +6,7 @@
 # f = open('results_output', 'r')
 import sys
 f = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/results', 'r')
-f1 = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/embeddings', 'w')
+f1 = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/embeddings_'+sys.argv[1], 'w')
 
 flag_0_1 = False
 flag_1_0 = False
