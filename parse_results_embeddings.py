@@ -37,7 +37,8 @@ for line in f:
         continue
 
     if "Latent Factor" in line:
-        latent_factor = line[15:16]
+        index = line.index(" ",15)
+        latent_factor = line[15:index]
 
 
     if "Latent Factor" in line and "Regularization: 0.0001 Hidden Units: 64" in line:
