@@ -1,14 +1,12 @@
-# with open('results') as infile, open('results_output', 'w') as outfile:
-#     for line in infile:
-#         if not line.strip(): continue  # skip the empty line
-#         outfile.write(line)  # non-empty line. Write it to output
+with open('results') as infile, open('results_output', 'w') as outfile:
+    for line in infile:
+        if not line.strip(): continue  # skip the empty line
+        outfile.write(line)  # non-empty line. Write it to output
 	
-# f = open('results_output', 'r')
-import sys
-f = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/results', 'r')
-f1 = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/model_0_1', 'w')
-f2 = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/model_1_0', 'w')
-f3 = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'/recnet/model_1_1', 'w')
+f = open('results_output', 'r')
+f1 = open('model_0_1', 'w')
+f2 = open('model_1_0', 'w')
+f3 = open('model_1_1', 'w')
 
 flag_0_1 = False
 flag_1_0 = False
