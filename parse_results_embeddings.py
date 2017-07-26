@@ -37,9 +37,9 @@ for line in f:
     if flag_1_1:
         if "map@1:" in line:
             f1.write(line[7:])
+            f1.write('\n')
         elif "Latent Factor" in line:
             f1.write(line[14:15] + " ")
-        f1.write('\n')
     else:
         if "map@1:" in line:
             f1.write(line[7:]+" ")
