@@ -41,7 +41,7 @@ for line in f:
         latent_factor = line[15:index]
 
 
-    if "Latent Factor" in line and "Regularization: 0.0001 Hidden Units: 64" in line:
+    if "Latent Factor" in line and "Regularization: 0.005 Hidden Units: 32" in line:
         flag_write = True
         f1.write(latent_factor + " ")
 
