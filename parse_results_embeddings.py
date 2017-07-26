@@ -38,13 +38,16 @@ for line in f:
         if "map@1:" in line:
             f1.write(line[7:])
             f1.write('\n')
-        elif "Latent Factor" in line and  "Regularization: 0.0001 Hidden Units: 64" in line:
-            f1.write(line[15:16] + " ")
+
+    elif flag_1_0:
+        if "map@1:" in line:
+            f1.write(line[7:]+" ")
     else:
         if "map@1:" in line:
             f1.write(line[7:]+" ")
         elif "Latent Factor" in line and "Regularization: 0.0001 Hidden Units: 64" in line:
             f1.write(line[15:16] + " ")
+
 f1.close()
 f.close()
 
