@@ -12,6 +12,8 @@ flag_0_1 = False
 flag_1_0 = False
 flag_1_1 = False
 
+flag_write=False
+
 for line in f:
 
     line = line.strip('\n')
@@ -34,19 +36,25 @@ for line in f:
         flag_1_0 = False
         continue
 
-    if flag_1_1:
-        if "map@1:" in line:
-            f1.write(line[7:])
-            f1.write('\n')
+    if "Latent Factor" in line:
+        latent_factor = line[15:16]
 
-    elif flag_1_0:
-        if "map@1:" in line:
-            f1.write(line[7:]+" ")
-    else:
-        if "map@1:" in line:
-            f1.write(line[7:]+" ")
-        elif "Latent Factor" in line and "Regularization: 0.0001 Hidden Units: 64" in line:
-            f1.write(line[15:16] + " ")
+
+    if "Latent Factor" in line and "Regularization: 0.0001 Hidden Units: 64" in line:
+        flag_write = True
+        f1.write(latent_factor + " ")
+
+    if "map@1:" in line:
+        map1 = line[7:]
+        if flag_write:
+            if flag_1_1:
+                f1.write(map1+"\n")
+                flag_write = False
+            else:
+                f1.write(map1+" ")
+
+
+
 
 f1.close()
 f.close()
