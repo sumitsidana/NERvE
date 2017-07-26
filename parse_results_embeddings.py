@@ -39,12 +39,12 @@ for line in f:
             f1.write(line[7:])
             f1.write('\n')
         elif "Latent Factor" in line:
-            f1.write(line[14:15] + " ")
+            f1.write(line[15:16] + " ")
     else:
         if "map@1:" in line:
             f1.write(line[7:]+" ")
         elif "Latent Factor" in line:
-            f1.write(line[14:15] + " ")
+            f1.write(line[15:16] + " ")
 f1.close()
 f.close()
 
