@@ -4,6 +4,7 @@
 #         outfile.write(line)  # non-empty line. Write it to output
 	
 # f = open('results_output', 'r')
+import sys
 f = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'recnet/results', 'r')
 f1 = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'recnet/model_0_1', 'w')
 f2 = open('/data/sidana/recnet_draft/param_tune/'+sys.argv[1]+'recnet/model_1_0', 'w')
