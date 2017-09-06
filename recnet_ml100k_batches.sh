@@ -5,7 +5,7 @@ mkdir -p /data/sidana/recnet_draft/ml100k/recnet_batches/vectors
 #reg_params="0.0001 0.001 0.005 0.01 0.05"
 #hidden_units="16 32 64"
 
-num_batches = "1000 2000 3000 4000 5000 6000 7000 8000 9000 10000"
+num_batches="1000 2000 3000 4000 5000 6000 7000 8000 9000 10000"
 
 #for  batch_num in $(seq 1 $end_lf); do
 #    for reg in _params; do
