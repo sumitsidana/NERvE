@@ -36,26 +36,23 @@ for line in f:
         flag_1_0 = False
         continue
 
-    if "Latent Factor" in line:
-        index = line.index(" ",15)
-        latent_factor = line[15:index]
-
-
-    if "Latent Factor" in line and "Regularization: 0.01 Hidden Units: 32" in line:
+    if "number of batches:" in line:
+        index = line.index(" ",19)
+        num_batches = line[19:index]
         flag_write = True
-        f1.write(latent_factor + " ")
+        f1.write(num_batches + " ")
 
-    if "map@1:" in line:
-        map1 = line[7:]
-        if flag_write:
-            if flag_1_1:
-                f1.write(map1+"\n")
-                flag_write = False
-            else:
-                f1.write(map1+" ")
-
-
-
+    else:
+        if "No rating diversity in train set for user" in line:
+            continue
+        else:
+            objective = line[0:]
+            if flag_write:
+                if flag_1_1:
+                    f1.write(objective + "\n")
+                    flag_write = False
+                else:
+                    f1.write(objective + " ")
 
 f1.close()
 f.close()
