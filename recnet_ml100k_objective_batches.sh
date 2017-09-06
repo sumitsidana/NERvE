@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-mkdir -p /data/sidana/recnet_draft/ml100k/recnet_objective_batches/vectors
 
 #end_lf=20
 #reg_params="0.0001 0.001 0.005 0.01 0.05"

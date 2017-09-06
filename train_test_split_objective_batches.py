@@ -68,7 +68,7 @@ for n_batches, cur_optim in [(sys.argv[4], model.trainer_3)]:
             item_norm = np.linalg.norm(model.weights_i)
             # print('[it {}] weight norms, users: {}, items: {}'.format(i, user_norm, item_norm))
             # print('[it {}] metrics (emb_loss, net_loss, reg, target): {}'.format(i, losses[-1]))
-average_objective_function = average_objective_function/sys.argv[4]
+average_objective_function = average_objective_function/float(sys.argv[4])
 print(average_objective_function)
 
 #%%
