@@ -46,7 +46,7 @@ model.initialize_session()
 losses = []
 batch_size = 512
 for n_batches, cur_optim in [(sys.argv[4], model.trainer_3)]:
-    for i in tqdm(range(n_batches)):
+    for i in tqdm(range(int(n_batches))):
         batch = ds.sample_train_batch(n_samples=batch_size)
         fd = {
             model.user_ids:  batch['users'], 
