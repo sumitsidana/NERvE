@@ -43,7 +43,7 @@ for line in f:
         f1.write(num_batches + " ")
 
     else:
-        if "No rating diversity in train set for user" in line:
+        if "No rating diversity in train set for user" in line or "Warning" in line:
             continue
         else:
             objective = line[0:]
