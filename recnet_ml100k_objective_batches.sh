@@ -17,15 +17,15 @@ for batch_num in $num_batches; do
 
            echo -e "alpha: 0, beta: 1" >>/data/sidana/recnet_draft/ml100k/recnet_objective_batches/results
 
-           python3 recnet_objective_batches.py ml100k 0 1 $batch_num >> /data/sidana/recnet_draft/ml100k/recnet_objective_batches/results
+           python3 train_test_split_objective_batches.py ml100k 0 1 $batch_num >> /data/sidana/recnet_draft/ml100k/recnet_objective_batches/results
 
            echo -e "alpha: 1, beta: 0" >>/data/sidana/recnet_draft/ml100k/recnet_objective_batches/results
 
-           python3 recnet_objective_batches.py ml100k 1 0 $batch_num >> /data/sidana/recnet_draft/ml100k/recnet_objective_batches/results
+           python3 train_test_split_objective_batches.py ml100k 1 0 $batch_num >> /data/sidana/recnet_draft/ml100k/recnet_objective_batches/results
 
            echo -e "alpha: 1, beta: 1" >>/data/sidana/recnet_draft/ml100k/recnet_objective_batches/results
 
-           python3 recnet_objective_batches.py ml100k 1 1 $batch_num >> /data/sidana/recnet_draft/ml100k/recnet_objective_batches/results
+           python3 train_test_split_objective_batches.py ml100k 1 1 $batch_num >> /data/sidana/recnet_draft/ml100k/recnet_objective_batches/results
 
         done
 #    done
