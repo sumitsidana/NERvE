@@ -1,17 +1,19 @@
-import sys
-
+import random
 import numpy as np
-import pyximport
-from tqdm import tqdm
-
+import random
+import pickle
 import letor_metrics
-
+import pyximport
+import sys
+from tqdm import tqdm
 pyximport.install()
+import matplotlib
 
-raw_data_train = np.loadtxt('/data/sidana/recnet_draft/cold_start/uics/'+sys.argv[1]+'/recnet_all/train_all_raw.csv', skiprows = 1, delimiter=',')
-raw_data_test = np.loadtxt('/data/sidana/recnet_draft/cold_start/ics/'+sys.argv[1]+'/recnet_all/test_all_cart_raw.csv', skiprows = 1, delimiter=',')
+
+raw_data_train = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_iterations/train_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_test = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_iterations/test_all_raw.csv', skiprows = 1, delimiter=',')
 raw_data = np.concatenate((raw_data_train, raw_data_test))
-from coldstart.dataset_tt_static_ucs import TripletsDataset
+from dataset_tt_static import TripletsDataset
 
 ds = TripletsDataset(raw_data_train, raw_data_test, threshold_user=60, rnd_seed=42)
 ds.train_test_split()
@@ -31,29 +33,29 @@ imp.reload(bprnn)
 #%%
 def inner_network(user_emb, item_emb):
     joined_input = tf.concat(1, [user_emb, item_emb])
-    net = slim.fully_connected(inputs=joined_input, num_outputs=32, activation_fn=tf.nn.relu)
+    net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.dro
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
     return net
 
-model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=int(sys.argv[2]), beta=int(sys.argv[3]), alpha_reg=0.005, inner_net=inner_network)
+model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=int(sys.argv[2]), beta=int(sys.argv[3]), alpha_reg=0.0, inner_net=inner_network)
 model.build_graph()
 model.initialize_session()
 
 losses = []
 batch_size = 512
-for n_batches, cur_optim in [(10000, model.trainer_3)]:
+for n_batches, cur_optim in [(sys.argv[4], model.trainer_3)]:
     for i in tqdm(range(n_batches)):
         batch = ds.sample_train_batch(n_samples=batch_size)
         fd = {
-            model.user_ids:  batch['users'],
+            model.user_ids:  batch['users'], 
             model.left_ids:  batch['left_items'],
             model.right_ids: batch['right_items'],
             model.target_y:  batch['y'],
         }
         el, nl, reg, t, _ = model.session.run(
-            [model.embedding_loss, model.net_loss, model.regularization, model.target, cur_optim],
+            [model.embedding_loss, model.net_loss, model.regularization, model.target, cur_optim], 
             feed_dict=fd
         )
         losses.append((el, nl, reg, t))
@@ -65,7 +67,7 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
 
 #%%
 
-export_basename = '/data/sidana/recnet_draft/cold_start/uics/'+sys.argv[1]+'/recnet_all/vectors/'
+export_basename = '/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_iterations/vectors/'
 export_pred = open(export_basename + 'pr_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
 export_true = open(export_basename + 'gt_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
 
