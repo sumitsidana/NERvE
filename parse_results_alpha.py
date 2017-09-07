@@ -44,7 +44,6 @@ for line in f:
         f1.write(map1 + " ")
         if flag_1_1:
             f1.write(map1+"\n")
-            flag_write = False
         else:
             f1.write(map1+" ")
 
