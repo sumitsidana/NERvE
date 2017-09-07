@@ -15,8 +15,7 @@ for alpha_value in $alpha_values; do
 
 
             echo -e "alpha_value: $alpha_value " >> /data/sidana/recnet_draft/ml100k/recnet_alpha/results
-
-            beta_value=$((1-$alpha_value))
+            beta_value="$(echo 1.0 - $alpha_value|bc)"
 
             python3 train_test_split_alpha.py ml100k $alpha_value $beta_value
             echo -e -n "map@1: ">>/data/sidana/recnet_draft/ml100k/recnet_alpha/results
