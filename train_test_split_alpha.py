@@ -68,8 +68,8 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
 #%%
 
 export_basename = '/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_alpha/vectors/'
-export_pred = open(export_basename + 'pr_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
-export_true = open(export_basename + 'gt_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
+export_pred = open(export_basename + 'pr_'+sys.argv[1], 'w')
+export_true = open(export_basename + 'gt_'+sys.argv[1], 'w')
 
 ndcg_vals = []
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
