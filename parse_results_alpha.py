@@ -18,34 +18,25 @@ for line in f:
     line = line.strip('\n')
 
     if "map@1:" in line:
-        flag_0_1 = True
-        flag_1_1 = False
-        flag_1_0 = False
+        map1 = line[7:]
+        f1.write(map1 + " ")
         continue
 
     if "map@5:" in line:
-        flag_0_1 = False
-        flag_1_1 = False
-        flag_1_0 = True
+        map1 = line[7:]
+        f1.write(map1 + " ")
         continue
 
     if "map@10:" in line:
-        flag_0_1 = False
-        flag_1_1 = True
-        flag_1_0 = False
+        map1 = line[7:]
+        f1.write(map1 + "\n")
         continue
 
     if "alpha_value:" in line:
         index = line.index(" ",13)
         alpha = line[13:index]
         f1.write(alpha + " ")
-    else:
-        map1 = line[7:]
-        f1.write(map1 + " ")
-        if flag_1_1:
-            f1.write(map1+"\n")
-        else:
-            f1.write(map1+" ")
+
 
 f1.close()
 f.close()
