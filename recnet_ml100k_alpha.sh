@@ -12,9 +12,11 @@ alpha_values="0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9"
 #        for num_units in $hidden_units; do
 
 for alpha_value in $alpha_values; do
-            beta_value=$((1-$alpha_value))
+
 
             echo -e "alpha_value: $alpha_value " >> /data/sidana/recnet_draft/ml100k/recnet_alpha/results
+
+            beta_value=$((1-$alpha_value))
 
             python3 train_test_split_alpha.py ml100k $alpha_value $beta_value
             echo -e -n "map@1: ">>/data/sidana/recnet_draft/ml100k/recnet_alpha/results
