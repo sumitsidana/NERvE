@@ -37,10 +37,11 @@ for line in f:
 
     if "alpha_value:" in line:
         index = line.index(" ",13)
-        num_batches = line[13:index]
-        f1.write(num_batches + " ")
+        alpha = line[13:index]
+        f1.write(alpha + " ")
     else:
         map1 = line[7:]
+        f1.write(map1 + " ")
         if flag_1_1:
             f1.write(map1+"\n")
             flag_write = False
