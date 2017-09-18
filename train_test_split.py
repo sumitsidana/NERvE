@@ -33,7 +33,7 @@ imp.reload(bprnn)
 #%%
 def inner_network(user_emb, item_emb):
     joined_input = tf.concat(1, [user_emb, item_emb])
-    net = slim.fully_connected(inputs=joined_input, num_outputs=32, activation_fn=tf.nn.relu)
+    net = slim.fully_connected(inputs=joined_input, num_outputs=32      , activation_fn=tf.nn.relu)
 #     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.dro
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
@@ -45,7 +45,7 @@ model.initialize_session()
 
 losses = []
 batch_size = 512
-for n_batches, cur_optim in [(1000, model.trainer_3)]:
+for n_batches, cur_optim in [(8000, model.trainer_3)]:
     for i in tqdm(range(n_batches)):
         batch = ds.sample_train_batch(n_samples=batch_size)
         fd = {
