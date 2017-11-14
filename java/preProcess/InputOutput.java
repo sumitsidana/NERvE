@@ -345,7 +345,7 @@ public class InputOutput {
 
 			printWriterTrain.close();
 		}
-
+		userItemRating.clear();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFileTest)))) {
 			String line;
 			PrintWriter printWriterTest = new PrintWriter(new BufferedWriter(new FileWriter(outputFileTest, true)));
@@ -643,7 +643,7 @@ public class InputOutput {
 		//		List<String> countryCodes = Arrays.asList("10","20","30","50","75","100");
 		//		List<String> countryCodes = Arrays.asList("1","2","3","5","7_5","10");
 
-				List<String> countryCodes1 = Arrays.asList("ml100k","ml1m");
+		List<String> countryCodes1 = Arrays.asList("ml100k","ml1m");
 		//List<String> countryCodes1 = Arrays.asList("kasandr","ml100k","ml1m");
 		//List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm","recnet","pop");
 		List<String> countryCodes2 = Arrays.asList("bprmf","cofactor","lightfm");
@@ -915,7 +915,7 @@ public class InputOutput {
 		gtTest.close();
 	}
 
-		public static void writeGroundTruthForPopularity(String inputFile, String outputFile) throws IOException{
+	public static void writeGroundTruthForPopularity(String inputFile, String outputFile) throws IOException{
 		Map<Long, List<String>>userItemList = new TreeMap<Long,List<String>>();
 		PrintWriter gtTest = new PrintWriter (outputFile);
 		try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
@@ -930,12 +930,12 @@ public class InputOutput {
 				if(userItemList.containsKey(user)){
 					itemList = userItemList.get(user);
 					if(rating >= 4)
-					itemList.add(item);
+						itemList.add(item);
 				}
 				else{
 					itemList = new ArrayList<String>();
 					if(rating >= 4)
-					itemList.add(item);
+						itemList.add(item);
 				}
 				userItemList.put(user, itemList);
 			}
