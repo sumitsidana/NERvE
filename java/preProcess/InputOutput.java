@@ -414,8 +414,61 @@ public class InputOutput {
 		}
 
 	}
+	
+	public static void stringIndexerWithIndex(String inputFile,String outputFile) throws IOException{
+
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+			String line;
+			PrintWriter printWriterTrain = new PrintWriter (outputFile);
+			Map<String,Long>userIndex = new LinkedHashMap<String,Long>();
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				String user = array[0];
+				long index;
+				if(userIndex.containsKey(user)){
+					index = userIndex.get(user);
+				}
+				else{
+					index = userIndex.size()+1;
+					userIndex.put(user, index);
+				}
+				String lineWritten = index+","+array[1]+","+array[2]+","+array[3];
+				printWriterTrain.println(lineWritten);
+			}
+			printWriterTrain.close();
+		}
+
+	}
 
 	public static void offerStringIndexer(String inputFile,String outputFile) throws IOException{
+
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+			String line;
+			PrintWriter printWriterTrain = new PrintWriter (outputFile);
+			//			line = br.readLine();
+			//			printWriterTrain.println(line);
+			Map<String,Long>offerIndex = new LinkedHashMap<String,Long>();
+
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				String offer = array[1];
+				long index;
+				if(offerIndex.containsKey(offer)){
+					index = offerIndex.get(offer);
+				}
+				else{
+					index = offerIndex.size()+1;
+					offerIndex.put(offer, index);
+				}
+				String lineWritten = array[0]+","+index+","+array[2]+","+array[3];
+				printWriterTrain.println(lineWritten);
+			}
+			printWriterTrain.close();
+		}
+
+	}
+	
+	public static void offerStringIndexerWithIndex(String inputFile,String outputFile) throws IOException{
 
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
 			String line;
