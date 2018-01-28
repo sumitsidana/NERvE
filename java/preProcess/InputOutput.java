@@ -438,6 +438,7 @@ public class InputOutput {
 				printWriterTrain.println(lineWritten);
 			}
 			printWriterTrain.close();
+			printWriterIndex.close();
 		}
 
 	}
@@ -496,6 +497,7 @@ public class InputOutput {
 				printWriterTrain.println(lineWritten);
 			}
 			printWriterTrain.close();
+			printWriterIndex.close();
 		}
 
 	}
