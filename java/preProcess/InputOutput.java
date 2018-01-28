@@ -414,12 +414,13 @@ public class InputOutput {
 		}
 
 	}
-	
-	public static void stringIndexerWithIndex(String inputFile,String outputFile) throws IOException{
+
+	public static void stringIndexerWithIndex(String inputFile,String outputFile1, String outputFile2) throws IOException{
 
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
 			String line;
-			PrintWriter printWriterTrain = new PrintWriter (outputFile);
+			PrintWriter printWriterTrain = new PrintWriter (outputFile1);
+			PrintWriter printWriterIndex = new PrintWriter (outputFile2);
 			Map<String,Long>userIndex = new LinkedHashMap<String,Long>();
 			while ((line = br.readLine()) != null) {
 				String [] array = line.split(",");
@@ -430,6 +431,7 @@ public class InputOutput {
 				}
 				else{
 					index = userIndex.size()+1;
+					printWriterIndex.println(user+","+index);
 					userIndex.put(user, index);
 				}
 				String lineWritten = index+","+array[1]+","+array[2]+","+array[3];
@@ -467,12 +469,13 @@ public class InputOutput {
 		}
 
 	}
-	
-	public static void offerStringIndexerWithIndex(String inputFile,String outputFile) throws IOException{
+
+	public static void offerStringIndexerWithIndex(String inputFile,String outputFile1, String outputFile2) throws IOException{
 
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
 			String line;
-			PrintWriter printWriterTrain = new PrintWriter (outputFile);
+			PrintWriter printWriterTrain = new PrintWriter (outputFile1);
+			PrintWriter printWriterIndex = new PrintWriter (outputFile2);
 			//			line = br.readLine();
 			//			printWriterTrain.println(line);
 			Map<String,Long>offerIndex = new LinkedHashMap<String,Long>();
@@ -486,6 +489,7 @@ public class InputOutput {
 				}
 				else{
 					index = offerIndex.size()+1;
+					printWriterIndex.println(offer+","+index);
 					offerIndex.put(offer, index);
 				}
 				String lineWritten = array[0]+","+index+","+array[2]+","+array[3];
