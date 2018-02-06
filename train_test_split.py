@@ -67,7 +67,7 @@ for n_batches, cur_optim in [(1000, model.trainer_3)]:
 
 #%%
 
-export_basename = '/data/sidana/recnet/'+sys.argv[1]+'/vectors/'
+export_basename = '/data/sidana/recnet/'+sys.argv[1]+'/recnet/vectors/'
 export_pred = open(export_basename + 'pr_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
 export_true = open(export_basename + 'gt_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
 
