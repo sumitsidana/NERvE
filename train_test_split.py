@@ -10,8 +10,8 @@ pyximport.install()
 import matplotlib
 
 
-raw_data_train = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_earlystop/train_all_raw.csv', skiprows = 1, delimiter=',')
-raw_data_test = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_earlystop/test_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_train = np.loadtxt('/data/sidana/recnet/'+sys.argv[1]+'/train_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_test = np.loadtxt('/data/sidana/recnet/'+sys.argv[1]+'/test_all_raw.csv', skiprows = 1, delimiter=',')
 raw_data = np.concatenate((raw_data_train, raw_data_test))
 from dataset_tt_static import TripletsDataset
 
@@ -25,7 +25,7 @@ import imp
 
 N_USERS = int(max(raw_data[:, 0])) + 1
 N_ITEMS = int(max(raw_data[:, 1])) + 1
-N_EMBEDDINGS = 3
+N_EMBEDDINGS = sys.argv[4]
 
 import tensorflow.contrib.slim as slim
 imp.reload(bprnn)
@@ -33,7 +33,7 @@ imp.reload(bprnn)
 #%%
 def inner_network(user_emb, item_emb):
     joined_input = tf.concat(1, [user_emb, item_emb])
-    net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
+    net = slim.fully_connected(inputs=joined_input, num_outputs=sys.argv[5], activation_fn=tf.nn.relu)
 #     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.dro
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
@@ -67,7 +67,7 @@ for n_batches, cur_optim in [(1000, model.trainer_3)]:
 
 #%%
 
-export_basename = '/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_earlystop/vectors/'
+export_basename = '/data/sidana/recnet/'+sys.argv[1]+'/vectors/'
 export_pred = open(export_basename + 'pr_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
 export_true = open(export_basename + 'gt_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[3], 'w')
 
