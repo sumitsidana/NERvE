@@ -25,7 +25,7 @@ import imp
 
 N_USERS = int(max(raw_data[:, 0])) + 1
 N_ITEMS = int(max(raw_data[:, 1])) + 1
-N_EMBEDDINGS = sys.argv[4]
+N_EMBEDDINGS = int(sys.argv[4])
 
 import tensorflow.contrib.slim as slim
 imp.reload(bprnn)
@@ -33,7 +33,7 @@ imp.reload(bprnn)
 #%%
 def inner_network(user_emb, item_emb):
     joined_input = tf.concat(1, [user_emb, item_emb])
-    net = slim.fully_connected(inputs=joined_input, num_outputs=sys.argv[5], activation_fn=tf.nn.relu)
+    net = slim.fully_connected(inputs=joined_input, num_outputs=int(sys.argv[5]), activation_fn=tf.nn.relu)
 #     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.dro
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
