@@ -15,7 +15,7 @@ else
    rank=10
 fi
 
-java -cp . preProcess.ConvertIntoRelVecGeneralized_update /data/sidana/recnet/$1/bprmf/vectors/gt_${1} /data/sidana/recnet/$1/bprmf/vectors/pr_${1} /data/sidana/recnet/${1}/bprmf/${2}/rv/relevanceVector_${1} $rank
+java -cp . preProcess.ConvertIntoRelVecGeneralized_update "/data/sidana/recnet/${1}/bprmf/vectors/gt_${1}" "/data/sidana/recnet/${1}/bprmf/vectors/pr_${1}" "/data/sidana/recnet/${1}/bprmf/${2}/rv/relevanceVector_${1}" "${rank}"
 cd -
 echo 'compute offline metrics'
 python3 compOfflineEvalMetrics_len$rank.py /data/sidana/recnet/${1}/bprmf/${2} ${1}
