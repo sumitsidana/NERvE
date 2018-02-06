@@ -4,7 +4,7 @@ import tensorflow.contrib.slim as slim
 
 def tf_mean_logloss(raw_margins, target_values, tag, trunc_max=100):
     # -y*f(x)
-    myfx = -1*tf.mul(target_values, raw_margins)
+    myfx = -1*tf.multiply(target_values, raw_margins)
     elementwise_logloss = tf.log(1 + tf.exp(myfx), name='elwise_' + tag)
     checked_elwise_loss = tf.verify_tensor_all_finite(elementwise_logloss, msg='NaN or Inf in loss vector', name='checked_elwise_loss')
     mean_loss = tf.reduce_mean(tf.minimum(checked_elwise_loss, trunc_max), name='mean_' + tag)
@@ -61,8 +61,8 @@ class BPR_NN(object):
             self.embedding_left = tf.nn.embedding_lookup(self.item_latents, self.left_ids, name='embedding_left')
             self.embedding_right = tf.nn.embedding_lookup(self.item_latents, self.right_ids, name='embedding_right')
 
-            self.left_emb = tf.reduce_sum(tf.mul(self.embedding_user, self.embedding_left), axis=1)
-            self.right_emb = tf.reduce_sum(tf.mul(self.embedding_user, self.embedding_right), axis=1)
+            self.left_emb = tf.reduce_sum(tf.multiply(self.embedding_user, self.embedding_left), axis=1)
+            self.right_emb = tf.reduce_sum(tf.multiply(self.embedding_user, self.embedding_right), axis=1)
 
             # shape: [n_batch, ]
             self.embedding_margins = self.left_emb - self.right_emb
