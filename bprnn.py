@@ -83,7 +83,8 @@ class BPR_NN(object):
 
             # outs
             self.regularization = tf_mean_l2(self.embedding_user) + tf_mean_l2(self.embedding_left) + tf_mean_l2(self.embedding_right)
-            self.ranking_losses = self.alpha * self.embedding_loss + self.beta*self.net_loss
+            # self.ranking_losses = self.alpha * self.embedding_loss + self.beta*self.net_loss
+            self.ranking_losses = self.alpha * self.net_loss + self.beta * self.embedding_loss
             self.target = self.ranking_losses + self.alpha_reg * self.regularization
 
             self.trainer_1 = tf.train.AdamOptimizer(learning_rate=0.05).minimize(self.target)
