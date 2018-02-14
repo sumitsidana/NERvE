@@ -44,55 +44,54 @@ class BPR_NN(object):
             self.graph.seed = seed
 
     def build_graph(self):
-        with self.graph.as_default() :
-            with tf.device('/gpu:1'):
+        with self.graph.as_default():
             # placeholders
-                self.user_ids = tf.placeholder(tf.int32, (None,), name='user_ids')
-                self.left_ids = tf.placeholder(tf.int32, (None,), name='left_ids')
-                self.right_ids = tf.placeholder(tf.int32, (None,), name='right_ids')
-                self.target_y = tf.placeholder(tf.float32, (None,), name='target_y')
-                self.target_diff = tf.placeholder(tf.float32, (None,), name='target_diff')
+            self.user_ids = tf.placeholder(tf.int32, (None,), name='user_ids')
+            self.left_ids = tf.placeholder(tf.int32, (None,), name='left_ids')
+            self.right_ids = tf.placeholder(tf.int32, (None,), name='right_ids')
+            self.target_y = tf.placeholder(tf.float32, (None,), name='target_y')
+            self.target_diff = tf.placeholder(tf.float32, (None,), name='target_diff')
 
-                # main parameters
-                self.user_latents = tf.Variable(tf.random_uniform(shape=(self.N_USERS, self.N_EMBEDDINGS)), trainable=True, name='user_latents')
-                self.item_latents = tf.Variable(tf.random_uniform(shape=(self.N_ITEMS, self.N_EMBEDDINGS)), trainable=True, name='item_latents')
+            # main parameters
+            self.user_latents = tf.Variable(tf.random_uniform(shape=(self.N_USERS, self.N_EMBEDDINGS)), trainable=True, name='user_latents')
+            self.item_latents = tf.Variable(tf.random_uniform(shape=(self.N_ITEMS, self.N_EMBEDDINGS)), trainable=True, name='item_latents')
 
-                # get embeddings for batch
-                self.embedding_user = tf.nn.embedding_lookup(self.user_latents, self.user_ids, name='embedding_user')
-                self.embedding_left = tf.nn.embedding_lookup(self.item_latents, self.left_ids, name='embedding_left')
-                self.embedding_right = tf.nn.embedding_lookup(self.item_latents, self.right_ids, name='embedding_right')
+            # get embeddings for batch
+            self.embedding_user = tf.nn.embedding_lookup(self.user_latents, self.user_ids, name='embedding_user')
+            self.embedding_left = tf.nn.embedding_lookup(self.item_latents, self.left_ids, name='embedding_left')
+            self.embedding_right = tf.nn.embedding_lookup(self.item_latents, self.right_ids, name='embedding_right')
 
-                self.left_emb = tf.reduce_sum(tf.multiply(self.embedding_user, self.embedding_left), axis=1)
-                self.right_emb = tf.reduce_sum(tf.multiply(self.embedding_user, self.embedding_right), axis=1)
+            self.left_emb = tf.reduce_sum(tf.multiply(self.embedding_user, self.embedding_left), axis=1)
+            self.right_emb = tf.reduce_sum(tf.multiply(self.embedding_user, self.embedding_right), axis=1)
 
-                # shape: [n_batch, ]
-                self.embedding_margins = self.left_emb - self.right_emb
-                self.embedding_loss = tf_mean_logloss(self.embedding_margins, self.target_y, 'embedding_loss')
+            # shape: [n_batch, ]
+            self.embedding_margins = self.left_emb - self.right_emb
+            self.embedding_loss = tf_mean_logloss(self.embedding_margins, self.target_y, 'embedding_loss')
 
 
-                # apply shared net
-                with tf.variable_scope("nn"):
-                    self.left_output = self.inner_net(self.embedding_user, self.embedding_left)
-                with tf.variable_scope("nn", reuse=True):
-                    self.right_output = self.inner_net(self.embedding_user, self.embedding_right)
+            # apply shared net
+            with tf.variable_scope("nn"):
+                self.left_output = self.inner_net(self.embedding_user, self.embedding_left)
+            with tf.variable_scope("nn", reuse=True):
+                self.right_output = self.inner_net(self.embedding_user, self.embedding_right)
 
-                # margins for net output
-                self.net_margins = self.left_output - self.right_output
-                # shape: [n_batch, 1] -> [n_batch, ]
-                self.net_margins = tf.squeeze(self.net_margins, axis=1, name='net_margins')
-                self.net_loss = tf_mean_logloss(self.net_margins, self.target_y, 'net_loss')
+            # margins for net output
+            self.net_margins = self.left_output - self.right_output
+            # shape: [n_batch, 1] -> [n_batch, ]
+            self.net_margins = tf.squeeze(self.net_margins, axis=1, name='net_margins')
+            self.net_loss = tf_mean_logloss(self.net_margins, self.target_y, 'net_loss')
 
-                # outs
-                self.regularization = tf_mean_l2(self.embedding_user) + tf_mean_l2(self.embedding_left) + tf_mean_l2(self.embedding_right)
-                # self.ranking_losses = self.alpha * self.embedding_loss + self.beta*self.net_loss
-                self.ranking_losses = self.alpha * self.net_loss + self.beta * self.embedding_loss
-                self.target = self.ranking_losses + self.alpha_reg * self.regularization
+            # outs
+            self.regularization = tf_mean_l2(self.embedding_user) + tf_mean_l2(self.embedding_left) + tf_mean_l2(self.embedding_right)
+            # self.ranking_losses = self.alpha * self.embedding_loss + self.beta*self.net_loss
+            self.ranking_losses = self.alpha * self.net_loss + self.beta * self.embedding_loss
+            self.target = self.ranking_losses + self.alpha_reg * self.regularization
 
-                self.trainer_1 = tf.train.AdamOptimizer(learning_rate=0.05).minimize(self.target)
-                self.trainer_2 = tf.train.AdamOptimizer(learning_rate=1e-2).minimize(self.target)
-                self.trainer_3 = tf.train.AdamOptimizer(learning_rate=1e-3).minimize(self.target)
-                self.trainer_4 = tf.train.AdamOptimizer(learning_rate=1e-4).minimize(self.target)
-                self.init_all_vars = tf.global_variables_initializer()
+            self.trainer_1 = tf.train.AdamOptimizer(learning_rate=0.05).minimize(self.target)
+            self.trainer_2 = tf.train.AdamOptimizer(learning_rate=1e-2).minimize(self.target)
+            self.trainer_3 = tf.train.AdamOptimizer(learning_rate=1e-3).minimize(self.target)
+            self.trainer_4 = tf.train.AdamOptimizer(learning_rate=1e-4).minimize(self.target)
+            self.init_all_vars = tf.global_variables_initializer()
 
     @property
     def weights_i(self):
