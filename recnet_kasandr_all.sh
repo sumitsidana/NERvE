@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-mkdir -p /data/sidana/recnet/all_test_param_tune/kasandr/recnet_all/vectors
+mkdir -p /data/sidana/recnet_draft/kasandr/recnet_all/vectors
 python3 train_test_split_all.py kasandr 0 1
 ./writerelevancevectorrecnet_all.sh kasandr 01 one
 ./writerelevancevectorrecnet_all.sh kasandr 01 five
