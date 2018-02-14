@@ -34,6 +34,7 @@ for  latent_factor in $(seq 1 $end_lf); do
             ./writerelevancevectorrecnet_param_tune_all.sh ml100k 10 five>>/data/sidana/recnet/all_test_param_tune/ml100k/recnet_all/results
             echo -e -n "map@10:" >>/data/sidana/recnet/all_test_param_tune/ml100k/recnet_all/results
             ./writerelevancevectorrecnet_param_tune_all.sh ml100k 10 ten>>/data/sidana/recnet/all_test_param_tune/ml100k/recnet_all/results
+
             cd all_offers_setting/ml100k
 
             python3 recnet_ml100k_param_tune_all.py ml100k 1 1 $latent_factor $reg $num_units
@@ -46,6 +47,8 @@ for  latent_factor in $(seq 1 $end_lf); do
             ./writerelevancevectorrecnet_param_tune_all.sh ml100k 11 five>>/data/sidana/recnet/all_test_param_tune/ml100k/recnet_all/results
            echo -e -n "map@10:" >>/data/sidana/recnet/all_test_param_tune/ml100k/recnet_all/results
             ./writerelevancevectorrecnet_param_tune_all.sh ml100k 11 ten>>/data/sidana/recnet/all_test_param_tune/ml100k/recnet_all/results
+
+            cd all_offers_setting/ml100k
         done
     done
 done

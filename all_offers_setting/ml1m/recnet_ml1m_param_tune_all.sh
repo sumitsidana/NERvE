@@ -46,6 +46,8 @@ for  latent_factor in $(seq 1 $end_lf); do
             ./writerelevancevectorrecnet_param_tune_all.sh ml1m 11 five>>/data/sidana/recnet/all_test_param_tune/ml1m/recnet_all/results
            echo -e -n "map@10:" >>/data/sidana/recnet/all_test_param_tune/ml1m/recnet_all/results
             ./writerelevancevectorrecnet_param_tune_all.sh ml1m 11 ten>>/data/sidana/recnet/all_test_param_tune/ml1m/recnet_all/results
+
+            cd all_offers_setting/ml1m
         done
     done
 done
