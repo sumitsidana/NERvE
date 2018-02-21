@@ -1,6 +1,6 @@
 import sys
 
-f = open('/data/sidana/recnet/all_test_param_tune/'+sys.argv[1]+'/recnet/results', 'r')
+f = open('/data/sidana/recnet/all_test_param_tune/'+sys.argv[1]+'/recnet_all/results', 'r')
 
 #f = open('/home/sumit/embcs/results', 'r')
 flag_0_1 = False
