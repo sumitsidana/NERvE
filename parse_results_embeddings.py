@@ -8,7 +8,7 @@ flag_0_1 = False #for alpha 0 beta 1 type line
 flag_1_0 = False
 flag_1_1 = False
 
-flag_0_1_param_write=False # for best parameters
+flag_0_1_param_write = False # for best parameters
 flag_1_0_param_write = False
 flag_1_1_param_write = False
 
@@ -19,8 +19,10 @@ for line in f:
     if "Regularization: 0.005 Hidden Units: 64" in line:
         flag_0_1_param_write = True
 
+
     if "Regularization: 0.05 Hidden Units: 32" in line:
         flag_1_0_param_write = True
+
 
     if "Regularization: 0.005 Hidden Units: 16" in line:
         flag_1_1_param_write = True
@@ -64,7 +66,8 @@ for line in f:
                 flag_0_1_param_write = False
                 flag_0_1 = False
             else:
-                if flag_1_0_param_write and flag_1_0:
+                if flag_1_0_param_write and flag_1_0: #it does not reach here
+                    print(" I do reach here")
                     f1.write(map1+" ")
                     flag_1_0_param_write = False
                     flag_1_0 = False
