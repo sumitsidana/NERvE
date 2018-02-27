@@ -58,7 +58,6 @@ for line in f:
             f1.write(map1+"\n")
             flag_1_1_param_write = False
             flag_1_1 = False
-            flag_latent_factor = True
         else:
             if flag_0_1_param_write and flag_0_1:
                 f1.write(map1+" ")
@@ -69,6 +68,7 @@ for line in f:
                     f1.write(map1+" ")
                     flag_1_0_param_write = False
                     flag_1_0 = False
+                    flag_latent_factor = True
 
 
 
