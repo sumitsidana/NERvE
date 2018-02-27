@@ -166,15 +166,15 @@ Decrease $\alpha$             &   0.8375    &0.822       & 0.794       \\ \hline
 
 \begin{table}[!htpb]
 \centering
-\caption{Best parameters for {\RecNet}$_p$, {\RecNet}$_c$ and {\RecNet}$_{c,p}$ when prediction is done on all offers; $k$ denotes the dimension of embeddings, $\lambda$ the regularization parameter. We also report the number of hidden units per layer.}
+\caption{Best parameters for {\RecNet}$_p$, {\RecNet}$_c$ and {\RecNet}$_{c,p}$ when prediction is done on only shown offers; $k$ denotes the dimension of embeddings, $\lambda$ the regularization parameter. We also report the number of hidden units per layer.}
 \label{tab:param}
 \resizebox{\textwidth}{!}{\begin{tabular}{|c|ccc|ccc|ccc|ccc|}
 \hline
                  & \multicolumn{3}{c|}{\ML-100K} & \multicolumn{3}{c|}{\ML-1M} & \multicolumn{3}{c|}{\NetF}& \multicolumn{3}{c|}{\kasandr}\\ \hline
                  &  {\RecNet}$_c$  & {\RecNet}$_p$&{\RecNet}$_{c,p}$ &{\RecNet}$_c$   &{\RecNet}$_p$ &{\RecNet}$_{c,p}$ &{\RecNet}$_c$   &{\RecNet}$_p$ &{\RecNet}$_{c,p}$&{\RecNet}$_c$   &{\RecNet}$_p$ &{\RecNet}$_{c,p}$  \\ \hline
-$k$            &$15$&$5$&$8$&$8$&$1$&$1$&$14$&$2$&$4$ &18&1&18    \\
-$\lambda$      &$0.001$&$0.001$&$0.001$&$0.005$&$0.0001$&$0.005$&$0.05$&$0.05$&$0.05$&0.001&0.01&0.01   \\ 
-\# units &$32$&$16$&$16$&$64$&$32$&$32$&$64$&$16$& $32$ &64&64&32      \\ \hline
+$k$            &$1$&$2$&$2$&$16$&$1$&$1$&$14$&$2$&$4$ &$19$&$1$&$18$    \\
+$\lambda$      &$0.05$&$0.005$&$0.005$&$0.05$&$0.0001$&$0.001$&$0.05$&$0.05$&$0.05$&$0.0001$&$0.05$&$0.005$   \\ 
+\# units &$32$&$64$&$16$&$32$&$16$&$32$&$64$&$16$& $32$ &$64$&$16$&$64$      \\ \hline
 %\multicolumn{1}{|c|}{\# hidden layers}      &$1$&$1$&$1$&$1$&$1$&$1$&$1$&$1$&$1$     \\ \hline
 %\multicolumn{1}{|c|}{$\eta$}          &$1e-3$&$1e-3$&$1e-3$&$1e-3$&$1e-3$&$1e-3$&$1e-3$&$1e-3$&$1e-3$    \\ \hline
 \end{tabular}
