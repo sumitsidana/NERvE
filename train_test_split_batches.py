@@ -25,7 +25,7 @@ import imp
 
 N_USERS = int(max(raw_data[:, 0])) + 1
 N_ITEMS = int(max(raw_data[:, 1])) + 1
-N_EMBEDDINGS = 18
+N_EMBEDDINGS = int(sys.argv[5])
 
 import tensorflow.contrib.slim as slim
 imp.reload(bprnn)
@@ -33,13 +33,13 @@ imp.reload(bprnn)
 #%%
 def inner_network(user_emb, item_emb):
     joined_input = tf.concat(1, [user_emb, item_emb])
-    net = slim.fully_connected(inputs=joined_input, num_outputs=32, activation_fn=tf.nn.relu)
+    net = slim.fully_connected(inputs=joined_input, num_outputs=int(sys.argv[6]), activation_fn=tf.nn.relu)
 #     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.dro
     net = slim.fully_connected(inputs=net, num_outputs=1, activation_fn=None)
     return net
 
-model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=int(sys.argv[2]), beta=int(sys.argv[3]), alpha_reg=0.01, inner_net=inner_network)
+model = bprnn.BPR_NN(N_USERS, N_ITEMS, N_EMBEDDINGS, alpha=int(sys.argv[2]), beta=int(sys.argv[3]), alpha_reg=float(sys.argv[7]), inner_net=inner_network)
 model.build_graph()
 model.initialize_session()
 
@@ -73,7 +73,7 @@ export_true = open(export_basename + 'gt_'+sys.argv[1]+'_'+sys.argv[2]+sys.argv[
 
 ndcg_vals = []
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
-    if not u in ds.test:
+    if not u in ds.test or not ds.test[u]:
         continue
     response = np.zeros(len(ds.test[u]))
     fd = {

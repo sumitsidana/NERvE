@@ -15,7 +15,7 @@ for batch_num in $num_batches; do
 
             echo -e "number of batches: $batch_num " >> /data/sidana/recnet_draft/ml100k/recnet_batches/results
 
-            python3 train_test_split_batches.py ml100k 0 1 $batch_num
+            python3 train_test_split_batches.py ml100k 0 1 $batch_num 2 64 0.005
 
             echo -e "alpha: 0, beta: 1" >>/data/sidana/recnet_draft/ml100k/recnet_batches/results
             echo -e -n "map@1: ">>/data/sidana/recnet_draft/ml100k/recnet_batches/results
@@ -25,7 +25,7 @@ for batch_num in $num_batches; do
             echo -e -n "map@10:" >>/data/sidana/recnet_draft/ml100k/recnet_batches/results
             ./writerelevancevectortrain_test_split_batches.sh ml100k 01 ten >>/data/sidana/recnet_draft/ml100k/recnet_batches/results
 
-            python3 train_test_split_batches.py ml100k 1 0 $batch_num
+            python3 train_test_split_batches.py ml100k 1 0 $batch_num 1 32 0.05
 
             echo -e "alpha: 1, beta: 0" >>/data/sidana/recnet_draft/ml100k/recnet_batches/results
             echo -e -n "map@1: ">>/data/sidana/recnet_draft/ml100k/recnet_batches/results
@@ -35,7 +35,7 @@ for batch_num in $num_batches; do
             echo -e -n "map@10:" >>/data/sidana/recnet_draft/ml100k/recnet_batches/results
             ./writerelevancevectortrain_test_split_batches.sh ml100k 10 ten>>/data/sidana/recnet_draft/ml100k/recnet_batches/results
 
-            python3 train_test_split_batches.py ml100k 1 1 $batch_num
+            python3 train_test_split_batches.py ml100k 1 1 $batch_num 2 16 0.005
 
            echo -e "alpha: 1, beta: 1" >>/data/sidana/recnet_draft/ml100k/recnet_batches/results
            echo -e -n "map@1: ">>/data/sidana/recnet_draft/ml100k/recnet_batches/results
