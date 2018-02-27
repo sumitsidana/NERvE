@@ -58,17 +58,17 @@ for line in f:
     if "map@1:" in line:
         map1 = line[7:]
         if flag_1_1_param_write and flag_1_1:
-            f1.write(map1+"\n")
+            f1.write('11:'+map1+"\n")
             flag_1_1_param_write = False
             flag_1_1 = False
         else:
             if flag_0_1_param_write and flag_0_1:
-                f1.write(map1+" ")
+                f1.write('01'+map1+" ")
                 flag_0_1_param_write = False
                 flag_0_1 = False
             else:
                 if flag_1_0_param_write and flag_1_0: #it does not reach here
-                    f1.write(map1+" ")
+                    f1.write('10'+map1+" ")
                     flag_1_0_param_write = False
                     flag_1_0 = False
                     flag_latent_factor = True
