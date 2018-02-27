@@ -67,11 +67,13 @@ for line in f:
                 flag_0_1_param_write = False
                 flag_0_1 = False
             else:
-                if flag_1_0_param_write and flag_1_0: #it does not reach here
+                if flag_1_0_param_write and flag_1_0:
                     f1.write('10 '+map1+"\n")
                     flag_1_0_param_write = False
                     flag_1_0 = False
-                    flag_latent_factor = True
+
+    if "Regularization: 0.05 Hidden Units: 64" in line:
+        flag_latent_factor = True # This is not being set properly
 
 
 
