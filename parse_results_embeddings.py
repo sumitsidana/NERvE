@@ -41,9 +41,20 @@ for line in f:
         latent_factor = line[15:index]
 
 
-    if "Latent Factor" in line and "Regularization: 0.01 Hidden Units: 32" in line:
-        flag_write = True
-        f1.write(latent_factor + " ")
+    if "Latent Factor" in line and flag_0_1:
+        if "Regularization: 0.005 Hidden Units: 64" in line:
+            flag_write = True
+            f1.write(latent_factor + " ")
+
+    if "Latent Factor" in line and flag_1_0:
+        if "Regularization: 0.05 Hidden Units: 32" in line:
+            flag_write = True
+            f1.write(latent_factor + " ")
+
+    if "Latent Factor" in line and flag_1_1:
+        if "Regularization: 0.005 Hidden Units: 16" in line:
+            flag_write = True
+            f1.write(latent_factor + " ")
 
     if "map@1:" in line:
         map1 = line[7:]
