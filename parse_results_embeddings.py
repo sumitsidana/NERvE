@@ -16,6 +16,13 @@ for line in f:
 
     line = line.strip('\n')
 
+    if "Latent Factor" in line:
+        index = line.index(" ",15)
+        latent_factor = line[15:index]
+        if flag_latent_factor:
+            f1.write(latent_factor + " ")
+            flag_latent_factor = False
+
     if "Regularization: 0.005 Hidden Units: 64" in line:
         flag_0_1_param_write = True
 
@@ -43,12 +50,6 @@ for line in f:
         flag_0_1 = False
         flag_1_0 = False
 
-    if "Latent Factor" in line:
-        index = line.index(" ",15)
-        latent_factor = line[15:index]
-        if flag_latent_factor:
-            f1.write(latent_factor + " ")
-            flag_latent_factor = False
             # need to turn it into True after writing results of 1 1
 
 
@@ -67,7 +68,6 @@ for line in f:
                 flag_0_1 = False
             else:
                 if flag_1_0_param_write and flag_1_0: #it does not reach here
-                    print(" I do reach here")
                     f1.write(map1+" ")
                     flag_1_0_param_write = False
                     flag_1_0 = False
