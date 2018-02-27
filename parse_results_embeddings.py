@@ -64,6 +64,7 @@ for line in f:
                 flag_write = False
             else:
                 f1.write(map1+" ")
+                flag_write = False
 
 
 
