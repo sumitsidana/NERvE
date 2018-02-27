@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-mkdir -p /data/sidana/ml100k/recnet_draft/recnet_batches/vectors
+mkdir -p /data/sidana/ml100k/recnet/recnet_batches/vectors
 
 #end_lf=20
 #reg_params="0.0001 0.001 0.005 0.01 0.05"
@@ -13,37 +13,37 @@ num_batches="1000 2000 3000 4000 5000 6000 7000 8000 9000 10000"
 
 for batch_num in $num_batches; do
 
-            echo -e "number of batches: $batch_num " >> /data/sidana/ml100k/recnet_draft/recnet_batches/results
+            echo -e "number of batches: $batch_num " >> /data/sidana/ml100k/recnet/recnet_batches/results
 
             python3 train_test_split_batches.py ml100k 0 1 $batch_num 2 64 0.005
 
-            echo -e "alpha: 0, beta: 1" >>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            echo -e -n "map@1: ">>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            ./writerelevancevectortrain_test_split_batches.sh ml100k 01 one >>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            echo -e -n "map@5: ">>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            ./writerelevancevectortrain_test_split_batches.sh ml100k 01 five>>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            echo -e -n "map@10:" >>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            ./writerelevancevectortrain_test_split_batches.sh ml100k 01 ten >>/data/sidana/ml100k/recnet_draft/recnet_batches/results
+            echo -e "alpha: 0, beta: 1" >>/data/sidana/ml100k/recnet/recnet_batches/results
+            echo -e -n "map@1: ">>/data/sidana/ml100k/recnet/recnet_batches/results
+            ./writerelevancevectortrain_test_split_batches.sh ml100k 01 one >>/data/sidana/ml100k/recnet/recnet_batches/results
+            echo -e -n "map@5: ">>/data/sidana/ml100k/recnet/recnet_batches/results
+            ./writerelevancevectortrain_test_split_batches.sh ml100k 01 five>>/data/sidana/ml100k/recnet/recnet_batches/results
+            echo -e -n "map@10:" >>/data/sidana/ml100k/recnet/recnet_batches/results
+            ./writerelevancevectortrain_test_split_batches.sh ml100k 01 ten >>/data/sidana/ml100k/recnet/recnet_batches/results
 
             python3 train_test_split_batches.py ml100k 1 0 $batch_num 1 32 0.05
 
-            echo -e "alpha: 1, beta: 0" >>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            echo -e -n "map@1: ">>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            ./writerelevancevectortrain_test_split_batches.sh ml100k 10 one>>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            echo -e -n "map@5: ">>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            ./writerelevancevectortrain_test_split_batches.sh ml100k 10 five>>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            echo -e -n "map@10:" >>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            ./writerelevancevectortrain_test_split_batches.sh ml100k 10 ten>>/data/sidana/ml100k/recnet_draft/recnet_batches/results
+            echo -e "alpha: 1, beta: 0" >>/data/sidana/ml100k/recnet/recnet_batches/results
+            echo -e -n "map@1: ">>/data/sidana/ml100k/recnet/recnet_batches/results
+            ./writerelevancevectortrain_test_split_batches.sh ml100k 10 one>>/data/sidana/ml100k/recnet/recnet_batches/results
+            echo -e -n "map@5: ">>/data/sidana/ml100k/recnet/recnet_batches/results
+            ./writerelevancevectortrain_test_split_batches.sh ml100k 10 five>>/data/sidana/ml100k/recnet/recnet_batches/results
+            echo -e -n "map@10:" >>/data/sidana/ml100k/recnet/recnet_batches/results
+            ./writerelevancevectortrain_test_split_batches.sh ml100k 10 ten>>/data/sidana/ml100k/recnet/recnet_batches/results
 
             python3 train_test_split_batches.py ml100k 1 1 $batch_num 2 16 0.005
 
-           echo -e "alpha: 1, beta: 1" >>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-           echo -e -n "map@1: ">>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            ./writerelevancevectortrain_test_split_batches.sh ml100k 11 one>>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-           echo -e -n "map@5: ">>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            ./writerelevancevectortrain_test_split_batches.sh ml100k 11 five>>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-           echo -e -n "map@10:" >>/data/sidana/ml100k/recnet_draft/recnet_batches/results
-            ./writerelevancevectortrain_test_split_batches.sh ml100k 11 ten>>/data/sidana/ml100k/recnet_draft/recnet_batches/results
+           echo -e "alpha: 1, beta: 1" >>/data/sidana/ml100k/recnet/recnet_batches/results
+           echo -e -n "map@1: ">>/data/sidana/ml100k/recnet/recnet_batches/results
+            ./writerelevancevectortrain_test_split_batches.sh ml100k 11 one>>/data/sidana/ml100k/recnet/recnet_batches/results
+           echo -e -n "map@5: ">>/data/sidana/ml100k/recnet/recnet_batches/results
+            ./writerelevancevectortrain_test_split_batches.sh ml100k 11 five>>/data/sidana/ml100k/recnet/recnet_batches/results
+           echo -e -n "map@10:" >>/data/sidana/ml100k/recnet/recnet_batches/results
+            ./writerelevancevectortrain_test_split_batches.sh ml100k 11 ten>>/data/sidana/ml100k/recnet/recnet_batches/results
         done
 #    done
 #done
