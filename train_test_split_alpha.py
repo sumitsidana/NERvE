@@ -10,8 +10,8 @@ pyximport.install()
 import matplotlib
 
 
-raw_data_train = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_alpha/train_all_raw.csv', skiprows = 1, delimiter=',')
-raw_data_test = np.loadtxt('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_alpha/test_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_train = np.loadtxt('/data/sidana/recnet_draft/recnet_alpha/'+sys.argv[1]+'/train_all_raw.csv', skiprows = 1, delimiter=',')
+raw_data_test = np.loadtxt('/data/sidana/recnet_draft/recnet_alpha/'+sys.argv[1]+'/test_all_raw.csv', skiprows = 1, delimiter=',')
 raw_data = np.concatenate((raw_data_train, raw_data_test))
 from dataset_tt_static import TripletsDataset
 
@@ -67,13 +67,13 @@ for n_batches, cur_optim in [(10000, model.trainer_3)]:
 
 #%%
 
-export_basename = '/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_alpha/vectors/'
+export_basename = '/data/sidana/recnet_draft/recnet_alpha/'+sys.argv[1]+'/vectors/'
 export_pred = open(export_basename + 'pr_'+sys.argv[1], 'w')
 export_true = open(export_basename + 'gt_'+sys.argv[1], 'w')
 
 ndcg_vals = []
 for u in tqdm(ds.data_keys, desc='Prediction', leave=True):
-    if not u in ds.test:
+    if not u in ds.test or not ds.test[u]:
         continue
     response = np.zeros(len(ds.test[u]))
     fd = {
