@@ -32,7 +32,7 @@ imp.reload(bprnn)
 
 #%%
 def inner_network(user_emb, item_emb):
-    joined_input = tf.concat(1, [user_emb, item_emb])
+    joined_input = tf.concat([user_emb, item_emb], 1)
     net = slim.fully_connected(inputs=joined_input, num_outputs=int(sys.argv[6]), activation_fn=tf.nn.relu)
 #     net = slim.fully_connected(inputs=joined_input, num_outputs=64, activation_fn=tf.nn.relu)
 #     net = slim.dro
