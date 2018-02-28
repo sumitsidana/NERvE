@@ -5,8 +5,8 @@
 	
 # f = open('results_output', 'r')
 import sys
-f = open('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_alpha/results', 'r')
-f1 = open('/data/sidana/recnet_draft/'+sys.argv[1]+'/recnet_alpha/alpha_'+sys.argv[1], 'w')
+f = open('/data/sidana/recnet/recnet_alpha/'+sys.argv[1]+'/results', 'r')
+f1 = open('/data/sidana/recnet/recnet_alpha/'+sys.argv[1]+'/alpha_'+sys.argv[1], 'w')
 
 flag_0_1 = False
 flag_1_0 = False
