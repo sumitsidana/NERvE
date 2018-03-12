@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 mkdir -p /data/sidana/recnet/all_test_param_tune/netflix/recnet_all/14/vectors
 
-end_lf=20
+end_lf=14
 reg_params="0.0001 0.001 0.005 0.01 0.05"
 hidden_units="16 32 64"
 
-for  latent_factor in $(seq 11 $end_lf); do
+for  latent_factor in $(seq 14 $end_lf); do
     for reg in $reg_params; do
         for num_units in $hidden_units; do
 
