@@ -47,7 +47,7 @@ class BPR_NN(object):
         with self.graph.as_default():
             # placeholders
             # for d in ['/device:GPU:2', '/device:GPU:4', '/device:GPU:5', '/device:GPU:6', '/device:GPU:7']:
-            with tf.device('/device:GPU:4'):
+            with tf.device('/device:GPU:7'):
                 self.user_ids = tf.placeholder(tf.int32, (None,), name='user_ids')
                 self.left_ids = tf.placeholder(tf.int32, (None,), name='left_ids')
                 self.right_ids = tf.placeholder(tf.int32, (None,), name='right_ids')
