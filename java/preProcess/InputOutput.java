@@ -1216,4 +1216,45 @@ public class InputOutput {
 		printWriter.close();
 
 	}
+	
+	public static void writePredictedValuesForPop(String inputFile, String outputFile) throws IOException{
+
+		PrintWriter printWriter = new PrintWriter (outputFile);
+		Map<String,List<String>> userOfferMap = new  LinkedHashMap<String,List<String>>();
+
+
+		try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFile)))) {
+			String line;
+			while ((line = br.readLine()) != null) {
+				String [] array = line.split(",");
+				String user = array[0];
+				String item = array[1];
+				if(userOfferMap.containsKey(user)){
+					ArrayList<String>offers = (ArrayList<String>) userOfferMap.get(user);
+					offers.add(item);
+					userOfferMap.put(user, offers);
+				}
+				else{
+					List<String>offers = new ArrayList<String>();
+					offers.add(item);
+					userOfferMap.put(user, offers);
+				}
+
+
+				// TODO Auto-generated method stub
+			}
+			for(Entry<String, List<String>> entry: userOfferMap.entrySet()){
+				String user = entry.getKey();
+				List<String> offers = entry.getValue();
+				printWriter.print(user+" ");
+				for(String offer: offers){
+					printWriter.print(offer+" ");
+				}
+				printWriter.println();
+			}
+
+			printWriter.close();
+			br.close();
+		}
+	}
 }
