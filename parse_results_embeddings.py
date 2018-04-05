@@ -23,15 +23,15 @@ for line in f:
             f1.write(latent_factor + " ")
             flag_latent_factor = False
 
-    if "Regularization: 0.05 Hidden Units: 16" in line:
+    if "Regularization: 0.01 Hidden Units: 16" in line:
         flag_0_1_param_write = True
 
 
-    if "Regularization: 0.0001 Hidden Units: 64" in line:
+    if "Regularization: 0.05 Hidden Units: 64" in line:
         flag_1_0_param_write = True
 
 
-    if "Regularization: 0.005 Hidden Units: 64" in line:
+    if "Regularization: 0.05 Hidden Units: 16" in line:
         flag_1_1_param_write = True
 
 
