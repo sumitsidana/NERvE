@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: PlotMap_Alpha_ML100K.eps
 %%Creator: gnuplot 4.6 patchlevel 4
-%%CreationDate: Mon Mar  5 08:59:24 2018
+%%CreationDate: Fri Apr  6 10:14:58 2018
 %%DocumentFonts: (atend)
 %%BoundingBox: 50 50 410 302
 %%EndComments
@@ -420,6 +420,34 @@ Level1 {Level1PatternFill} {Level2PatternFill} ifelse
 /Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
 dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
 currentdict end definefont pop
+/MFshow {
+   { dup 5 get 3 ge
+     { 5 get 3 eq {gsave} {grestore} ifelse }
+     {dup dup 0 get findfont exch 1 get scalefont setfont
+     [ currentpoint ] exch dup 2 get 0 exch R dup 5 get 2 ne {dup dup 6
+     get exch 4 get {Gshow} {stringwidth pop 0 R} ifelse }if dup 5 get 0 eq
+     {dup 3 get {2 get neg 0 exch R pop} {pop aload pop M} ifelse} {dup 5
+     get 1 eq {dup 2 get exch dup 3 get exch 6 get stringwidth pop -2 div
+     dup 0 R} {dup 6 get stringwidth pop -2 div 0 R 6 get
+     show 2 index {aload pop M neg 3 -1 roll neg R pop pop} {pop pop pop
+     pop aload pop M} ifelse }ifelse }ifelse }
+     ifelse }
+   forall} def
+/Gswidth {dup type /stringtype eq {stringwidth} {pop (n) stringwidth} ifelse} def
+/MFwidth {0 exch { dup 5 get 3 ge { 5 get 3 eq { 0 } { pop } ifelse }
+ {dup 3 get{dup dup 0 get findfont exch 1 get scalefont setfont
+     6 get Gswidth pop add} {pop} ifelse} ifelse} forall} def
+/MLshow { currentpoint stroke M
+  0 exch R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MRshow { currentpoint stroke M
+  exch dup MFwidth neg 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MCshow { currentpoint stroke M
+  exch dup MFwidth -2 div 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/XYsave    { [( ) 1 2 true false 3 ()] } bind def
+/XYrestore { [( ) 1 2 true false 4 ()] } bind def
 Level1 SuppressPDFMark or 
 {} {
 /SDict 10 dict def
@@ -433,7 +461,7 @@ SDict begin [
   /Author (sumit)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Mon Mar  5 08:59:24 2018)
+  /CreationDate (Fri Apr  6 10:14:58 2018)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -452,198 +480,168 @@ BackgroundColor 0 lt 3 1 roll 0 lt exch 0 lt or or not {BackgroundColor C 1.000 
 1.000 UL
 LTb
 LCb setrgbcolor
-782 912 M
+782 944 M
 63 0 V
 6048 0 R
 -63 0 V
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
-680 912 M
-( 0.8) Rshow
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
+stroke
+680 944 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 0.8)]
+] -66.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-782 1624 M
+782 1721 M
 63 0 V
 6048 0 R
 -63 0 V
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
--6150 0 R
-( 0.82) Rshow
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
+stroke
+680 1721 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 0.82)]
+] -66.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-782 2336 M
+782 2498 M
 63 0 V
 6048 0 R
 -63 0 V
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
--6150 0 R
-( 0.84) Rshow
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
+stroke
+680 2498 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 0.84)]
+] -66.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-782 3048 M
+782 3275 M
 63 0 V
 6048 0 R
 -63 0 V
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
--6150 0 R
-( 0.86) Rshow
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
+stroke
+680 3275 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 0.86)]
+] -66.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-782 3760 M
+782 4051 M
 63 0 V
 6048 0 R
 -63 0 V
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
--6150 0 R
-( 0.88) Rshow
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
+stroke
+680 4051 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 0.88)]
+] -66.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
-782 4472 M
+782 4828 M
 63 0 V
 6048 0 R
 -63 0 V
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
--6150 0 R
-( 0.9) Rshow
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
+stroke
+680 4828 M
+[ [(Helvetica) 200.0 0.0 true true 0 ( 0.9)]
+] -66.7 MRshow
 1.000 UL
 LTb
 LCb setrgbcolor
 1193 556 M
 0 4272 R
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
-0 -4374 R
-currentpoint gsave translate -35 rotate 0 0 M
-(0.1) Lshow
+stroke
+1193 454 M
+currentpoint gsave translate -35 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (0.1)]
+] -66.7 MLshow
 grestore
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
 1.000 UL
 LTb
 LCb setrgbcolor
 1781 556 M
 0 4272 R
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
-0 -4374 R
-currentpoint gsave translate -35 rotate 0 0 M
-(0.2) Lshow
+stroke
+1781 454 M
+currentpoint gsave translate -35 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (0.2)]
+] -66.7 MLshow
 grestore
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
 1.000 UL
 LTb
 LCb setrgbcolor
 2369 556 M
 0 4272 R
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
-0 -4374 R
-currentpoint gsave translate -35 rotate 0 0 M
-(0.3) Lshow
+stroke
+2369 454 M
+currentpoint gsave translate -35 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (0.3)]
+] -66.7 MLshow
 grestore
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
 1.000 UL
 LTb
 LCb setrgbcolor
 2956 556 M
 0 4272 R
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
-0 -4374 R
-currentpoint gsave translate -35 rotate 0 0 M
-(0.4) Lshow
+stroke
+2956 454 M
+currentpoint gsave translate -35 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (0.4)]
+] -66.7 MLshow
 grestore
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
 1.000 UL
 LTb
 LCb setrgbcolor
 3544 556 M
 0 4272 R
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
-0 -4374 R
-currentpoint gsave translate -35 rotate 0 0 M
-(0.5) Lshow
+stroke
+3544 454 M
+currentpoint gsave translate -35 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (0.5)]
+] -66.7 MLshow
 grestore
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
 1.000 UL
 LTb
 LCb setrgbcolor
 4131 556 M
 0 4272 R
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
-0 -4374 R
-currentpoint gsave translate -35 rotate 0 0 M
-(0.6) Lshow
+stroke
+4131 454 M
+currentpoint gsave translate -35 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (0.6)]
+] -66.7 MLshow
 grestore
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
 1.000 UL
 LTb
 LCb setrgbcolor
 4719 556 M
 0 4272 R
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
-0 -4374 R
-currentpoint gsave translate -35 rotate 0 0 M
-(0.7) Lshow
+stroke
+4719 454 M
+currentpoint gsave translate -35 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (0.7)]
+] -66.7 MLshow
 grestore
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
 1.000 UL
 LTb
 LCb setrgbcolor
 5306 556 M
 0 4272 R
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
-0 -4374 R
-currentpoint gsave translate -35 rotate 0 0 M
-(0.8) Lshow
+stroke
+5306 454 M
+currentpoint gsave translate -35 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (0.8)]
+] -66.7 MLshow
 grestore
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
 1.000 UL
 LTb
 LCb setrgbcolor
 5894 556 M
 0 4272 R
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
-0 -4374 R
-currentpoint gsave translate -35 rotate 0 0 M
-(0.9) Lshow
+stroke
+5894 454 M
+currentpoint gsave translate -35 rotate 0 0 moveto
+[ [(Helvetica) 200.0 0.0 true true 0 (0.9)]
+] -66.7 MLshow
 grestore
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
 1.000 UL
 LTb
 LCb setrgbcolor
@@ -657,22 +655,16 @@ LCb setrgbcolor
 -6111 0 V
 Z stroke
 LCb setrgbcolor
-/Helvetica findfont 220 scalefont setfont
-/vshift -73 def
 136 2692 M
-currentpoint gsave translate -270 rotate 0 0 M
-(MAP) Cshow
+currentpoint gsave translate -270 rotate 0 0 moveto
+[ [(Helvetica) 220.0 0.0 true true 0 (MAP)]
+] -73.3 MCshow
 grestore
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
 LTb
 LCb setrgbcolor
-/Helvetica findfont 220 scalefont setfont
-/vshift -73 def
 3837 126 M
-(alpha) Cshow
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
+[ [(Helvetica) 220.0 0.0 true true 0 (@)]
+] -73.3 MCshow
 LTb
 1.000 UP
 1.000 UL
@@ -683,33 +675,30 @@ LCb setrgbcolor
 2.000 UL
 LT0
 0.80 0.00 0.00 C LCb setrgbcolor
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
 6116 1342 M
-(MAP@1) Rshow
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
+[ [(Helvetica) 200.0 0.0 true true 0 (MAP@1)]
+] -66.7 MRshow
 LT0
 0.80 0.00 0.00 C 6218 1342 M
 471 0 V
-1193 2914 M
-588 -222 V
-588 -445 V
-587 -890 V
-588 668 V
-587 -446 V
-588 446 V
-587 2225 V
-5894 3137 L
-1193 2914 CircleF
-1781 2692 CircleF
-2369 2247 CircleF
-2956 1357 CircleF
-3544 2025 CircleF
-4131 1579 CircleF
-4719 2025 CircleF
-5306 4250 CircleF
-5894 3137 CircleF
+1193 3129 M
+588 -243 V
+588 -485 V
+587 -971 V
+588 728 V
+587 -485 V
+588 485 V
+587 2427 V
+5894 3372 L
+1193 3129 CircleF
+1781 2886 CircleF
+2369 2401 CircleF
+2956 1430 CircleF
+3544 2158 CircleF
+4131 1673 CircleF
+4719 2158 CircleF
+5306 4585 CircleF
+5894 3372 CircleF
 6453 1342 CircleF
 % End plot #1
 % Begin plot #2
@@ -717,33 +706,30 @@ LT0
 2.000 UL
 LT0
 0.00 0.60 0.00 C LCb setrgbcolor
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
 6116 1053 M
-(MAP@5) Rshow
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
+[ [(Helvetica) 200.0 0.0 true true 0 (MAP@5)]
+] -66.7 MRshow
 LT0
 0.00 0.60 0.00 C 6218 1053 M
 471 0 V
-1193 2264 M
-588 -109 V
-588 -703 V
-587 22 V
-588 -116 V
-587 -307 V
-588 553 V
-587 1476 V
-588 -492 V
-1193 2264 BoxF
-1781 2155 BoxF
-2369 1452 BoxF
-2956 1474 BoxF
-3544 1358 BoxF
-4131 1051 BoxF
-4719 1604 BoxF
-5306 3080 BoxF
-5894 2588 BoxF
+1193 2419 M
+588 -119 V
+588 -767 V
+587 24 V
+588 -126 V
+587 -335 V
+588 603 V
+587 1611 V
+588 -537 V
+1193 2419 BoxF
+1781 2300 BoxF
+2369 1533 BoxF
+2956 1557 BoxF
+3544 1431 BoxF
+4131 1096 BoxF
+4719 1699 BoxF
+5306 3310 BoxF
+5894 2773 BoxF
 6453 1053 BoxF
 % End plot #2
 % Begin plot #3
@@ -751,33 +737,30 @@ LT0
 2.000 UL
 LT0
 0.00 0.00 0.80 C LCb setrgbcolor
-/Helvetica findfont 200 scalefont setfont
-/vshift -66 def
 6116 764 M
-(MAP@10) Rshow
-/Helvetica findfont 170 scalefont setfont
-/vshift -56 def
+[ [(Helvetica) 200.0 0.0 true true 0 (MAP@10)]
+] -66.7 MRshow
 LT0
 0.00 0.00 0.80 C 6218 764 M
 471 0 V
-1193 2036 M
-588 -103 V
-588 -446 V
-587 -331 V
-588 -114 V
-4131 635 L
-588 537 V
-587 1073 V
-588 -126 V
-1193 2036 BoxF
-1781 1933 BoxF
-2369 1487 BoxF
-2956 1156 BoxF
-3544 1042 BoxF
-4131 635 BoxF
-4719 1172 BoxF
-5306 2245 BoxF
-5894 2119 BoxF
+1193 2170 M
+588 -111 V
+588 -487 V
+587 -362 V
+588 -124 V
+4131 642 L
+588 587 V
+587 1169 V
+588 -137 V
+1193 2170 BoxF
+1781 2059 BoxF
+2369 1572 BoxF
+2956 1210 BoxF
+3544 1086 BoxF
+4131 642 BoxF
+4719 1229 BoxF
+5306 2398 BoxF
+5894 2261 BoxF
 6453 764 BoxF
 % End plot #3
 1.000 UL
