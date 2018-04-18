@@ -57,10 +57,13 @@ class BPR_NN(object):
             self.item_latents = tf.Variable(tf.random_uniform(shape=(self.N_ITEMS, self.N_EMBEDDINGS)), trainable=True, name='item_latents')
 
             # get embeddings for batch
+            # shape = batch_size (512) * N_EMBEDDINGS
             self.embedding_user = tf.nn.embedding_lookup(self.user_latents, self.user_ids, name='embedding_user')
             self.embedding_left = tf.nn.embedding_lookup(self.item_latents, self.left_ids, name='embedding_left')
             self.embedding_right = tf.nn.embedding_lookup(self.item_latents, self.right_ids, name='embedding_right')
 
+            # this is the dot product and not element-wise multiplication
+            # shape = batch_size * ?
             self.left_emb = tf.reduce_sum(tf.multiply(self.embedding_user, self.embedding_left), axis=1)
             self.right_emb = tf.reduce_sum(tf.multiply(self.embedding_user, self.embedding_right), axis=1)
 
