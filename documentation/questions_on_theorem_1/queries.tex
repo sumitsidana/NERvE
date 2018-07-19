@@ -1,6 +1,6 @@
 \documentclass{article}
 
-
+\usepackage{amsfonts}
 
 \begin{document}
 1. About Definition 1: In the definition of proper, what is the meaning of the independence of set $M_j$. Why is there a concept of a graph? isn't it a set of discrete variables? My understanding is that n discrete variables {1,...,n} are combined to form a 2-tuple with n(n-1) pairs. This n(n-1) pair has m proper covers if the 2-tuple in the same set cannot have the same elements. For example (1, 2) and (10, 23) can be in one set. But (1, 2) and (1, 12) cannot be in one set. Is that right?\\
@@ -16,9 +16,14 @@ What is required is that you choose the weights of these labels, and the vertice
 for each vertex, the sum of weights of all its labels exactly equals 1. its integral version would be easier to understand, essentially partition the vertices into J sets such that each set is an Independent set.\\
 
 
-3.About Theorem 1: The expression of C(s)(The first line in page 4, a equation), what is the meaning of the expectation symbol $E_Mj$? What is the expectation under a set $M_j$? The latter summation is to find all the self-measures $d(z,z)$ belonging to $M_j$. Where is the randomness in the summation? Is there a more intuitive explanation about $C(S)$?\\
+3.About Theorem 1: The expression of C(s)(The first line in page 4, a equation), what is the meaning of the expectation symbol $E_Mj$? What is the expectation under a set $M_j$? The latter summation is to find all the self-measures $d(z,z)$ belonging to $M_j$. Where is the randomness in the summation? Is there a more intuitive explanation about $C(S)$? \\
 
-4. About Theorem 1: $C(s)$ in the generalization error bound shows metrics of the binary groups in each cover are relatively small, and there is no tag information. The second term of the loss function $L_p(U,V,S)$, except for the norm of U, V is constrained, why the similarity between U and V is consistent with the label? Is this proposed isolated or reflected in Theorem 1?
+\underline{Response}: The meaning of the expectation symbol $E_{M_j}$ is mean of disimmilarities of preferred and non-preferred items for that $M_j$. We don't understand why we need randomness in the summation. We attach the proof of the theorum with this email so that it is clear how we reach up to this term. $\mathfrak{C}(S)$ intuitively means the complexity term involving the dissimilarities between the mapping function $\phi$ of preferred and non-preferred items.
+In the cases where mapping function has finite range $k$, lower values of $k$  mean lower complexity term $\mathfrak{C}(S)$ and tighter generalization bound. This observation is also emphasized in experimental section when RecNet performs better on lower values of $k$.\\
+
+4. About Theorem 1: $C(s)$ in the generalization error bound shows metrics of the binary groups in each cover are relatively small, and there is no tag information. The second term of the loss function $L_p(U,V,S)$, except for the norm of U, V is constrained, why the similarity between U and V is consistent with the label? Is this proposed isolated or reflected in Theorem 1?\\
+
+\underline{Response}: I haven't been able to understand this question. Particularly, I don't understand what is a binary group we have talked about and what does he mean by  \textbf{The second term of the loss function $L_p(U,V,S)$, except for the norm of U, V is constrained}
 
 \bibliographystyle{unsrt}
 \bibliography{queries}
