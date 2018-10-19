@@ -19,6 +19,6 @@ set yrange [0.65:1]
 set xrange [-1:20]
 set key spacing 2
 set key top right
-plot  'embeddings_ml1m' using ($4):xticlabels(1) with linespoints ls 1 title 'Recnet_c', \
- '' using ($2):xticlabels(1) with linespoints ls 2 title 'Recnet_p', \
- '' using ($3):xticlabels(1) with linespoints ls 3 title 'Recnet_{c,p}'
+plot  'embeddings_ml1m' using ($4):xticlabels(1) with linespoints ls 1 title 'NervE_c', \
+ '' using ($2):xticlabels(1) with linespoints ls 2 title 'NervE_p', \
+ '' using ($3):xticlabels(1) with linespoints ls 3 title 'NervE_{c,p}'
