@@ -16,7 +16,7 @@ for alpha_value in $alpha_values; do
             echo -e "alpha_value: $alpha_value " >> /data/sidana/recnet/recnet_alpha_all_offers_setting/kasandr/results
             beta_value="$(echo 1.0 - $alpha_value|bc)"
 
-            python3 train_test_split_alpha_all.py kasandr $alpha_value $beta_value 18 0.005 64
+            python3 train_test_split_alpha_all.py kasandr $alpha_value $beta_value 14 0.05 64
             echo -e -n "map@1: ">>/data/sidana/recnet/recnet_alpha_all_offers_setting/kasandr/results
             ./writerelevancevectortrain_test_split_alpha_all.sh kasandr one >>/data/sidana/recnet/recnet_alpha_all_offers_setting/kasandr/results
             echo -e -n "map@5: ">>/data/sidana/recnet/recnet_alpha_all_offers_setting/kasandr/results
