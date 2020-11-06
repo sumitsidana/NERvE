@@ -8,11 +8,11 @@ This repository contains the code for "Representation Learning and Pairwise Rank
 
 [Mikhail Trofimov](https://github.com/geffy)
 
-[Oleg.Gorodnitskii]()
-
-[Yury Maximov](https://faculty.skoltech.ru/people/yurymaximov)
+[Oleg Gorodnitskii]()
 
 [Charlotte Laclau](https://laclauc.github.io/)
+
+[Yury Maximov](https://faculty.skoltech.ru/people/yurymaximov)
 
 [Massih-Reza Amini](http://ama.liglab.fr/~amini/)
 
