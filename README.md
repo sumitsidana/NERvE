@@ -8,7 +8,9 @@ This repository contains the code for "Representation Learning and Pairwise Rank
 
 [Mikhail Trofimov](https://github.com/geffy)
 
-[Oleg.Gorodnitskii](https://faculty.skoltech.ru/people/yurymaximov)
+[Oleg.Gorodnitskii]()
+
+[Yury Maximov](https://faculty.skoltech.ru/people/yurymaximov)
 
 [Charlotte Laclau](https://laclauc.github.io/)
 
@@ -27,7 +29,7 @@ This repository uses:
 - [KASANDR](https://archive.ics.uci.edu/ml/datasets/KASANDR)
 - Netflix
 
-*How To Run
+# How To Run
 
 To install cachedrandom module -- use `make_ext.sh`
 
